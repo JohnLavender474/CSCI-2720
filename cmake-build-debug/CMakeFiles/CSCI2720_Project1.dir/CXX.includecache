@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.h
+iostream
+-
+
 /Users/apple/CLionProjects/CSCI2720_Project1/Flight.h
 iostream
 -
@@ -14,21 +18,27 @@ SortedList.h
 Passenger.h
 /Users/apple/CLionProjects/CSCI2720_Project1/Passenger.h
 
-/Users/apple/CLionProjects/CSCI2720_Project1/GoAir.cpp
-GoAir.h
-/Users/apple/CLionProjects/CSCI2720_Project1/GoAir.h
+/Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.cpp
+GoAirImplementation.h
+/Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.h
 Passenger.h
 /Users/apple/CLionProjects/CSCI2720_Project1/Passenger.h
 Flight.h
 /Users/apple/CLionProjects/CSCI2720_Project1/Flight.h
+BookingNum.h
+/Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.h
 SortedList.h
 /Users/apple/CLionProjects/CSCI2720_Project1/SortedList.h
 SortedList.cpp
 /Users/apple/CLionProjects/CSCI2720_Project1/SortedList.cpp
 
-/Users/apple/CLionProjects/CSCI2720_Project1/GoAir.h
+/Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.h
 Flight.h
 /Users/apple/CLionProjects/CSCI2720_Project1/Flight.h
+Passenger.h
+/Users/apple/CLionProjects/CSCI2720_Project1/Passenger.h
+BookingNum.h
+/Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.h
 
 /Users/apple/CLionProjects/CSCI2720_Project1/Node.h
 

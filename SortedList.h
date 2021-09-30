@@ -8,17 +8,16 @@ class SortedList {
 public:
     SortedList();
     ~SortedList();
-    T & get(int index);
     void insert(T data);
     void remove(int index);
     int indexOf(T data);
+    void indexedInsert(int index, T data);
     int getLength();
     void display();
-private:
-    int length;
+    T & get(int index);
     Node<T> * head;
     Node<T> * getNode(int index);
-    void indexedInsert(int index, T data);
+    int length;
 }; // SortedList
 
 #endif

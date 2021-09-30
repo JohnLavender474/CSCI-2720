@@ -1,11 +1,14 @@
 CC = g++
 CFLAGS = -g
 
-all : main
+all : GoAirProgram
 
-OBJECTS = main.o SortedList.o Passenger.o Flight.o GoAir.o
+OBJECTS = GoAirProgram.o GoAirImplementation.o SortedList.o Passenger.o Flight.o GoAir.o BookingNum.o
 
 SortedList.o : SortedList.cpp
+	$(CC) -c $(CFLAGS) $< -o $@
+
+BookingNum.o : BookingNum.cpp
 	$(CC) -c $(CFLAGS) $< -o $@
 
 Passenger.o : Passenger.cpp
@@ -14,13 +17,13 @@ Passenger.o : Passenger.cpp
 Flight.o : Flight.cpp
 	$(CC) -c $(CFLAGS) $< -o $@
 
-GoAir.o : GoAir.cpp
+GoAirImplementation.o : GoAirImplementation.cpp
 	$(CC) -c $(CFLAGS) $< -o $@
 
-main.o : main.cpp
+GoAirProgram.o : GoAirProgram.cpp
 	$(CC) -c $(CFLAGS) $< -o $@
 
-main : $(OBJECTS)
+GoAirProgram : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@
 
 clean:
@@ -28,6 +31,6 @@ clean:
 	rm -f SortedList.o
 	rm -f Passenger.o
 	rm -f Flight.o
-	rm -f GoAir.o
-	rm -f main.o
-	rm -f main
+	rm -f GoAirImplementation.o
+	rm -f GoAirProgram.o
+	rm -f GoAirProgram

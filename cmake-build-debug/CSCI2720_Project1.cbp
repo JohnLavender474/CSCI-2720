@@ -80,16 +80,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.cpp">
+			<Option target="CSCI2720_Project1"/>
+		</Unit>
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.h">
+			<Option target="CSCI2720_Project1"/>
+		</Unit>
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Flight.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Flight.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAir.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAir.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.h">
+			<Option target="CSCI2720_Project1"/>
+		</Unit>
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAirProgram.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Node.h">
@@ -105,9 +114,6 @@
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/SortedList.h">
-			<Option target="CSCI2720_Project1"/>
-		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/main.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/CMakeLists.txt">

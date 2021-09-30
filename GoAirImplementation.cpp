@@ -1,20 +1,22 @@
-#include "GoAir.h"
+#include "GoAirImplementation.h"
 #include "Passenger.h"
 #include "Flight.h"
+#include "BookingNum.h"
 #include "SortedList.h"
 #include "SortedList.cpp"
 
-GoAir::GoAir() {
+GoAirImplementation::GoAirImplementation() {
     this->flightSortedList = new SortedList<Flight>();
+    this->removedBookingNos = new SortedList<BookingNum>();
     this->bookingNum = 1;
 } // constructor
 
-void GoAir::addFlight(int flightno) {
+void GoAirImplementation::addFlight(int flightno) {
     Flight flight(flightno);
     this->flightSortedList->insert(flight);
 } // addFlight
 
-void GoAir::removeFlight(int flightno) {
+void GoAirImplementation::removeFlight(int flightno) {
     int i = 0;
     while (1) {
         if (flightno == this->flightSortedList->get(i).getFlightNo()) {
@@ -28,7 +30,7 @@ void GoAir::removeFlight(int flightno) {
     this->flightSortedList->remove(i);
 } // removeFlight
 
-void GoAir::addPassenger(int flightno, string lastname, string firstname, int seatno) {
+void GoAirImplementation::addPassenger(int flightno, string lastname, string firstname, int seatno) {
     Flight & flight = this->fetchFlight(flightno);
     if (flight.passengerIndex(lastname, firstname, seatno) != -1) {
         throw invalid_argument("Passenger already exists on this flight");
@@ -39,21 +41,26 @@ void GoAir::addPassenger(int flightno, string lastname, string firstname, int se
     } // if
 } // addPassenger
 
-void GoAir::removePassenger(int flightno, string lastname, string firstname, int seatno) {
+void GoAirImplementation::removePassenger(int flightno, string lastname, string firstname, int seatno) {
     Flight & flight = this->fetchFlight(flightno);
-    if (flight.passengerIndex(lastname, firstname, seatno) == -1) {
+    int index = flight.passengerIndex(lastname, firstname, seatno);
+    if (index == -1) {
         throw invalid_argument("Passenger does not exist on this flight");
     } // if
+    Passenger passenger = flight.getPassenger(index);
+    BookingNum bookingNumObj;
+    bookingNumObj.bookingNum = passenger.getBookingNo();
+    this->removedBookingNos->insert(bookingNumObj);
     flight.removePassenger(lastname, firstname, seatno);
 } // removePassenger
 
-void GoAir::showPassenger(int flightno, string lastname, string firstname, int seatno) {
+void GoAirImplementation::showPassenger(int flightno, string lastname, string firstname, int seatno) {
     Flight & flight = this->fetchFlight(flightno);
     int index = flight.passengerIndex(lastname, firstname, seatno);
     index != -1 ? cout << flight.getPassenger(index) : cout << "No such passenger on this flight";
 } // showPassenger
 
-void GoAir::showAllFlights() {
+void GoAirImplementation::showAllFlights() {
     cout << "Flights:" << endl;
     int i = 0;
     while (i < this->flightSortedList->getLength()) {
@@ -62,50 +69,33 @@ void GoAir::showAllFlights() {
     } // while
 } // showAllFlights
 
-void GoAir::showAllPassengers(int flightno) {
+void GoAirImplementation::showAllPassengers(int flightno) {
     cout << this->fetchFlight(flightno) << endl;
 } // showAllPassengers
 
-void GoAir::showNewPassengers(int flightno, int a) {
+void GoAirImplementation::showNewPassengers(int flightno, int a) {
     Flight & flight = this->fetchFlight(flightno);
-    SortedList<Passenger> newestPassengers;
-    int x = flight.getLastUsedBookingNum();
-    int y = x - a + 1;
-    if (y > 0) {
-        while (x >= y) {
-            for (int i = 0; i < flight.getNumPassengers(); i++) {
-                if (flight.getPassenger(i).getBookingNo() == x) {
-                    newestPassengers.insert(flight.getPassenger(i));
-                } // if
-            } // for
-            x--;
-        } // while
-    } else {
-        throw invalid_argument("The size of the passenger list is less than the argument provided");
-    } // if
-    newestPassengers.display();
+    BookingNumSortedList bookingNumSortedList;
+    for (int i = 0; i < flight.getNumPassengers(); i++) {
+        bookingNumSortedList.insertForNewPassengers(flight.getPassenger(i));
+    } // for
+    for (int i = 0; i < a; i++) {
+        cout << bookingNumSortedList.get(i);
+    } // for
 } // showNewPassengers
 
-void GoAir::showFirstPassengers(int flightno, int a) {
+void GoAirImplementation::showFirstPassengers(int flightno, int a) {
     Flight & flight = this->fetchFlight(flightno);
-    SortedList<Passenger> firstPassengers;
-    int x = 1;
-    if (a > 0 && a <= flight.getNumPassengers()) {
-        while (x <= a) {
-            for (int i = 0; i < flight.getNumPassengers(); i++) {
-                if (flight.getPassenger(i).getBookingNo() == x) {
-                    firstPassengers.insert(flight.getPassenger(i));
-                } // if
-            } // for
-            x++;
-        } // while
-    } else {
-        throw invalid_argument("The provided amount is invalid");
-    } // if
-    firstPassengers.display();
+    BookingNumSortedList bookingNumSortedList;
+    for (int i = 0; i < flight.getNumPassengers(); i++) {
+        bookingNumSortedList.insertForFirstPassengers(flight.getPassenger(i));
+    } // for
+    for (int i = 0; i < a; i++) {
+        cout << bookingNumSortedList.get(i);
+    } // for
 } // showFirstPassengers
 
-void GoAir::showAllFlightsAndPassengers() {
+void GoAirImplementation::showAllFlightsAndPassengers() {
     int i = 0;
     while (i < this->flightSortedList->getLength()) {
         cout << flightSortedList->get(i);
@@ -114,7 +104,7 @@ void GoAir::showAllFlightsAndPassengers() {
 } //  showAllFlightsAndPassengers
 
 // Private
-Flight & GoAir::fetchFlight(int flightno) {
+Flight & GoAirImplementation::fetchFlight(int flightno) {
     int i = 0;
     while (1) {
         if (flightno == this->flightSortedList->get(i).getFlightNo()) {

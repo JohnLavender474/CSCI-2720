@@ -5,7 +5,7 @@
 #include <string>
 #include <algorithm>
 
-#include "GoAir.h"
+#include "GoAirImplementation.h"
 
 using namespace std;
 
@@ -17,6 +17,7 @@ bool isAlpha(string & str);
 bool isNum(string & str, int & num);
 void printCommands();
 void printWelcome();
+void test();
 
 const string af = "af";
 const string rf = "rf";
@@ -45,9 +46,16 @@ const string sapErrorMsg = "Failed to show all passengers on flight no ";
 const string snpErrorMsg = "Failed to show newest passengers on flight no";
 const string sfpErrorMsg = "Failed to show first passengers on flight no";
 
-GoAir * goAir = new GoAir();
+GoAirImplementation * goAir = new GoAirImplementation();
 
-int main() {
+int main(int argc, char *argv[]) {
+    if (argc > 1) {
+        string arg = argv[1];
+        if (arg.compare("test") == 0) {
+            test();
+            return 0;
+        } // if
+    } // if
     printWelcome();
     goAirProgram();
     return 0;
@@ -205,8 +213,8 @@ void tokenize(string & str, vector<string> & tokens) {
 
 bool isAlphaNum(string & str) {
     // return all_of(str.begin(), str.end(), [](char c) { return isalnum(c) || c == ' '; });
-    for (char const & c : str) {
-        if (!isalnum(c) && c != ' ') {
+    for (int i = 0; i < str.size(); i++) {
+        if (!isalnum(str[i]) && str[i] != ' ') {
             return false;
         } // if
     } // for
@@ -215,8 +223,8 @@ bool isAlphaNum(string & str) {
 
 bool isAlpha(string & str) {
     // return all_of(str.begin(), str.end(), [](char c) { return isalpha(c) || c == ' '; });
-    for (char const & c : str) {
-        if (!isalpha(c) && c != ' ') {
+    for (int i = 0; i < str.size(); i++) {
+        if (!isalpha(str[i]) && str[i] != ' ') {
             return false;
         } // if
     } // for
@@ -229,8 +237,8 @@ bool isNum(string & str, int & num) {
     isNum ? num = atoi(str.c_str()) : num = -1;
     return isNum;
      */
-    for (char const & c : str) {
-        if (!isnumber(c) && c != ' ') {
+    for (int i = 0; i < str.size(); i++) {
+        if (!isnumber(str[i]) && str[i] != ' ') {
             num = -1;
             return false;
         } // if
@@ -279,3 +287,33 @@ void printWelcome() {
     this_thread::sleep_for(chrono::milliseconds(x));
     printCommands();
 } // printWelcome
+
+void test() {
+    goAir->addFlight(11);
+    goAir->addPassenger(11, "Lavender", "John", 11);
+    goAir->addPassenger(11, "Doshi", "Prashant", 1);
+    goAir->addPassenger(11, "Kong", "Donkey", 3);
+    goAir->addPassenger(11, "Mario", "Super", 4);
+    goAir->addPassenger(11, "Cheese", "Big", 13);
+    goAir->addPassenger(11, "Mac", "Big", 14);
+    cout << "\nShow all flights And Passengers" << endl;
+    goAir->showAllFlightsAndPassengers();
+    cout << "\nShow newest 4 passengers" << endl;
+    goAir->showNewPassengers(11, 4);
+    cout << "\nShow first 4 passengers" << endl;
+    goAir->showFirstPassengers(11, 4);
+    goAir->removePassenger(11, "Kong", "Donkey", 3);
+    goAir->removePassenger(11, "Doshi", "Prashant", 1);
+    cout << "\nShow newest 4 passengers after removing Kong and Doshi" << endl;
+    goAir->showNewPassengers(11, 4);
+    cout << "\nShow first 4 passengers" << endl;
+    goAir->showFirstPassengers(11, 4);
+    goAir->showAllFlightsAndPassengers();
+    goAir->removePassenger(11, "Lavender", "John", 11);
+    cout << "\nShow all flights and passengers again" << endl;
+    goAir->showAllFlightsAndPassengers();
+    cout << "\nShow newest 3 passengers after also deleting Mario" << endl;
+    goAir->showNewPassengers(11, 3);
+    cout << "\nShow first 3 passengers" << endl;
+    goAir->showFirstPassengers(11, 3);
+} // test
