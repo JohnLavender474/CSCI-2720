@@ -67,6 +67,12 @@ int Flight::getAndIncrementBookingNum() {
     return i;
 } // getAndIncrementBookingNum
 
+int Flight::getLastUsedBookingNum() {
+    int i = bookingNum;
+    i--;
+    return i;
+} // getLastUsedBookingNum
+
 bool Flight::seatIsTaken(int seatNo) const {
     int i = 0;
     while (1) {

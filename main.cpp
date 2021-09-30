@@ -23,6 +23,8 @@ const string ap = "ap";
 const string rp = "rp";
 const string sp = "sp";
 const string sap = "sap";
+const string snp = "snp";
+const string sfp = "sfp";
 const string saf = "saf";
 const string safap = "safap";
 const string commands = "commands";
@@ -39,6 +41,8 @@ const string apErrorMsg = "Failed to add passenger to flight no ";
 const string rpErrorMsg = "Failed to remove passenger from flight no ";
 const string spErrorMsg = "Failed to show passenger on flight no ";
 const string sapErrorMsg = "Failed to show all passengers on flight no ";
+const string snpErrorMsg = "Failed to show newest passengers on flight no";
+const string sfpErrorMsg = "Failed to show first passengers on flight no";
 
 GoAir * goAir = new GoAir();
 
@@ -70,6 +74,7 @@ void goAirProgram() {
 } // goAirProgram
 
 void handleCommand(vector<string> tokens, string & msg) {
+    cout << endl;
     int flightno;
     string firstname;
     string lastname;
@@ -150,6 +155,32 @@ void handleCommand(vector<string> tokens, string & msg) {
                 } // if
             } // if
         } // if
+    } else if (tokens.at(0).compare(snp) == 0) {
+        if (tokens.size() != 3) {
+            msg = snpErrorMsg;
+        } else {
+            int k;
+            if (isNum(tokens.at(1), flightno) && isNum(tokens.at(2), k)) {
+                if (flightno != -1 && k != -1) {
+                    goAir->showNewPassengers(flightno, k);
+                } else {
+                    msg = snpErrorMsg;
+                } // if
+            } // if
+        } // if
+    } else if (tokens.at(0).compare(sfp) == 0) {
+        if (tokens.size() != 3) {
+            msg = sfpErrorMsg;
+        } else {
+            int k;
+            if (isNum(tokens.at(1), flightno) && isNum(tokens.at(2), k)) {
+                if (flightno != -1 && k != -1) {
+                    goAir->showFirstPassengers(flightno, k);
+                } else {
+                    msg = sfpErrorMsg;
+                } // if
+            } // if
+        } // if
     } else if (tokens.at(0).compare(safap) == 0) {
         goAir->showAllFlightsAndPassengers();
     } // if
@@ -159,7 +190,9 @@ void tokenize(string str, vector<string> & tokens) {
     string temp = "";
     for (int i = 0; i < str.length(); i++) {
         if (str[i] == ' ') {
-            tokens.push_back(temp);
+            if (!temp.empty()) {
+                tokens.push_back(temp);
+            } // if
             temp = "";
         } else {
             temp += str[i];
@@ -197,6 +230,10 @@ void printCommands() {
     cout << "\t\tsp -flightno -lastname -firstname -seatno -- Show passenger" << endl;
     this_thread::sleep_for(chrono::milliseconds(x));
     cout << "\t\tsap -flightno -- Show all passengers" << endl;
+    this_thread::sleep_for(chrono::milliseconds(x));
+    cout << "\t\tsnp -flightno -num -- Show newest passengers" << endl;
+    this_thread::sleep_for(chrono::milliseconds(x));
+    cout << "\t\tsfp -flightno -num -- Show first passengers" << endl;
     this_thread::sleep_for(chrono::milliseconds(x));
     cout << "\t\tsaf -- Show all flights" << endl;
     this_thread::sleep_for(chrono::milliseconds(x));

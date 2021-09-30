@@ -18,6 +18,7 @@ public:
     Passenger & getPassenger(int index);
     void changeFlightNo(int flightno);
     int getAndIncrementBookingNum();
+    int getLastUsedBookingNum();
     bool seatIsTaken(int seatNo) const;
     int getFlightNo() const;
     int getNumPassengers() const;

@@ -66,12 +66,43 @@ void GoAir::showAllPassengers(int flightno) {
     cout << this->fetchFlight(flightno) << endl;
 } // showAllPassengers
 
-void GoAir::showNewPassengers(int flightno, int k) {
-
+void GoAir::showNewPassengers(int flightno, int a) {
+    Flight & flight = this->fetchFlight(flightno);
+    SortedList<Passenger> newestPassengers;
+    int x = flight.getLastUsedBookingNum();
+    int y = x - a;
+    if (y > 0) {
+        while (x > y) {
+            for (int i = 0; i < flight.getNumPassengers(); i++) {
+                if (flight.getPassenger(i).getBookingNo() == x) {
+                    newestPassengers.insert(flight.getPassenger(i));
+                } // if
+            } // for
+            x--;
+        } // while
+    } else {
+        throw invalid_argument("The size of the passenger list is less than the argument provided");
+    } // if
+    newestPassengers.display();
 } // showNewPassengers
 
-void GoAir::showFirstPassengers(int flightno, int k) {
-
+void GoAir::showFirstPassengers(int flightno, int a) {
+    Flight & flight = this->fetchFlight(flightno);
+    SortedList<Passenger> firstPassengers;
+    int x = 1;
+    if (a > 0 && a <= flight.getNumPassengers()) {
+        while (x <= a) {
+            for (int i = 0; i < flight.getNumPassengers(); i++) {
+                if (flight.getPassenger(i).getBookingNo() == x) {
+                    firstPassengers.insert(flight.getPassenger(i));
+                } // if
+            } // for
+            x++;
+        } // while
+    } else {
+        throw invalid_argument("The provided amount is invalid");
+    } // if
+    firstPassengers.display();
 } // showFirstPassengers
 
 void GoAir::showAllFlightsAndPassengers() {

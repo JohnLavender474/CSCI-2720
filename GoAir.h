@@ -15,8 +15,8 @@ public:
     void showPassenger(int flightno, string lastname, string firstname, int seatno);
     void showAllFlights();
     void showAllPassengers(int flightno);
-    void showNewPassengers(int flightno, int k);
-    void showFirstPassengers(int flightno, int k);
+    void showNewPassengers(int flightno, int a);
+    void showFirstPassengers(int flightno, int a);
     void showAllFlightsAndPassengers();
 private:
     SortedList<Flight> * flightSortedList;
