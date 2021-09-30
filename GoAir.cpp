@@ -70,9 +70,9 @@ void GoAir::showNewPassengers(int flightno, int a) {
     Flight & flight = this->fetchFlight(flightno);
     SortedList<Passenger> newestPassengers;
     int x = flight.getLastUsedBookingNum();
-    int y = x - a;
+    int y = x - a + 1;
     if (y > 0) {
-        while (x > y) {
+        while (x >= y) {
             for (int i = 0; i < flight.getNumPassengers(); i++) {
                 if (flight.getPassenger(i).getBookingNo() == x) {
                     newestPassengers.insert(flight.getPassenger(i));

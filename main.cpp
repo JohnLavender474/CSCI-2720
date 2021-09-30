@@ -3,17 +3,18 @@
 #include <chrono>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 #include "GoAir.h"
 
 using namespace std;
 
 void goAirProgram();
-void handleCommand(vector<string> tokens, string & msg);
-void tokenize(string str, vector<string> & tokens);
-bool isAlphaNum(string str);
-bool isAlpha(string str);
-bool isNum(string str, int & num);
+void handleCommand(vector<string> & tokens, string & msg);
+void tokenize(string & str, vector<string> & tokens);
+bool isAlphaNum(string & str);
+bool isAlpha(string & str);
+bool isNum(string & str, int & num);
 void printCommands();
 void printWelcome();
 
@@ -56,6 +57,7 @@ void goAirProgram() {
     string input;
     vector<string> tokens;
     while (1) {
+        cout << endl;
         input = "";
         tokens.clear();
         do {
@@ -73,7 +75,7 @@ void goAirProgram() {
     } // while
 } // goAirProgram
 
-void handleCommand(vector<string> tokens, string & msg) {
+void handleCommand(vector<string> & tokens, string & msg) {
     cout << endl;
     int flightno;
     string firstname;
@@ -186,7 +188,7 @@ void handleCommand(vector<string> tokens, string & msg) {
     } // if
 } // handleInput
 
-void tokenize(string str, vector<string> & tokens) {
+void tokenize(string & str, vector<string> & tokens) {
     string temp = "";
     for (int i = 0; i < str.length(); i++) {
         if (str[i] == ' ') {
@@ -201,18 +203,40 @@ void tokenize(string str, vector<string> & tokens) {
     tokens.push_back(temp);
 } // tokenize
 
-bool isAlphaNum(string str) {
-    return all_of(str.begin(), str.end(), [](char c) { return isalnum(c) || c == ' '; });
+bool isAlphaNum(string & str) {
+    // return all_of(str.begin(), str.end(), [](char c) { return isalnum(c) || c == ' '; });
+    for (char const & c : str) {
+        if (!isalnum(c) && c != ' ') {
+            return false;
+        } // if
+    } // for
+    return true;
 } // isAlphaNum
 
-bool isAlpha(string str) {
-    return all_of(str.begin(), str.end(), [](char c) { return isalpha(c) || c == ' '; });
+bool isAlpha(string & str) {
+    // return all_of(str.begin(), str.end(), [](char c) { return isalpha(c) || c == ' '; });
+    for (char const & c : str) {
+        if (!isalpha(c) && c != ' ') {
+            return false;
+        } // if
+    } // for
+    return true;
 } // isAlpha
 
-bool isNum(string str, int & num) {
+bool isNum(string & str, int & num) {
+    /*
     bool isNum = all_of(str.begin(), str.end(), [](char c) { return isnumber(c) || c == ' '; });
     isNum ? num = atoi(str.c_str()) : num = -1;
     return isNum;
+     */
+    for (char const & c : str) {
+        if (!isnumber(c) && c != ' ') {
+            num = -1;
+            return false;
+        } // if
+    } // for
+    num = atoi(str.c_str());
+    return true;
 } // isNum
 
 void printCommands() {
