@@ -53,10 +53,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/apple/CLionProjects/CSCI2720_Project1
+CMAKE_SOURCE_DIR = /Users/apple/CLionProjects/CSCI2720_Projects
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CSCI2720_Project1.dir/depend.make
@@ -68,81 +68,81 @@ include CMakeFiles/CSCI2720_Project1.dir/flags.make
 
 CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
 CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.o: ../GoAirProgram.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Project1/GoAirProgram.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/GoAirProgram.cpp
 
 CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Project1/GoAirProgram.cpp > CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/GoAirProgram.cpp > CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.i
 
 CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Project1/GoAirProgram.cpp -o CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/GoAirProgram.cpp -o CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.s
 
 CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
 CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.o: ../SortedList.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Project1/SortedList.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/SortedList.cpp
 
 CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Project1/SortedList.cpp > CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/SortedList.cpp > CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.i
 
 CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Project1/SortedList.cpp -o CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/SortedList.cpp -o CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.s
 
 CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
 CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.o: ../GoAirImplementation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/GoAirImplementation.cpp
 
 CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.cpp > CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/GoAirImplementation.cpp > CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.i
 
 CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.cpp -o CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/GoAirImplementation.cpp -o CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.s
 
 CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
 CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.o: ../Passenger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Project1/Passenger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/Passenger.cpp
 
 CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Project1/Passenger.cpp > CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/Passenger.cpp > CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.i
 
 CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Project1/Passenger.cpp -o CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Passenger.cpp -o CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.s
 
 CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
 CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o: ../Flight.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Project1/Flight.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/Flight.cpp
 
 CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Project1/Flight.cpp > CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/Flight.cpp > CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.i
 
 CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Project1/Flight.cpp -o CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Flight.cpp -o CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.s
 
 CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
 CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o: ../BookingNum.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/BookingNum.cpp
 
 CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.cpp > CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/BookingNum.cpp > CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.i
 
 CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.cpp -o CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/BookingNum.cpp -o CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.s
 
 # Object files for target CSCI2720_Project1
 CSCI2720_Project1_OBJECTS = \
@@ -164,7 +164,7 @@ CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/build.make
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable CSCI2720_Project1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable CSCI2720_Project1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CSCI2720_Project1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -176,6 +176,6 @@ CMakeFiles/CSCI2720_Project1.dir/clean:
 .PHONY : CMakeFiles/CSCI2720_Project1.dir/clean
 
 CMakeFiles/CSCI2720_Project1.dir/depend:
-	cd /Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/apple/CLionProjects/CSCI2720_Project1 /Users/apple/CLionProjects/CSCI2720_Project1 /Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug /Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug /Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/apple/CLionProjects/CSCI2720_Projects /Users/apple/CLionProjects/CSCI2720_Projects /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/CSCI2720_Project1.dir/depend
 

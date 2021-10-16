@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug"/>
+				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug"/>
+				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug"/>
+				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CSCI2720_Project1">
-				<Option output="/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CSCI2720_Project1" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug"/>
+				<Option output="/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CSCI2720_Project1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -52,15 +52,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 CSCI2720_Project1"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 CSCI2720_Project1"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CSCI2720_Project1/fast">
-				<Option output="/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/CSCI2720_Project1" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug"/>
+				<Option output="/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CSCI2720_Project1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -73,50 +73,50 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 CSCI2720_Project1/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Project1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 CSCI2720_Project1/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/BookingNum.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/BookingNum.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/BookingNum.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Flight.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Flight.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Flight.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Flight.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/GoAirImplementation.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAirImplementation.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/GoAirImplementation.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/GoAirProgram.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/GoAirProgram.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Node.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Node.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Passenger.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Passenger.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/Passenger.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Passenger.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/SortedList.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/SortedList.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/SortedList.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/SortedList.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Project1/CMakeLists.txt">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
