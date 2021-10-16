@@ -129,149 +129,149 @@ CSCI2720_Project1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/build
 .PHONY : CSCI2720_Project1/fast
 
-BookingNum.o: BookingNum.cpp.o
-.PHONY : BookingNum.o
+Project1/BookingNum.o: Project1/BookingNum.cpp.o
+.PHONY : Project1/BookingNum.o
 
 # target to build an object file
-BookingNum.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.o
-.PHONY : BookingNum.cpp.o
+Project1/BookingNum.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.o
+.PHONY : Project1/BookingNum.cpp.o
 
-BookingNum.i: BookingNum.cpp.i
-.PHONY : BookingNum.i
+Project1/BookingNum.i: Project1/BookingNum.cpp.i
+.PHONY : Project1/BookingNum.i
 
 # target to preprocess a source file
-BookingNum.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.i
-.PHONY : BookingNum.cpp.i
+Project1/BookingNum.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.i
+.PHONY : Project1/BookingNum.cpp.i
 
-BookingNum.s: BookingNum.cpp.s
-.PHONY : BookingNum.s
+Project1/BookingNum.s: Project1/BookingNum.cpp.s
+.PHONY : Project1/BookingNum.s
 
 # target to generate assembly for a file
-BookingNum.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/BookingNum.cpp.s
-.PHONY : BookingNum.cpp.s
+Project1/BookingNum.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.s
+.PHONY : Project1/BookingNum.cpp.s
 
-Flight.o: Flight.cpp.o
-.PHONY : Flight.o
+Project1/Flight.o: Project1/Flight.cpp.o
+.PHONY : Project1/Flight.o
 
 # target to build an object file
-Flight.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.o
-.PHONY : Flight.cpp.o
+Project1/Flight.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/Flight.cpp.o
+.PHONY : Project1/Flight.cpp.o
 
-Flight.i: Flight.cpp.i
-.PHONY : Flight.i
+Project1/Flight.i: Project1/Flight.cpp.i
+.PHONY : Project1/Flight.i
 
 # target to preprocess a source file
-Flight.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.i
-.PHONY : Flight.cpp.i
+Project1/Flight.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/Flight.cpp.i
+.PHONY : Project1/Flight.cpp.i
 
-Flight.s: Flight.cpp.s
-.PHONY : Flight.s
+Project1/Flight.s: Project1/Flight.cpp.s
+.PHONY : Project1/Flight.s
 
 # target to generate assembly for a file
-Flight.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Flight.cpp.s
-.PHONY : Flight.cpp.s
+Project1/Flight.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/Flight.cpp.s
+.PHONY : Project1/Flight.cpp.s
 
-GoAirImplementation.o: GoAirImplementation.cpp.o
-.PHONY : GoAirImplementation.o
+Project1/GoAirImplementation.o: Project1/GoAirImplementation.cpp.o
+.PHONY : Project1/GoAirImplementation.o
 
 # target to build an object file
-GoAirImplementation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.o
-.PHONY : GoAirImplementation.cpp.o
+Project1/GoAirImplementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirImplementation.cpp.o
+.PHONY : Project1/GoAirImplementation.cpp.o
 
-GoAirImplementation.i: GoAirImplementation.cpp.i
-.PHONY : GoAirImplementation.i
+Project1/GoAirImplementation.i: Project1/GoAirImplementation.cpp.i
+.PHONY : Project1/GoAirImplementation.i
 
 # target to preprocess a source file
-GoAirImplementation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.i
-.PHONY : GoAirImplementation.cpp.i
+Project1/GoAirImplementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirImplementation.cpp.i
+.PHONY : Project1/GoAirImplementation.cpp.i
 
-GoAirImplementation.s: GoAirImplementation.cpp.s
-.PHONY : GoAirImplementation.s
+Project1/GoAirImplementation.s: Project1/GoAirImplementation.cpp.s
+.PHONY : Project1/GoAirImplementation.s
 
 # target to generate assembly for a file
-GoAirImplementation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/GoAirImplementation.cpp.s
-.PHONY : GoAirImplementation.cpp.s
+Project1/GoAirImplementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirImplementation.cpp.s
+.PHONY : Project1/GoAirImplementation.cpp.s
 
-GoAirProgram.o: GoAirProgram.cpp.o
-.PHONY : GoAirProgram.o
+Project1/GoAirProgram.o: Project1/GoAirProgram.cpp.o
+.PHONY : Project1/GoAirProgram.o
 
 # target to build an object file
-GoAirProgram.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.o
-.PHONY : GoAirProgram.cpp.o
+Project1/GoAirProgram.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirProgram.cpp.o
+.PHONY : Project1/GoAirProgram.cpp.o
 
-GoAirProgram.i: GoAirProgram.cpp.i
-.PHONY : GoAirProgram.i
+Project1/GoAirProgram.i: Project1/GoAirProgram.cpp.i
+.PHONY : Project1/GoAirProgram.i
 
 # target to preprocess a source file
-GoAirProgram.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.i
-.PHONY : GoAirProgram.cpp.i
+Project1/GoAirProgram.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirProgram.cpp.i
+.PHONY : Project1/GoAirProgram.cpp.i
 
-GoAirProgram.s: GoAirProgram.cpp.s
-.PHONY : GoAirProgram.s
+Project1/GoAirProgram.s: Project1/GoAirProgram.cpp.s
+.PHONY : Project1/GoAirProgram.s
 
 # target to generate assembly for a file
-GoAirProgram.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/GoAirProgram.cpp.s
-.PHONY : GoAirProgram.cpp.s
+Project1/GoAirProgram.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirProgram.cpp.s
+.PHONY : Project1/GoAirProgram.cpp.s
 
-Passenger.o: Passenger.cpp.o
-.PHONY : Passenger.o
+Project1/Passenger.o: Project1/Passenger.cpp.o
+.PHONY : Project1/Passenger.o
 
 # target to build an object file
-Passenger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.o
-.PHONY : Passenger.cpp.o
+Project1/Passenger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.o
+.PHONY : Project1/Passenger.cpp.o
 
-Passenger.i: Passenger.cpp.i
-.PHONY : Passenger.i
+Project1/Passenger.i: Project1/Passenger.cpp.i
+.PHONY : Project1/Passenger.i
 
 # target to preprocess a source file
-Passenger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.i
-.PHONY : Passenger.cpp.i
+Project1/Passenger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.i
+.PHONY : Project1/Passenger.cpp.i
 
-Passenger.s: Passenger.cpp.s
-.PHONY : Passenger.s
+Project1/Passenger.s: Project1/Passenger.cpp.s
+.PHONY : Project1/Passenger.s
 
 # target to generate assembly for a file
-Passenger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Passenger.cpp.s
-.PHONY : Passenger.cpp.s
+Project1/Passenger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.s
+.PHONY : Project1/Passenger.cpp.s
 
-SortedList.o: SortedList.cpp.o
-.PHONY : SortedList.o
+Project1/SortedList.o: Project1/SortedList.cpp.o
+.PHONY : Project1/SortedList.o
 
 # target to build an object file
-SortedList.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.o
-.PHONY : SortedList.cpp.o
+Project1/SortedList.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.o
+.PHONY : Project1/SortedList.cpp.o
 
-SortedList.i: SortedList.cpp.i
-.PHONY : SortedList.i
+Project1/SortedList.i: Project1/SortedList.cpp.i
+.PHONY : Project1/SortedList.i
 
 # target to preprocess a source file
-SortedList.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.i
-.PHONY : SortedList.cpp.i
+Project1/SortedList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.i
+.PHONY : Project1/SortedList.cpp.i
 
-SortedList.s: SortedList.cpp.s
-.PHONY : SortedList.s
+Project1/SortedList.s: Project1/SortedList.cpp.s
+.PHONY : Project1/SortedList.s
 
 # target to generate assembly for a file
-SortedList.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/SortedList.cpp.s
-.PHONY : SortedList.cpp.s
+Project1/SortedList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.s
+.PHONY : Project1/SortedList.cpp.s
 
 # Help Target
 help:
@@ -282,24 +282,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... CSCI2720_Project1"
-	@echo "... BookingNum.o"
-	@echo "... BookingNum.i"
-	@echo "... BookingNum.s"
-	@echo "... Flight.o"
-	@echo "... Flight.i"
-	@echo "... Flight.s"
-	@echo "... GoAirImplementation.o"
-	@echo "... GoAirImplementation.i"
-	@echo "... GoAirImplementation.s"
-	@echo "... GoAirProgram.o"
-	@echo "... GoAirProgram.i"
-	@echo "... GoAirProgram.s"
-	@echo "... Passenger.o"
-	@echo "... Passenger.i"
-	@echo "... Passenger.s"
-	@echo "... SortedList.o"
-	@echo "... SortedList.i"
-	@echo "... SortedList.s"
+	@echo "... Project1/BookingNum.o"
+	@echo "... Project1/BookingNum.i"
+	@echo "... Project1/BookingNum.s"
+	@echo "... Project1/Flight.o"
+	@echo "... Project1/Flight.i"
+	@echo "... Project1/Flight.s"
+	@echo "... Project1/GoAirImplementation.o"
+	@echo "... Project1/GoAirImplementation.i"
+	@echo "... Project1/GoAirImplementation.s"
+	@echo "... Project1/GoAirProgram.o"
+	@echo "... Project1/GoAirProgram.i"
+	@echo "... Project1/GoAirProgram.s"
+	@echo "... Project1/Passenger.o"
+	@echo "... Project1/Passenger.i"
+	@echo "... Project1/Passenger.s"
+	@echo "... Project1/SortedList.o"
+	@echo "... Project1/SortedList.i"
+	@echo "... Project1/SortedList.s"
 .PHONY : help
 
 

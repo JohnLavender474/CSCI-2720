@@ -80,40 +80,40 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/BookingNum.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/BookingNum.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/BookingNum.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/BookingNum.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Flight.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/Flight.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Flight.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/Flight.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/GoAirImplementation.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/GoAirImplementation.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/GoAirImplementation.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/GoAirImplementation.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/GoAirProgram.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/GoAirProgram.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Node.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/Node.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Passenger.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/Passenger.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Passenger.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/Passenger.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/SortedList.cpp">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/SortedList.cpp">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
-		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/SortedList.h">
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/SortedList.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/CMakeLists.txt">
