@@ -35,9 +35,15 @@ void GoAirImplementation::addPassenger(int flightno, string lastname, string fir
     if (flight.passengerIndex(lastname, firstname, seatno) != -1) {
         throw invalid_argument("Passenger already exists on this flight");
     } // if
+    Passenger passenger(lastname, firstname, seatno, flight.getAndIncrementBookingNum());
     if (!flight.seatIsTaken(seatno)) {
-        Passenger passenger(lastname, firstname, seatno, flight.getAndIncrementBookingNum());
         flight.addPassenger(passenger);
+        for (int i = 0; i < removedBookingNos->getLength(); i++) {
+            if (removedBookingNos->get(i).bookingNum == passenger.getBookingNo()) {
+                removedBookingNos->remove(i);
+                break;
+            } // if
+        } // for
     } // if
 } // addPassenger
 
@@ -81,7 +87,7 @@ void GoAirImplementation::showNewPassengers(int flightno, int a) {
     } // for
     for (int i = 0; i < a; i++) {
         cout << bookingNumSortedList.get(i);
-    } // for
+    } // fo
 } // showNewPassengers
 
 void GoAirImplementation::showFirstPassengers(int flightno, int a) {
