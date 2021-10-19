@@ -116,6 +116,18 @@
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project1/SortedList.h">
 			<Option target="CSCI2720_Project1"/>
 		</Unit>
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project2/tree/ContiguousNaryTreeNode.cpp">
+			<Option target="CSCI2720_Project1"/>
+		</Unit>
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project2/tree/ContiguousNaryTreeNode.h">
+			<Option target="CSCI2720_Project1"/>
+		</Unit>
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project2/tree/LinkedNaryTreeNode.cpp">
+			<Option target="CSCI2720_Project1"/>
+		</Unit>
+		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/Project2/tree/LinkedNaryTreeNode.h">
+			<Option target="CSCI2720_Project1"/>
+		</Unit>
 		<Unit filename="/Users/apple/CLionProjects/CSCI2720_Projects/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

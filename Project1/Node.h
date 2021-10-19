@@ -4,8 +4,8 @@
 template<class T>
 class Node {
 public:
-    Node() {
-        this->next = nullptr;
+	Node() {
+	    this->next = nullptr;
     } // Node
     T data;
     Node<T> * next;

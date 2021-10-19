@@ -157,7 +157,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=CSCI2720_Project1
+CMAKE_PROJECT_NAME:STATIC=CSCI2720_Projects
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -226,6 +226,12 @@ CSCI2720_Project1_BINARY_DIR:STATIC=/Users/apple/CLionProjects/CSCI2720_Projects
 
 //Value Computed by CMake
 CSCI2720_Project1_SOURCE_DIR:STATIC=/Users/apple/CLionProjects/CSCI2720_Projects
+
+//Value Computed by CMake
+CSCI2720_Projects_BINARY_DIR:STATIC=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug
+
+//Value Computed by CMake
+CSCI2720_Projects_SOURCE_DIR:STATIC=/Users/apple/CLionProjects/CSCI2720_Projects
 
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
