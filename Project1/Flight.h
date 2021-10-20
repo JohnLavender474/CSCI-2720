@@ -31,7 +31,7 @@ public:
 private:
     int flightno;
     int bookingNum;
-    SortedList<Passenger> *passengerSortedList;
+    SortedList<Passenger> * passengerSortedList;
 }; // Flight
 
 #endif //CSCI2720_PROJECT1_FLIGHT_H

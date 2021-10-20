@@ -8,7 +8,7 @@ using namespace std;
 
 template<class T>
 SortedList<T>::SortedList() {
-    Node<T> *headNode = new Node<T>();
+    Node<T> * headNode = new Node<T>();
     this->head = headNode;
     this->head->next = nullptr;
     this->length = 0;
@@ -55,7 +55,7 @@ void SortedList<T>::remove(int index) {
     if (index < 0 || index >= this->length) {
         throw invalid_argument("invalid index");
     } else if (index == 0) {
-        Node<T> *temp = this->head;
+        Node<T> * temp = this->head;
         this->head = this->head->next;
         delete temp;
         this->length--;
@@ -99,16 +99,16 @@ void SortedList<T>::indexedInsert(int index, T data) {
     if (index < 0 || index > this->length) {
         throw invalid_argument("invalid index");
     } else if (index == 0) {
-        Node<T> *insertion = new Node<T>();
+        Node<T> * insertion = new Node<T>();
         insertion->data = data;
         insertion->next = this->head;
         this->head = insertion;
     } else if (this->head == NULL) {
-        Node<T> *insertion = new Node<T>;
+        Node<T> * insertion = new Node<T>;
         insertion->data = data;
         this->head = insertion;
     } else {
-        Node<T> *beforeInsertion = this->head;
+        Node<T> * beforeInsertion = this->head;
         for (int i = 0; i < index - 1; i++) {
             if (beforeInsertion->next != NULL) {
                 beforeInsertion = beforeInsertion->next;
@@ -116,8 +116,8 @@ void SortedList<T>::indexedInsert(int index, T data) {
                 throw invalid_argument("invalid index");
             } // if
         } // for
-        Node<T> *afterInsertion = beforeInsertion->next;
-        Node<T> *insertion = new Node<T>();
+        Node<T> * afterInsertion = beforeInsertion->next;
+        Node<T> * insertion = new Node<T>();
         insertion->data = data;
         insertion->next = afterInsertion;
         beforeInsertion->next = insertion;

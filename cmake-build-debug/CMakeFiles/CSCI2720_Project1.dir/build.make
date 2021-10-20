@@ -144,44 +144,31 @@ CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Project1/BookingNum.cpp -o CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.s
 
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.o: ../Project2/trees/linked/LinkedNaryTreeNode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/linked/LinkedNaryTreeNode.cpp
+CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
+CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o: ../Project2/LinkedNaryTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/Project2/LinkedNaryTree.cpp
 
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/linked/LinkedNaryTreeNode.cpp > CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.i
+CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/Project2/LinkedNaryTree.cpp > CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.i
 
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/linked/LinkedNaryTreeNode.cpp -o CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.s
+CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Project2/LinkedNaryTree.cpp -o CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.s
 
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o: ../Project2/trees/contiguous/ContiguousNaryTreeNode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp
+CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
+CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o: ../Project2/ContiguousNaryTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/Project2/ContiguousNaryTree.cpp
 
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp > CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.i
+CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/Project2/ContiguousNaryTree.cpp > CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.i
 
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp -o CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.s
-
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.o: CMakeFiles/CSCI2720_Project1.dir/flags.make
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.o: ../Project2/trees/contiguous/ContiguousNaryTree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.o -c /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/contiguous/ContiguousNaryTree.cpp
-
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/contiguous/ContiguousNaryTree.cpp > CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.i
-
-CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Project2/trees/contiguous/ContiguousNaryTree.cpp -o CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.s
+CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/apple/CLionProjects/CSCI2720_Projects/Project2/ContiguousNaryTree.cpp -o CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.s
 
 # Object files for target CSCI2720_Project1
 CSCI2720_Project1_OBJECTS = \
@@ -191,9 +178,8 @@ CSCI2720_Project1_OBJECTS = \
 "CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.o" \
 "CMakeFiles/CSCI2720_Project1.dir/Project1/Flight.cpp.o" \
 "CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.o" \
-"CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.o" \
-"CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o" \
-"CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.o"
+"CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o" \
+"CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o"
 
 # External object files for target CSCI2720_Project1
 CSCI2720_Project1_EXTERNAL_OBJECTS =
@@ -204,12 +190,11 @@ CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirImplementation
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.o
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project1/Flight.cpp.o
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project1/BookingNum.cpp.o
-CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.o
-CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o
-CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.o
+CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o
+CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/build.make
 CSCI2720_Project1: CMakeFiles/CSCI2720_Project1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable CSCI2720_Project1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable CSCI2720_Project1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CSCI2720_Project1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

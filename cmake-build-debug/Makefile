@@ -273,77 +273,53 @@ Project1/SortedList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.s
 .PHONY : Project1/SortedList.cpp.s
 
-Project2/trees/contiguous/ContiguousNaryTree.o: Project2/trees/contiguous/ContiguousNaryTree.cpp.o
-.PHONY : Project2/trees/contiguous/ContiguousNaryTree.o
+Project2/ContiguousNaryTree.o: Project2/ContiguousNaryTree.cpp.o
+.PHONY : Project2/ContiguousNaryTree.o
 
 # target to build an object file
-Project2/trees/contiguous/ContiguousNaryTree.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.o
-.PHONY : Project2/trees/contiguous/ContiguousNaryTree.cpp.o
+Project2/ContiguousNaryTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o
+.PHONY : Project2/ContiguousNaryTree.cpp.o
 
-Project2/trees/contiguous/ContiguousNaryTree.i: Project2/trees/contiguous/ContiguousNaryTree.cpp.i
-.PHONY : Project2/trees/contiguous/ContiguousNaryTree.i
+Project2/ContiguousNaryTree.i: Project2/ContiguousNaryTree.cpp.i
+.PHONY : Project2/ContiguousNaryTree.i
 
 # target to preprocess a source file
-Project2/trees/contiguous/ContiguousNaryTree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.i
-.PHONY : Project2/trees/contiguous/ContiguousNaryTree.cpp.i
+Project2/ContiguousNaryTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.i
+.PHONY : Project2/ContiguousNaryTree.cpp.i
 
-Project2/trees/contiguous/ContiguousNaryTree.s: Project2/trees/contiguous/ContiguousNaryTree.cpp.s
-.PHONY : Project2/trees/contiguous/ContiguousNaryTree.s
+Project2/ContiguousNaryTree.s: Project2/ContiguousNaryTree.cpp.s
+.PHONY : Project2/ContiguousNaryTree.s
 
 # target to generate assembly for a file
-Project2/trees/contiguous/ContiguousNaryTree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTree.cpp.s
-.PHONY : Project2/trees/contiguous/ContiguousNaryTree.cpp.s
+Project2/ContiguousNaryTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.s
+.PHONY : Project2/ContiguousNaryTree.cpp.s
 
-Project2/trees/contiguous/ContiguousNaryTreeNode.o: Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o
-.PHONY : Project2/trees/contiguous/ContiguousNaryTreeNode.o
+Project2/LinkedNaryTree.o: Project2/LinkedNaryTree.cpp.o
+.PHONY : Project2/LinkedNaryTree.o
 
 # target to build an object file
-Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o
-.PHONY : Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.o
+Project2/LinkedNaryTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o
+.PHONY : Project2/LinkedNaryTree.cpp.o
 
-Project2/trees/contiguous/ContiguousNaryTreeNode.i: Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.i
-.PHONY : Project2/trees/contiguous/ContiguousNaryTreeNode.i
-
-# target to preprocess a source file
-Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.i
-.PHONY : Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.i
-
-Project2/trees/contiguous/ContiguousNaryTreeNode.s: Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.s
-.PHONY : Project2/trees/contiguous/ContiguousNaryTreeNode.s
-
-# target to generate assembly for a file
-Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.s
-.PHONY : Project2/trees/contiguous/ContiguousNaryTreeNode.cpp.s
-
-Project2/trees/linked/LinkedNaryTreeNode.o: Project2/trees/linked/LinkedNaryTreeNode.cpp.o
-.PHONY : Project2/trees/linked/LinkedNaryTreeNode.o
-
-# target to build an object file
-Project2/trees/linked/LinkedNaryTreeNode.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.o
-.PHONY : Project2/trees/linked/LinkedNaryTreeNode.cpp.o
-
-Project2/trees/linked/LinkedNaryTreeNode.i: Project2/trees/linked/LinkedNaryTreeNode.cpp.i
-.PHONY : Project2/trees/linked/LinkedNaryTreeNode.i
+Project2/LinkedNaryTree.i: Project2/LinkedNaryTree.cpp.i
+.PHONY : Project2/LinkedNaryTree.i
 
 # target to preprocess a source file
-Project2/trees/linked/LinkedNaryTreeNode.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.i
-.PHONY : Project2/trees/linked/LinkedNaryTreeNode.cpp.i
+Project2/LinkedNaryTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.i
+.PHONY : Project2/LinkedNaryTree.cpp.i
 
-Project2/trees/linked/LinkedNaryTreeNode.s: Project2/trees/linked/LinkedNaryTreeNode.cpp.s
-.PHONY : Project2/trees/linked/LinkedNaryTreeNode.s
+Project2/LinkedNaryTree.s: Project2/LinkedNaryTree.cpp.s
+.PHONY : Project2/LinkedNaryTree.s
 
 # target to generate assembly for a file
-Project2/trees/linked/LinkedNaryTreeNode.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/trees/linked/LinkedNaryTreeNode.cpp.s
-.PHONY : Project2/trees/linked/LinkedNaryTreeNode.cpp.s
+Project2/LinkedNaryTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.s
+.PHONY : Project2/LinkedNaryTree.cpp.s
 
 # Help Target
 help:
@@ -372,15 +348,12 @@ help:
 	@echo "... Project1/SortedList.o"
 	@echo "... Project1/SortedList.i"
 	@echo "... Project1/SortedList.s"
-	@echo "... Project2/trees/contiguous/ContiguousNaryTree.o"
-	@echo "... Project2/trees/contiguous/ContiguousNaryTree.i"
-	@echo "... Project2/trees/contiguous/ContiguousNaryTree.s"
-	@echo "... Project2/trees/contiguous/ContiguousNaryTreeNode.o"
-	@echo "... Project2/trees/contiguous/ContiguousNaryTreeNode.i"
-	@echo "... Project2/trees/contiguous/ContiguousNaryTreeNode.s"
-	@echo "... Project2/trees/linked/LinkedNaryTreeNode.o"
-	@echo "... Project2/trees/linked/LinkedNaryTreeNode.i"
-	@echo "... Project2/trees/linked/LinkedNaryTreeNode.s"
+	@echo "... Project2/ContiguousNaryTree.o"
+	@echo "... Project2/ContiguousNaryTree.i"
+	@echo "... Project2/ContiguousNaryTree.s"
+	@echo "... Project2/LinkedNaryTree.o"
+	@echo "... Project2/LinkedNaryTree.i"
+	@echo "... Project2/LinkedNaryTree.s"
 .PHONY : help
 
 

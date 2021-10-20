@@ -1,0 +1,8 @@
+#ifndef CSCI2720_PROJECTS_LINKEDNARYTREE_H
+#define CSCI2720_PROJECTS_LINKEDNARYTREE_H
+
+#include "NaryTree.h"
+
+
+
+#endif
