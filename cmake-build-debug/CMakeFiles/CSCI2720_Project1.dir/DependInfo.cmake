@@ -14,7 +14,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/apple/CLionProjects/CSCI2720_Projects/Project1/GoAirProgram.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirProgram.cpp.o"
   "/Users/apple/CLionProjects/CSCI2720_Projects/Project1/Passenger.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.o"
   "/Users/apple/CLionProjects/CSCI2720_Projects/Project1/SortedList.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.o"
-  "/Users/apple/CLionProjects/CSCI2720_Projects/Project2/ContiguousNaryTree.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project2/ContiguousNaryTree.cpp.o"
   "/Users/apple/CLionProjects/CSCI2720_Projects/Project2/LinkedNaryTree.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
