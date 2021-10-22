@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named CSCI2720_Project2
+
+# Build rule for target.
+CSCI2720_Project2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CSCI2720_Project2
+.PHONY : CSCI2720_Project2
+
+# fast build rule for target.
+CSCI2720_Project2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/build
+.PHONY : CSCI2720_Project2/fast
+
+#=============================================================================
 # Target rules for targets named CSCI2720_Project1
 
 # Build rule for target.
@@ -273,29 +286,53 @@ Project1/SortedList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.s
 .PHONY : Project1/SortedList.cpp.s
 
-Project2/LinkedNaryTree.o: Project2/LinkedNaryTree.cpp.o
-.PHONY : Project2/LinkedNaryTree.o
+Project2/T3Solver.o: Project2/T3Solver.cpp.o
+.PHONY : Project2/T3Solver.o
 
 # target to build an object file
-Project2/LinkedNaryTree.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.o
-.PHONY : Project2/LinkedNaryTree.cpp.o
+Project2/T3Solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3Solver.cpp.o
+.PHONY : Project2/T3Solver.cpp.o
 
-Project2/LinkedNaryTree.i: Project2/LinkedNaryTree.cpp.i
-.PHONY : Project2/LinkedNaryTree.i
+Project2/T3Solver.i: Project2/T3Solver.cpp.i
+.PHONY : Project2/T3Solver.i
 
 # target to preprocess a source file
-Project2/LinkedNaryTree.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.i
-.PHONY : Project2/LinkedNaryTree.cpp.i
+Project2/T3Solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3Solver.cpp.i
+.PHONY : Project2/T3Solver.cpp.i
 
-Project2/LinkedNaryTree.s: Project2/LinkedNaryTree.cpp.s
-.PHONY : Project2/LinkedNaryTree.s
+Project2/T3Solver.s: Project2/T3Solver.cpp.s
+.PHONY : Project2/T3Solver.s
 
 # target to generate assembly for a file
-Project2/LinkedNaryTree.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project2/LinkedNaryTree.cpp.s
-.PHONY : Project2/LinkedNaryTree.cpp.s
+Project2/T3Solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3Solver.cpp.s
+.PHONY : Project2/T3Solver.cpp.s
+
+Project2/test.o: Project2/test.cpp.o
+.PHONY : Project2/test.o
+
+# target to build an object file
+Project2/test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/test.cpp.o
+.PHONY : Project2/test.cpp.o
+
+Project2/test.i: Project2/test.cpp.i
+.PHONY : Project2/test.i
+
+# target to preprocess a source file
+Project2/test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/test.cpp.i
+.PHONY : Project2/test.cpp.i
+
+Project2/test.s: Project2/test.cpp.s
+.PHONY : Project2/test.s
+
+# target to generate assembly for a file
+Project2/test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/test.cpp.s
+.PHONY : Project2/test.cpp.s
 
 # Help Target
 help:
@@ -306,6 +343,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... CSCI2720_Project1"
+	@echo "... CSCI2720_Project2"
 	@echo "... Project1/BookingNum.o"
 	@echo "... Project1/BookingNum.i"
 	@echo "... Project1/BookingNum.s"
@@ -324,9 +362,12 @@ help:
 	@echo "... Project1/SortedList.o"
 	@echo "... Project1/SortedList.i"
 	@echo "... Project1/SortedList.s"
-	@echo "... Project2/LinkedNaryTree.o"
-	@echo "... Project2/LinkedNaryTree.i"
-	@echo "... Project2/LinkedNaryTree.s"
+	@echo "... Project2/T3Solver.o"
+	@echo "... Project2/T3Solver.i"
+	@echo "... Project2/T3Solver.s"
+	@echo "... Project2/test.o"
+	@echo "... Project2/test.i"
+	@echo "... Project2/test.s"
 .PHONY : help
 
 
