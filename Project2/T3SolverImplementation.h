@@ -16,12 +16,12 @@ public:
 	}
 };
 
-class T3Solver
+class T3SolverImplementation
 {
 public:
-	T3Solver() = delete;
-	T3Solver(std::string serialized_game_board);
-	~T3Solver();
+	T3SolverImplementation() = delete;
+	T3SolverImplementation(std::string serialized_game_board);
+	~T3SolverImplementation();
 	void print_levelorder();
 	void print_preorder();
 	void print_postorder();

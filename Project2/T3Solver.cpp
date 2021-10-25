@@ -1,213 +1,186 @@
-#include "T3Solver.h"
+#include <thread>
 
-/* ========================================================================================================== */
-/* CONSTRUCTOR */
-/* ========================================================================================================== */
-T3Solver::T3Solver(std::string root_game_board) try :
-		game_tree(new NaryTree<std::string>)
+#include "T3SolverImplementation.h"
+
+void program_loop(T3SolverImplementation *& t3SolverImplementation);
+void printWelcome();
+bool is_valid_serialized_game_board(std::string & game_board);
+std::string get_serialized_game_board();
+void traversal(T3SolverImplementation *& t3Solver);
+bool is_valid_traversal_input(std::string & traversal_input);
+
+static const std::string _exit = "exit";
+static const std::string _restart = "restart";
+static const std::string _results = "results";
+static const std::string _preorder = "preorder";
+static const std::string _postorder = "postorder";
+static const std::string _levelorder = "levelorder";
+static const std::string _linked_pre_order = "linked preorder";
+static const std::string _linked_post_order = "linked postorder";
+
+int main()
 {
-	if (root_game_board.size() != 9)
+	T3SolverImplementation * t3SolverImplementation;
+	program_loop(t3SolverImplementation);
+	return 0;
+}
+
+void program_loop(T3SolverImplementation *& t3SolverImplementation)
+{
+	printWelcome();
+	while (1)
 	{
-		throw InvalidSerializedGameBoard();
-	}
-	for (char & c : root_game_board)
-	{
-		if (c != 'X' && c != 'O' && c != '*')
+		std::string serialized_game_board = get_serialized_game_board();
+		if (serialized_game_board.compare(_restart) == 0)
 		{
-			throw InvalidSerializedGameBoard();
-		}
-	}
-	this->root_game_board = root_game_board;
-}
-catch (InvalidSerializedGameBoard & e)
-{
-	std::cout << e.exception() << std::endl;
-}
-
-T3Solver::~T3Solver()
-{
-	delete game_tree;
-}
-
-/* ========================================================================================================== */
-/* PRINT APPLY */
-/* ========================================================================================================== */
-void Print::apply(NaryNode<std::string> * t)
-{
-	std::cout << "  " << t->get_data();
-	if (T3Solver::is_winner(t->get_data(), T3Solver::X))
-	{
-		std::cout << "  <--- X wins!";
-	}
-	else if (T3Solver::is_winner(t->get_data(), T3Solver::O))
-	{
-		std::cout << "  <--- O wins!";
-	} else if (T3Solver::count(t->get_data(), T3Solver::BLANK) == 0)
-	{
-		std::cout << "  <--- draw!";
-	}
-	std::cout << std::endl;
-}
-
-/* ========================================================================================================== */
-/* SOLVE */
-/* ========================================================================================================== */
-void T3Solver::solve(bool print_loading_status)
-{
-	this->game_tree->insert(
-			this->root_game_board,
-			this->count(root_game_board, BLANK));
-	std::queue<std::string> q;
-	q.push(this->root_game_board);
-	while (!q.empty())
-	{
-		std::string next_game_board = q.front();
-		q.pop();
-		if (count(next_game_board, BLANK) == 0)
-		{
-			this->num_draws++;
 			continue;
 		}
-		char character = this->whose_turn(next_game_board);
-		for (int n = 0; n < next_game_board.size(); n++)
+		t3SolverImplementation = new T3SolverImplementation(serialized_game_board);
+		t3SolverImplementation->solve(true);
+		traversal(t3SolverImplementation);
+	}
+}
+
+void printWelcome()
+{
+	system("clear");
+	std::cout << "\n\tWELCOME TO T3_SOLVER!\n" << std::endl;
+	int x = 400;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tThis program will show you ALL the possibilties of any tic-tac-toe game!" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tAll of the possibilities will be stored within a traversable game tree." << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tThe game tree may be traversed via preorder, postorder, and levelorder.\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tIf a speedier traversal is desired, then consider trying out" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tthe LINKED INVERSION traversal option!" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tPreorder and postorder traversals are supported by the linked inversion option.\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tWhen prompted, enter a valid serialized tic-tac-toe game board." << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tThe serialization must contain exactly 9 chars consisting of only" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tX's, O's, and *'s. (X's and O's must be capitalized.)" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tAfter that, you will be prompted to specify which traversal you'd like" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tto have performed on the game board.\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tYou may keep trying new game boards and traversals for as long as you like." << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tEnter 'preorder', 'postorder', or 'inorder' when prompted for traversal," << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tor enter 'linked preorder' or 'linked postorder' for linked inversion traversal.\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tTo view the results of your input, enter 'results'." << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tTo go back to the beginning prompt, simply enter 'restart' into any prompt.\n" << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << "\tTo exit the program, enter 'exit' into any prompt." << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	std::cout << std::endl;
+}
+
+bool is_valid_serialized_game_board(std::string & game_board)
+{
+	if (game_board.size() != 9)
+	{
+		return false;
+	}
+	for (char & character : game_board)
+	{
+		if (character != 'X' && character != 'O' && character != '*')
 		{
-			if (next_game_board.at(n) == BLANK)
+			return false;
+		}
+	}
+	return true;
+}
+
+std::string get_serialized_game_board()
+{
+	std::string input = "";
+	do
+	{
+		std::cout << "Enter a valid serialized game board: ";
+		getline(std::cin, input);
+		if (input.compare(_exit) == 0)
+		{
+			exit(0);
+		}
+		if (input.compare(_restart) == 0)
+		{
+			return _restart;
+		}
+		if (!is_valid_serialized_game_board(input) &&
+		    input.compare(_exit) != 0 &&
+		    input.compare(_restart) != 0)
+		{
+			std::cout << "That is not a valid input. Please try again." << std::endl;
+		}
+	} while (!(is_valid_serialized_game_board(input)));
+	system("clear");
+	return input;
+}
+
+void traversal(T3SolverImplementation *& t3SolverImplementation)
+{
+	std::string input = "";
+	do
+	{
+		std::cout << std::endl;
+		std::cout << "Enter traversal type: ";
+		getline(std::cin, input);
+		if (input.compare(_exit) == 0)
+		{
+			exit(0);
+		}
+		else if (input.compare(_restart) == 0)
+		{
+			return;
+		}
+		else if (input.compare(_results) == 0)
+		{
+			t3SolverImplementation->results();
+		}
+		else if (is_valid_traversal_input(input))
+		{
+			if (input.compare(_preorder) == 0)
 			{
-				std::string next_game_board_cpy = next_game_board;
-				next_game_board_cpy.at(n) = character;
-				if (this->is_winner(next_game_board_cpy, character))
-				{
-					character == this->X ? this->x_num_wins++ : this->o_num_wins++;
-					game_tree->insert(
-							next_game_board_cpy,0);
-				}
-				else
-				{
-					q.push(next_game_board_cpy);
-					game_tree->insert(
-							next_game_board_cpy,
-							count(next_game_board_cpy, BLANK));
-				}
-				size++;
-				if (print_loading_status)
-				{
-					system("clear");
-					std::cout << "loading tic-tac-toe nodes..." << std::endl;
-					std::cout << "nodes loaded so far: " << this->size << std::endl;
-				}
+				t3SolverImplementation->print_preorder();
+			}
+			else if (input.compare(_postorder) == 0)
+			{
+				t3SolverImplementation->print_postorder();
+			}
+			else if (input.compare(_levelorder) == 0)
+			{
+				t3SolverImplementation->print_levelorder();
+			}
+			else if (input.compare(_linked_pre_order) == 0)
+			{
+				t3SolverImplementation->print_linked_inversion("preorder");
+			}
+			else if (input.compare(_linked_post_order) == 0)
+			{
+				t3SolverImplementation->print_linked_inversion("postorder");
 			}
 		}
-	}
-}
-
-bool T3Solver::is_winner(std::string game_board, char character)
-{
-	for (int i = 0; i < game_board.size(); i += 3)
-	{
-		if (game_board.at(i) == character &&
-		    game_board.at(i + 1) == character &&
-		    game_board.at(i + 2) == character)
+		else
 		{
-			return true;
+			std::cout << "Invalid input. Please try again." << std::endl;
 		}
-	}
-	for (int i = 0; i < 3; i += 1)
-	{
-		if (game_board.at(i) == character &&
-		    game_board.at(i + 3) == character &&
-		    game_board.at(i + 6) == character)
-		{
-			return true;
-		}
-	}
-	if (game_board.at(0) == character &&
-	    game_board.at(4) == character &&
-	    game_board.at(8) == character)
-	{
-		return true;
-	}
-	return game_board.at(2) == character &&
-	       game_board.at(4) == character &&
-	       game_board.at(6) == character;
+	} while (true);
 }
 
-/* ========================================================================================================== */
-/* WHOSE TURN */
-/* ========================================================================================================== */
-char T3Solver::whose_turn(std::string game_board)
+bool is_valid_traversal_input(std::string & traversal_input)
 {
-	return count(game_board, BLANK) % 2 == 0 ? O : X;
+	return traversal_input.compare(_preorder) == 0
+	|| traversal_input.compare(_postorder) == 0
+	|| traversal_input.compare(_levelorder) == 0
+	|| traversal_input.compare(_linked_pre_order) == 0
+	|| traversal_input.compare(_linked_post_order) == 0;
 }
-
-/* ========================================================================================================== */
-/* WHO WON */
-/* ========================================================================================================== */
-void T3Solver::results()
-{
-	if (x_num_wins == 0 && o_num_wins == 0 && num_draws == 0)
-	{
-		throw std::invalid_argument("you must call solve() before calling results()");
-	}
-	std::cout << std::endl;
-	std::cout << "num wins for X: " << x_num_wins << std::endl;
-	std::cout << "num wins for O: " << o_num_wins << std::endl;
-	std::cout << "num draws: " << num_draws << std::endl;
-}
-
-/* ========================================================================================================== */
-/* COUNT */
-/* ========================================================================================================== */
-int T3Solver::count(std::string game_board, char character)
-{
-	return std::count(game_board.begin(), game_board.end(), character);
-}
-
-/* ========================================================================================================== */
-/* PRINT LEVEL ORDER */
-/* ========================================================================================================== */
-void T3Solver::print_levelorder()
-{
-	std::cout << std::endl;
-	std::cout << "_____LEVEL ORDER_____" << std::endl;
-	this->game_tree->levelorder_apply(print);
-	std::cout << "_____________________" << std::endl;
-}
-
-/* ========================================================================================================== */
-/* PRINT PRE ORDER */
-/* ========================================================================================================== */
-void T3Solver::print_preorder()
-{
-	std::cout << std::endl;
-	std::cout << "_____PRE ORDER_____" << std::endl;
-	this->game_tree->preorder_apply(print);
-	std::cout << "___________________" << std::endl;
-}
-
-/* ========================================================================================================== */
-/* PRINT POST ORDER */
-/* ========================================================================================================== */
-void T3Solver::print_postorder()
-{
-	std::cout << std::endl;
-	std::cout << "_____POST ORDER_____" << std::endl;
-	this->game_tree->postorder_apply(print);
-	std::cout << "___________________" << std::endl;
-}
-
-/* ========================================================================================================== */
-/* PRINT LINKED-INVERSION */
-/* ========================================================================================================== */
-void T3Solver::print_linked_inversion(std::string order)
-{
-	std::cout << std::endl;
-	std::cout << "_____LINKED INVERSION: " << order << "_____" << std::endl;
-	this->game_tree->linked_inversion_apply(print, order);
-	std::cout << "___________________" << std::endl;
-}
-
-
-
-
-
-

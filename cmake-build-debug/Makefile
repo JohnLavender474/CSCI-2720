@@ -310,29 +310,29 @@ Project2/T3Solver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3Solver.cpp.s
 .PHONY : Project2/T3Solver.cpp.s
 
-Project2/test.o: Project2/test.cpp.o
-.PHONY : Project2/test.o
+Project2/T3SolverImplementation.o: Project2/T3SolverImplementation.cpp.o
+.PHONY : Project2/T3SolverImplementation.o
 
 # target to build an object file
-Project2/test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/test.cpp.o
-.PHONY : Project2/test.cpp.o
+Project2/T3SolverImplementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3SolverImplementation.cpp.o
+.PHONY : Project2/T3SolverImplementation.cpp.o
 
-Project2/test.i: Project2/test.cpp.i
-.PHONY : Project2/test.i
+Project2/T3SolverImplementation.i: Project2/T3SolverImplementation.cpp.i
+.PHONY : Project2/T3SolverImplementation.i
 
 # target to preprocess a source file
-Project2/test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/test.cpp.i
-.PHONY : Project2/test.cpp.i
+Project2/T3SolverImplementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3SolverImplementation.cpp.i
+.PHONY : Project2/T3SolverImplementation.cpp.i
 
-Project2/test.s: Project2/test.cpp.s
-.PHONY : Project2/test.s
+Project2/T3SolverImplementation.s: Project2/T3SolverImplementation.cpp.s
+.PHONY : Project2/T3SolverImplementation.s
 
 # target to generate assembly for a file
-Project2/test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/test.cpp.s
-.PHONY : Project2/test.cpp.s
+Project2/T3SolverImplementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3SolverImplementation.cpp.s
+.PHONY : Project2/T3SolverImplementation.cpp.s
 
 # Help Target
 help:
@@ -365,9 +365,9 @@ help:
 	@echo "... Project2/T3Solver.o"
 	@echo "... Project2/T3Solver.i"
 	@echo "... Project2/T3Solver.s"
-	@echo "... Project2/test.o"
-	@echo "... Project2/test.i"
-	@echo "... Project2/test.s"
+	@echo "... Project2/T3SolverImplementation.o"
+	@echo "... Project2/T3SolverImplementation.i"
+	@echo "... Project2/T3SolverImplementation.s"
 .PHONY : help
 
 

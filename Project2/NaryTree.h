@@ -221,7 +221,7 @@ template<typename T>
 void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> & apply, std::string traversal)
 {
 	try {
-		NaryNode<T> * prev, * temp, * curr = nullptr;
+		NaryNode<T> * prev, * temp, * curr;
 		curr = this->root;
 		while (1)
 		{
