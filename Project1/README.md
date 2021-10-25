@@ -3,7 +3,7 @@
 John Lavender
 UGA ID # 811045788
 
-To launch the program, simply run "make" and then ",/GoAirProgram".
+To launch the program, simply run "make" and then "./GoAirProgram".
 The program begins by displaying all of the available commands followed
 by a command prompt. I will now demonstrate a test run.
 
