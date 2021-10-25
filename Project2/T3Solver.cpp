@@ -8,6 +8,7 @@ bool is_valid_serialized_game_board(std::string & game_board);
 std::string get_serialized_game_board();
 void traversal(T3SolverImplementation *& t3Solver);
 bool is_valid_traversal_input(std::string & traversal_input);
+void exit();
 
 static const std::string _exit = "exit";
 static const std::string _restart = "restart";
@@ -30,14 +31,21 @@ void program_loop(T3SolverImplementation *& t3SolverImplementation)
 	printWelcome();
 	while (1)
 	{
-		std::string serialized_game_board = get_serialized_game_board();
-		if (serialized_game_board.compare(_restart) == 0)
+		try
+		{
+			std::string serialized_game_board = get_serialized_game_board();
+			if (serialized_game_board.compare(_restart) == 0)
+			{
+				continue;
+			}
+			t3SolverImplementation = new T3SolverImplementation(serialized_game_board);
+			t3SolverImplementation->solve(true);
+			traversal(t3SolverImplementation);
+		}
+		catch (InvalidSerializedGameBoard isgb)
 		{
 			continue;
 		}
-		t3SolverImplementation = new T3SolverImplementation(serialized_game_board);
-		t3SolverImplementation->solve(true);
-		traversal(t3SolverImplementation);
 	}
 }
 
@@ -71,7 +79,7 @@ void printWelcome()
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tYou may keep trying new game boards and traversals for as long as you like." << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
-	std::cout << "\tEnter 'preorder', 'postorder', or 'inorder' when prompted for traversal," << std::endl;
+	std::cout << "\tEnter 'preorder', 'postorder', or 'levelorder' when prompted for traversal," << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tor enter 'linked preorder' or 'linked postorder' for linked inversion traversal.\n" << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
@@ -109,7 +117,7 @@ std::string get_serialized_game_board()
 		getline(std::cin, input);
 		if (input.compare(_exit) == 0)
 		{
-			exit(0);
+			exit();
 		}
 		if (input.compare(_restart) == 0)
 		{
@@ -136,7 +144,7 @@ void traversal(T3SolverImplementation *& t3SolverImplementation)
 		getline(std::cin, input);
 		if (input.compare(_exit) == 0)
 		{
-			exit(0);
+			exit();
 		}
 		else if (input.compare(_restart) == 0)
 		{
@@ -183,4 +191,11 @@ bool is_valid_traversal_input(std::string & traversal_input)
 	|| traversal_input.compare(_levelorder) == 0
 	|| traversal_input.compare(_linked_pre_order) == 0
 	|| traversal_input.compare(_linked_post_order) == 0;
+}
+
+void exit()
+{
+	system("clear");
+	std::cout << "Thank you for trying out T3Solver!" << std::endl;
+	exit(0);
 }

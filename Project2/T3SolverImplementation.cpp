@@ -17,6 +17,15 @@ T3SolverImplementation::T3SolverImplementation(std::string root_game_board) try 
 			throw InvalidSerializedGameBoard();
 		}
 	}
+	if (this->count(root_game_board, O) > this->count(root_game_board, X) ||
+			this->count(root_game_board, O) < this->count(root_game_board, X) - 1)
+	{
+		throw InvalidSerializedGameBoard();
+	}
+	if (this->is_winner(root_game_board, X) || this->is_winner(root_game_board, O))
+	{
+		throw InvalidSerializedGameBoard();
+	}
 	this->root_game_board = root_game_board;
 }
 catch (InvalidSerializedGameBoard & e)

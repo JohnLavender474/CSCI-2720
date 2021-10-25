@@ -27,6 +27,7 @@ is significantly faster than the other traversals. (Preorder and postorder
 traversals are done recursively. Levelorder is done iteratively.)
 
 The user may continue to try out the different traversals infinitely.
+To view the results of a game board, the user may enter "results".
 To begin again with a new game board, the user may enter "restart" at
 any prompt. To exit the program, the user may enter "exit".
 
