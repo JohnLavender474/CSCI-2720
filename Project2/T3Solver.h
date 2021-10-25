@@ -25,22 +25,23 @@ public:
 	void print_levelorder();
 	void print_preorder();
 	void print_postorder();
+	void print_linked_inversion(std::string order);
 	void solve(bool print_loading_status);
 	void results();
 	static bool is_winner(std::string game_board, char character);
 	static char whose_turn(std::string game_board);
-	static size_t count(std::string game_board, char character);
+	static int count(std::string game_board, char character);
 	static const char X = 'X';
 	static const char O = 'O';
 	static const char BLANK = '*';
 private:
 	std::string root_game_board;
 	NaryTree<std::string> * game_tree;
-	size_t x_num_wins;
-	size_t o_num_wins;
-	size_t num_draws;
+	int x_num_wins;
+	int o_num_wins;
+	int num_draws;
 	Print print;
-	size_t size;
+	int size;
 };
 
 

@@ -69,7 +69,7 @@ void T3Solver::solve(bool print_loading_status)
 			continue;
 		}
 		char character = this->whose_turn(next_game_board);
-		for (size_t n = 0; n < next_game_board.size(); n++)
+		for (int n = 0; n < next_game_board.size(); n++)
 		{
 			if (next_game_board.at(n) == BLANK)
 			{
@@ -102,7 +102,7 @@ void T3Solver::solve(bool print_loading_status)
 
 bool T3Solver::is_winner(std::string game_board, char character)
 {
-	for (size_t i = 0; i < game_board.size(); i += 3)
+	for (int i = 0; i < game_board.size(); i += 3)
 	{
 		if (game_board.at(i) == character &&
 		    game_board.at(i + 1) == character &&
@@ -111,7 +111,7 @@ bool T3Solver::is_winner(std::string game_board, char character)
 			return true;
 		}
 	}
-	for (size_t i = 0; i < 3; i += 1)
+	for (int i = 0; i < 3; i += 1)
 	{
 		if (game_board.at(i) == character &&
 		    game_board.at(i + 3) == character &&
@@ -157,7 +157,7 @@ void T3Solver::results()
 /* ========================================================================================================== */
 /* COUNT */
 /* ========================================================================================================== */
-size_t T3Solver::count(std::string game_board, char character)
+int T3Solver::count(std::string game_board, char character)
 {
 	return std::count(game_board.begin(), game_board.end(), character);
 }
@@ -192,6 +192,17 @@ void T3Solver::print_postorder()
 	std::cout << std::endl;
 	std::cout << "_____POST ORDER_____" << std::endl;
 	this->game_tree->postorder_apply(print);
+	std::cout << "___________________" << std::endl;
+}
+
+/* ========================================================================================================== */
+/* PRINT LINKED-INVERSION */
+/* ========================================================================================================== */
+void T3Solver::print_linked_inversion(std::string order)
+{
+	std::cout << std::endl;
+	std::cout << "_____LINKED INVERSION: " << order << "_____" << std::endl;
+	this->game_tree->linked_inversion_apply(print, order);
 	std::cout << "___________________" << std::endl;
 }
 
