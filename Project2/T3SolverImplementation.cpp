@@ -158,9 +158,10 @@ void T3SolverImplementation::results()
 		throw std::invalid_argument("you must call solve() before calling results()");
 	}
 	std::cout << std::endl;
-	std::cout << "num wins for X: " << x_num_wins << std::endl;
-	std::cout << "num wins for O: " << o_num_wins << std::endl;
-	std::cout << "num draws: " << num_draws << std::endl;
+	std::cout << "size: " << game_tree->get_size() << std::endl;
+	std::cout << "num wins for X: " << this->x_num_wins << std::endl;
+	std::cout << "num wins for O: " << this->o_num_wins << std::endl;
+	std::cout << "num draws: " << this->num_draws << std::endl;
 }
 
 /* ========================================================================================================== */
@@ -179,6 +180,7 @@ void T3SolverImplementation::print_levelorder()
 	std::cout << std::endl;
 	std::cout << "_____LEVEL ORDER_____" << std::endl;
 	this->game_tree->levelorder_apply(print);
+	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
 	std::cout << "_____________________" << std::endl;
 }
 
@@ -190,6 +192,7 @@ void T3SolverImplementation::print_preorder()
 	std::cout << std::endl;
 	std::cout << "_____PRE ORDER_____" << std::endl;
 	this->game_tree->preorder_apply(print);
+	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
 	std::cout << "___________________" << std::endl;
 }
 
@@ -201,6 +204,7 @@ void T3SolverImplementation::print_postorder()
 	std::cout << std::endl;
 	std::cout << "_____POST ORDER_____" << std::endl;
 	this->game_tree->postorder_apply(print);
+	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
 	std::cout << "___________________" << std::endl;
 }
 
@@ -212,7 +216,148 @@ void T3SolverImplementation::print_linked_inversion(std::string order)
 	std::cout << std::endl;
 	std::cout << "_____LINKED INVERSION: " << order << "_____" << std::endl;
 	this->game_tree->linked_inversion_apply(print, order);
+	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
 	std::cout << "___________________" << std::endl;
+}
+
+int T3SolverImplementation::minimax(std::string serialize_game_board, int depth)
+{
+	if (is_winner(serialize_game_board, player))
+	{
+		return PLAYER_VAL;
+	}
+	else if (is_winner(serialize_game_board, computer))
+	{
+		return COMPUTER_VAL;
+	}
+	else if (depth == 0)
+	{
+		return BLANK_VAL;
+	}
+	bool maximizing = this->whose_turn(serialize_game_board) == this->computer;
+	int best_score = maximizing ? INT_MIN : INT_MAX;
+	for (int i = 0; i < 9; i++)
+	{
+		if (serialize_game_board.at(i) == BLANK)
+		{
+			serialize_game_board.at(i) = maximizing ? this->computer : this->player;
+			int score = this->minimax(serialize_game_board, depth - 1);
+			serialize_game_board.at(i) = BLANK;
+			best_score = maximizing ? std::max(best_score, score) : std::min(best_score, score);
+		}
+	}
+	return best_score;
+}
+
+int T3SolverImplementation::ai_get_best_move(std::string serialized_game_board)
+{
+	int best_val = INT_MIN;
+	for (int i = 0; i < 9; i++)
+	{
+		if (serialized_game_board.at(i) == BLANK)
+		{
+			serialized_game_board.at(i) = this->computer;
+			int move_val = this->minimax(serialized_game_board, 3);
+			serialized_game_board.at(i) = BLANK;
+			if (move_val > best_val)
+			{
+				best_val = move_val;
+			}
+		}
+	}
+	return best_val;
+}
+
+void T3SolverImplementation::play_against_computer(char _player)
+{
+	if (_player == X)
+	{
+		this->player = X;
+		this->computer = O;
+	}
+	else
+	{
+		this->player = O;
+		this->computer = X;
+	}
+	std::string serialized_game_board = this->root_game_board;
+	while (1)
+	{
+		this->print_game_board(serialized_game_board);
+		if (this->is_winner(serialized_game_board, this->player))
+		{
+			std::cout << "\nPLAYER HAS WON!" << std::endl;
+			break;
+		}
+		else if (this->is_winner(serialized_game_board, this->computer))
+		{
+			std::cout << "\nCOMPUTER HAS WON!" << std::endl;
+			break;
+		}
+		if (this->whose_turn(root_game_board) == this->computer)
+		{
+			int move = this->ai_get_best_move(serialized_game_board);
+			if (move < 0 || move > 8)
+			{
+				return;
+			}
+			serialized_game_board.at(move) = computer;
+		}
+		else
+		{
+			std::string input = "";
+			while (1)
+			{
+				std::cout << "Enter your move: ";
+				getline(std::cin, input);
+				if (input.size() != 1)
+				{
+					std::cout << "Invalid input. Try again." << std::endl;
+					continue;
+				}
+				if (!std::isdigit(input.at(0)))
+				{
+					std::cout << "Invalid input. Try again." << std::endl;
+					continue;
+				}
+				int move = input.at(0) - '0';
+				if (move > 8 || move < 0)
+				{
+					std::cout << "Invalid input. Try again." << std::endl;
+					continue;
+				}
+				if (serialized_game_board.at(move) != BLANK)
+				{
+					std::cout << "That position is already taken! Try again." << std::endl;
+					continue;
+				}
+				serialized_game_board.at(move) = this->player;
+				break;
+			}
+		}
+		std::cout << std::endl;
+	}
+}
+
+void T3SolverImplementation::print_game_board(std::string serialized_game_board)
+{
+	std::cout << "  1 2 3" << std::endl;
+	std::cout << "1 ";
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << serialized_game_board.at(i) << " ";
+	}
+	std::cout << std::endl << "2 ";
+	for (int i = 3; i < 6; i++)
+	{
+		std::cout << serialized_game_board.at(i) << " ";
+	}
+	std::cout << std::endl << "3 ";
+	for (int i = 6; i < 9; i++)
+	{
+		std::cout << serialized_game_board.at(i) << " ";
+	}
+	std::cout << "\n" << std::endl;
 }
 
 

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <queue>
 
+#include "T3SolverImplementation.h"
+
 /* ========================================================================================================== */
 /* === Apply === */
 
@@ -24,6 +26,10 @@ public:
 template<typename T>
 class NaryNode;
 
+// T3SolverImplementation forward declaration
+// because this class is a friend of NaryTree
+class T3SolverImplementation;
+
 template<typename T>
 class NaryTree
 {
@@ -37,7 +43,7 @@ public:
 	void linked_inversion_apply(Apply<NaryNode<T> *> & apply, std::string traversal);
 	int get_size();
 protected:
-	NaryNode<T> * create(T data_field, int max_num_children);
+	NaryNode<T> * create(NaryNode<T> * parent, T data_field, int max_num_children);
 	void protected_preorder_apply(NaryNode<T> *& temp, Apply<NaryNode<T> *> & apply);
 	void protected_postorder_apply(NaryNode<T> *& temp, Apply<NaryNode<T> *> & apply);
 	void protected_levelorder_apply(NaryNode<T> *& temp, Apply<NaryNode<T> *> & apply);
@@ -59,9 +65,10 @@ public:
 	T & get_data();
 	~NaryNode();
 	NaryNode() = delete;
-private:
-	NaryNode(T data_field, int max_num_children);
+protected:
+	NaryNode(NaryNode<T> * parent, T data_field, int max_num_children);
 	T data_field;
+	NaryNode<T> * parent;
 	std::vector<NaryNode<T> *> children;
 	int max_num_children;
 	bool inversion_bit;
@@ -100,7 +107,7 @@ void NaryTree<T>::insert(T data_field, int max_num_children)
 {
 	if (this->root == nullptr)
 	{
-		this->root = this->create(data_field, max_num_children);
+		this->root = this->create(nullptr, data_field, max_num_children);
 	}
 	else
 	{
@@ -118,7 +125,7 @@ void NaryTree<T>::insert(T data_field, int max_num_children)
 				}
 				else
 				{
-					parent->children.at(n) = this->create(data_field, max_num_children);
+					parent->children.at(n) = this->create(parent, data_field, max_num_children);
 					return;
 				}
 			}
@@ -127,10 +134,10 @@ void NaryTree<T>::insert(T data_field, int max_num_children)
 }
 
 template<typename T>
-NaryNode<T> * NaryTree<T>::create(T data_field, int max_num_children)
+NaryNode<T> * NaryTree<T>::create(NaryNode<T> * parent, T data_field, int max_num_children)
 {
 	size++;
-	return new NaryNode<T>(data_field, max_num_children);
+	return new NaryNode<T>(parent, data_field, max_num_children);
 }
 
 template<typename T>
@@ -322,8 +329,9 @@ T & NaryNode<T>::get_data()
 }
 
 template<typename T>
-NaryNode<T>::NaryNode(T data_field, int max_num_children) :
+NaryNode<T>::NaryNode(NaryNode<T> * parent, T data_field, int max_num_children) :
 data_field(data_field),
+parent(parent),
 children(max_num_children + 1, nullptr),
 max_num_children(max_num_children),
 inversion_bit(true),

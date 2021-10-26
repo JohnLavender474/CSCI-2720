@@ -4,12 +4,15 @@
 
 void program_loop(T3SolverImplementation *& t3SolverImplementation);
 void printWelcome();
-bool is_valid_serialized_game_board(std::string & game_board);
+bool is_valid_serialized_game_board(std::string game_board);
 std::string get_serialized_game_board();
-void traversal(T3SolverImplementation *& t3Solver);
+void traversal(T3SolverImplementation *& t3SolverImplementation);
 bool is_valid_traversal_input(std::string & traversal_input);
+void play(T3SolverImplementation *& t3SolverImplementation);
 void exit();
 
+static const std::string _traversal = "traversal";
+static const std::string _play = "play";
 static const std::string _exit = "exit";
 static const std::string _restart = "restart";
 static const std::string _results = "results";
@@ -40,7 +43,29 @@ void program_loop(T3SolverImplementation *& t3SolverImplementation)
 			}
 			t3SolverImplementation = new T3SolverImplementation(serialized_game_board);
 			t3SolverImplementation->solve(true);
-			traversal(t3SolverImplementation);
+			std::string input = "";
+			while (1)
+			{
+				std::cout << "\nEnter 'play' or 'traversal': ";
+				getline(std::cin, input);
+				if (input.compare(_traversal) != 0 && input.compare(_play) != 0)
+				{
+					std::cout << "Invalid input. Please try again." << std::endl;
+					continue;
+				}
+				else
+				{
+					break;
+				}
+			}
+			if (input.compare(_traversal) == 0)
+			{
+				traversal(t3SolverImplementation);
+			}
+			else
+			{
+				play(t3SolverImplementation);
+			}
 		}
 		catch (InvalidSerializedGameBoard isgb)
 		{
@@ -59,7 +84,7 @@ void printWelcome()
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tAll of the possibilities will be stored within a traversable game tree." << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
-	std::cout << "\tThe game tree may be traversed via preorder, postorder, and levelorder.\n" << std::endl;
+	std::cout << "\tThe game tree may be traversed via preorder, postorder, and levelorder!\n" << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tIf a speedier traversal is desired, then consider trying out" << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
@@ -85,14 +110,14 @@ void printWelcome()
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tTo view the results of your input, enter 'results'." << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
-	std::cout << "\tTo go back to the beginning prompt, simply enter 'restart' into any prompt.\n" << std::endl;
+	std::cout << "\tTo go back to the beginning prompt, simply enter 'restart' into any prompt." << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tTo exit the program, enter 'exit' into any prompt." << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << std::endl;
 }
 
-bool is_valid_serialized_game_board(std::string & game_board)
+bool is_valid_serialized_game_board(std::string game_board)
 {
 	if (game_board.size() != 9)
 	{
@@ -137,7 +162,7 @@ std::string get_serialized_game_board()
 void traversal(T3SolverImplementation *& t3SolverImplementation)
 {
 	std::string input = "";
-	do
+	while (1)
 	{
 		std::cout << std::endl;
 		std::cout << "Enter traversal type: ";
@@ -181,7 +206,7 @@ void traversal(T3SolverImplementation *& t3SolverImplementation)
 		{
 			std::cout << "Invalid input. Please try again." << std::endl;
 		}
-	} while (true);
+	}
 }
 
 bool is_valid_traversal_input(std::string & traversal_input)
@@ -191,6 +216,27 @@ bool is_valid_traversal_input(std::string & traversal_input)
 	|| traversal_input.compare(_levelorder) == 0
 	|| traversal_input.compare(_linked_pre_order) == 0
 	|| traversal_input.compare(_linked_post_order) == 0;
+}
+
+void play(T3SolverImplementation *& t3SolverImplementation)
+{
+	system("clear");
+	std::string input = "";
+	while (1)
+	{
+		std::cout << "Will you play as 'X' or 'O'? ";
+		getline(std::cin, input);
+		if (input.at(0) != 'X' && input.at(0) != 'O')
+		{
+			std::cout << "Invalid input. Try again." << std::endl;
+			continue;
+		}
+		else
+		{
+			t3SolverImplementation->play_against_computer(input.at(0));
+			break;
+		}
+	}
 }
 
 void exit()
