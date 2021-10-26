@@ -78,7 +78,7 @@ void printWelcome()
 {
 	system("clear");
 	std::cout << "\n\tWELCOME TO T3_SOLVER!\n" << std::endl;
-	int x = 400;
+	int x = 300;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tThis program will show you ALL the possibilties of any tic-tac-toe game!" << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(x));

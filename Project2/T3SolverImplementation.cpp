@@ -220,13 +220,13 @@ void T3SolverImplementation::print_linked_inversion(std::string order)
 	std::cout << "___________________" << std::endl;
 }
 
-int T3SolverImplementation::minimax(std::string serialize_game_board, int depth)
+int T3SolverImplementation::minimax(std::string serialized_game_board, int depth)
 {
-	if (is_winner(serialize_game_board, player))
+	if (is_winner(serialized_game_board, player))
 	{
 		return PLAYER_VAL;
 	}
-	else if (is_winner(serialize_game_board, computer))
+	else if (is_winner(serialized_game_board, computer))
 	{
 		return COMPUTER_VAL;
 	}
@@ -234,15 +234,19 @@ int T3SolverImplementation::minimax(std::string serialize_game_board, int depth)
 	{
 		return BLANK_VAL;
 	}
-	bool maximizing = this->whose_turn(serialize_game_board) == this->computer;
+	else if (this->count(serialized_game_board, BLANK) == 0)
+	{
+		return BLANK_VAL;
+	}
+	bool maximizing = this->whose_turn(serialized_game_board) == this->computer;
 	int best_score = maximizing ? INT_MIN : INT_MAX;
 	for (int i = 0; i < 9; i++)
 	{
-		if (serialize_game_board.at(i) == BLANK)
+		if (serialized_game_board.at(i) == BLANK)
 		{
-			serialize_game_board.at(i) = maximizing ? this->computer : this->player;
-			int score = this->minimax(serialize_game_board, depth - 1);
-			serialize_game_board.at(i) = BLANK;
+			serialized_game_board.at(i) = maximizing ? this->computer : this->player;
+			int score = this->minimax(serialized_game_board, depth - 1);
+			serialized_game_board.at(i) = BLANK;
 			best_score = maximizing ? std::max(best_score, score) : std::min(best_score, score);
 		}
 	}
@@ -251,21 +255,23 @@ int T3SolverImplementation::minimax(std::string serialize_game_board, int depth)
 
 int T3SolverImplementation::ai_get_best_move(std::string serialized_game_board)
 {
-	int best_val = INT_MIN;
+	int move;
+	int best_score = INT_MIN;
 	for (int i = 0; i < 9; i++)
 	{
 		if (serialized_game_board.at(i) == BLANK)
 		{
 			serialized_game_board.at(i) = this->computer;
-			int move_val = this->minimax(serialized_game_board, 3);
+			int score = this->minimax(serialized_game_board, 9);
 			serialized_game_board.at(i) = BLANK;
-			if (move_val > best_val)
+			if (score > best_score)
 			{
-				best_val = move_val;
+				best_score = score;
+				move = i;
 			}
 		}
 	}
-	return best_val;
+	return move;
 }
 
 void T3SolverImplementation::play_against_computer(char _player)
@@ -294,7 +300,7 @@ void T3SolverImplementation::play_against_computer(char _player)
 			std::cout << "\nCOMPUTER HAS WON!" << std::endl;
 			break;
 		}
-		if (this->whose_turn(root_game_board) == this->computer)
+		if (this->whose_turn(serialized_game_board) == this->computer)
 		{
 			int move = this->ai_get_best_move(serialized_game_board);
 			if (move < 0 || move > 8)
@@ -306,7 +312,8 @@ void T3SolverImplementation::play_against_computer(char _player)
 		else
 		{
 			std::string input = "";
-			while (1)
+			bool invalid_input = true;
+			while (invalid_input)
 			{
 				std::cout << "Enter your move: ";
 				getline(std::cin, input);
@@ -332,15 +339,15 @@ void T3SolverImplementation::play_against_computer(char _player)
 					continue;
 				}
 				serialized_game_board.at(move) = this->player;
-				break;
+				invalid_input = false;
 			}
 		}
-		std::cout << std::endl;
 	}
 }
 
 void T3SolverImplementation::print_game_board(std::string serialized_game_board)
 {
+	std::cout << std::endl;
 	std::cout << "  1 2 3" << std::endl;
 	std::cout << "1 ";
 	for (int i = 0; i < 3; i++)
