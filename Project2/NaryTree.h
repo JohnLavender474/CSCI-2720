@@ -27,10 +27,6 @@ public:
 template<typename T>
 class NaryNode;
 
-// T3SolverImplementation forward declaration
-// because this class is a friend of NaryTree
-class T3SolverImplementation;
-
 template<typename T>
 class NaryTree
 {
