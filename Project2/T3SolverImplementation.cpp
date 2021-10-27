@@ -161,7 +161,7 @@ void T3SolverImplementation::results()
 		throw std::invalid_argument("you must call solve() before calling results()");
 	}
 	std::cout << std::endl;
-	std::cout << "size: " << game_tree->get_size() << std::endl;
+	std::cout << "size: " << this->size << std::endl;
 	std::cout << "num wins for X: " << this->x_num_wins << std::endl;
 	std::cout << "num wins for O: " << this->o_num_wins << std::endl;
 	std::cout << "num draws: " << this->num_draws << std::endl;
