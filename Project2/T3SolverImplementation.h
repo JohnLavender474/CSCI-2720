@@ -33,6 +33,7 @@ public:
 	void print_preorder();
 	void print_postorder();
 	void print_linked_inversion(std::string order);
+	void print_random_branch();
 	void solve(bool print_loading_status);
 	void results();
 	void print_game_board(std::string serialized_game_board);

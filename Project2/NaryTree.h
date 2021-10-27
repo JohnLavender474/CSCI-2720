@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <iostream>
 #include <queue>
+#include <random>
 
 #include "T3SolverImplementation.h"
 
@@ -41,6 +42,7 @@ public:
 	void postorder_apply(Apply<NaryNode<T> *> & apply);
 	void levelorder_apply(Apply<NaryNode<T> *> & apply);
 	void linked_inversion_apply(Apply<NaryNode<T> *> & apply, std::string traversal);
+	void random_branch_apply(Apply<NaryNode<T> *> & apply);
 	int get_size();
 protected:
 	NaryNode<T> * create(NaryNode<T> * parent, T data_field, int max_num_children);
@@ -314,6 +316,45 @@ void NaryTree<T>::delete_tree(NaryNode<T> * node)
 			delete_tree(node->children.at(n));
 		}
 		delete node;
+	}
+}
+
+template<typename T>
+void NaryTree<T>::random_branch_apply(Apply<NaryNode<T> *> & apply)
+{
+	NaryNode<T> * temp = root;
+	std::queue<NaryNode<T> *> q;
+	q.push(temp);
+	srand(time(0));
+	while (1)
+	{
+		if (temp->children.size() == 0)
+		{
+			goto done;
+		}
+		int random = rand() % temp->children.size();
+		while (temp->children.at(random) == nullptr)
+		{
+			random--;
+			if (random < 0)
+			{
+				goto done;
+			}
+		}
+		temp = temp->children.at(random);
+		q.push(temp);
+	}
+	done:
+	std::queue<NaryNode<T> *> reversed_q;
+	while (!q.empty())
+	{
+		reversed_q.push(q.front());
+		q.pop();
+	}
+	while (!reversed_q.empty())
+	{
+		apply.apply(reversed_q.front());
+		reversed_q.pop();
 	}
 }
 

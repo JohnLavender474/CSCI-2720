@@ -4,7 +4,7 @@
 /* CONSTRUCTOR */
 /* ========================================================================================================== */
 T3SolverImplementation::T3SolverImplementation(std::string root_game_board) try :
-		game_tree(new NaryTree<std::string>)
+		game_tree(new NaryTree<std::string>), size(0)
 {
 	if (root_game_board.size() != 9)
 	{
@@ -220,6 +220,14 @@ void T3SolverImplementation::print_linked_inversion(std::string order)
 	std::cout << "___________________" << std::endl;
 }
 
+void T3SolverImplementation::print_random_branch()
+{
+	std::cout << std::endl;
+	std::cout << "_____RANDOM BRANCH_____" << std::endl;
+	this->game_tree->random_branch_apply(print);
+	std::cout << "_______________________" << std::endl;
+}
+
 int T3SolverImplementation::minimax(std::string serialized_game_board, int depth)
 {
 	if (is_winner(serialized_game_board, player))
@@ -287,6 +295,7 @@ void T3SolverImplementation::play_against_computer(char _player)
 		this->computer = X;
 	}
 	std::string serialized_game_board = this->root_game_board;
+	std::cout << "\nSTARTING BOARD:" << std::endl;
 	while (1)
 	{
 		this->print_game_board(serialized_game_board);
@@ -300,6 +309,11 @@ void T3SolverImplementation::play_against_computer(char _player)
 			std::cout << "\nCOMPUTER HAS WON!" << std::endl;
 			break;
 		}
+		else if (this->count(serialized_game_board, BLANK) == 0)
+		{
+			std::cout << "\nDRAW!" << std::endl;
+			break;
+		}
 		if (this->whose_turn(serialized_game_board) == this->computer)
 		{
 			int move = this->ai_get_best_move(serialized_game_board);
@@ -308,6 +322,7 @@ void T3SolverImplementation::play_against_computer(char _player)
 				return;
 			}
 			serialized_game_board.at(move) = computer;
+			std::cout << "COMPUTER HAS MADE A MOVE:" << std::endl;
 		}
 		else
 		{
@@ -315,7 +330,7 @@ void T3SolverImplementation::play_against_computer(char _player)
 			bool invalid_input = true;
 			while (invalid_input)
 			{
-				std::cout << "Enter your move: ";
+				std::cout << "Row: ";
 				getline(std::cin, input);
 				if (input.size() != 1)
 				{
@@ -327,12 +342,33 @@ void T3SolverImplementation::play_against_computer(char _player)
 					std::cout << "Invalid input. Try again." << std::endl;
 					continue;
 				}
-				int move = input.at(0) - '0';
-				if (move > 8 || move < 0)
+				int row = input.at(0) - '0';
+				row--;
+				if (row > 2 || row < 0)
 				{
 					std::cout << "Invalid input. Try again." << std::endl;
 					continue;
 				}
+				std::cout << "Column: ";
+				getline(std::cin, input);
+				if (input.size() != 1)
+				{
+					std::cout << "Invalid input. Try again." << std::endl;
+					continue;
+				}
+				if (!std::isdigit(input.at(0)))
+				{
+					std::cout << "Invalid input. Try again." << std::endl;
+					continue;
+				}
+				int column = input.at(0) - '0';
+				column--;
+				if (column > 2 || column < 0)
+				{
+					std::cout << "Invalid input. Try again." << std::endl;
+					continue;
+				}
+				int move = (3 * row) + column;
 				if (serialized_game_board.at(move) != BLANK)
 				{
 					std::cout << "That position is already taken! Try again." << std::endl;
@@ -340,6 +376,7 @@ void T3SolverImplementation::play_against_computer(char _player)
 				}
 				serialized_game_board.at(move) = this->player;
 				invalid_input = false;
+				std::cout << "YOU'VE MADE YOUR MOVE:" << std::endl;
 			}
 		}
 	}
@@ -347,25 +384,26 @@ void T3SolverImplementation::play_against_computer(char _player)
 
 void T3SolverImplementation::print_game_board(std::string serialized_game_board)
 {
-	std::cout << std::endl;
-	std::cout << "  1 2 3" << std::endl;
-	std::cout << "1 ";
+	std::cout << "\n    1 2 3" << std::endl;
+	std::cout << "\n1   ";
 	for (int i = 0; i < 3; i++)
 	{
 		std::cout << serialized_game_board.at(i) << " ";
 	}
-	std::cout << std::endl << "2 ";
+	std::cout << "\n2   ";
 	for (int i = 3; i < 6; i++)
 	{
 		std::cout << serialized_game_board.at(i) << " ";
 	}
-	std::cout << std::endl << "3 ";
+	std::cout << "\n3   ";
 	for (int i = 6; i < 9; i++)
 	{
 		std::cout << serialized_game_board.at(i) << " ";
 	}
 	std::cout << "\n" << std::endl;
 }
+
+
 
 
 
