@@ -1,6 +1,7 @@
 #  CSCI2720_Project2
 
 John Lavender # UGA ID 811045788
+https://github.com/JohnLavender474/CSCI2720_Projects/tree/master/Project2
 
 To launch the program, enter "make clean", then "make", and then "./T3Solver".
 The user will be prompted to enter a valid serialized game board
