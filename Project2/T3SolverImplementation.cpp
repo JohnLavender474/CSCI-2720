@@ -109,6 +109,9 @@ void T3SolverImplementation::solve(bool print_loading_status)
 	}
 }
 
+/* ========================================================================================================== */
+/* IS_WINNER */
+/* ========================================================================================================== */
 bool T3SolverImplementation::is_winner(std::string game_board, char character)
 {
 	for (int i = 0; i < game_board.size(); i += 3)
@@ -220,6 +223,9 @@ void T3SolverImplementation::print_linked_inversion(std::string order)
 	std::cout << "___________________" << std::endl;
 }
 
+/* ========================================================================================================== */
+/* PRINT_RANDOM_BRANCH */
+/* ========================================================================================================== */
 void T3SolverImplementation::print_random_branch()
 {
 	std::cout << std::endl;
@@ -228,6 +234,9 @@ void T3SolverImplementation::print_random_branch()
 	std::cout << "_______________________" << std::endl;
 }
 
+/* ========================================================================================================== */
+/* MINIMAX */
+/* ========================================================================================================== */
 int T3SolverImplementation::minimax(std::string serialized_game_board, int depth)
 {
 	if (is_winner(serialized_game_board, player))
@@ -261,6 +270,9 @@ int T3SolverImplementation::minimax(std::string serialized_game_board, int depth
 	return best_score;
 }
 
+/* ========================================================================================================== */
+/* AI_GET_BEST_MOVE */
+/* ========================================================================================================== */
 int T3SolverImplementation::ai_get_best_move(std::string serialized_game_board)
 {
 	int move;
@@ -282,6 +294,9 @@ int T3SolverImplementation::ai_get_best_move(std::string serialized_game_board)
 	return move;
 }
 
+/* ========================================================================================================== */
+/* PLAY_AGAINST_COMPUTER */
+/* ========================================================================================================== */
 void T3SolverImplementation::play_against_computer(char _player)
 {
 	if (_player == X)
@@ -382,6 +397,9 @@ void T3SolverImplementation::play_against_computer(char _player)
 	}
 }
 
+/* ========================================================================================================== */
+/* PRINT_GAME_BOARD */
+/* ========================================================================================================== */
 void T3SolverImplementation::print_game_board(std::string serialized_game_board)
 {
 	std::cout << "\n    1 2 3" << std::endl;

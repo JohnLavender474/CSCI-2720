@@ -23,6 +23,9 @@ static const std::string _random_branch = "random branch";
 static const std::string _linked_pre_order = "linked inversion preorder";
 static const std::string _linked_post_order = "linked inversion postorder";
 
+/* ========================================================================================================== */
+/* MAIN */
+/* ========================================================================================================== */
 int main()
 {
 	T3SolverImplementation * t3SolverImplementation;
@@ -31,6 +34,9 @@ int main()
 	return 0;
 }
 
+/* ========================================================================================================== */
+/* PROGRAM_LOOP */
+/* ========================================================================================================== */
 void program_loop(T3SolverImplementation *& t3SolverImplementation)
 {
 	printWelcome();
@@ -76,6 +82,9 @@ void program_loop(T3SolverImplementation *& t3SolverImplementation)
 	}
 }
 
+/* ========================================================================================================== */
+/* PRINTWELCOME */
+/* ========================================================================================================== */
 void printWelcome()
 {
 	system("clear");
@@ -108,6 +117,9 @@ void printWelcome()
 	std::cout << std::endl;
 }
 
+/* ========================================================================================================== */
+/* IS_VALID_SERIALIZED_GAME_BOARD */
+/* ========================================================================================================== */
 bool is_valid_serialized_game_board(std::string game_board)
 {
 	if (game_board.size() != 9)
@@ -124,6 +136,9 @@ bool is_valid_serialized_game_board(std::string game_board)
 	return true;
 }
 
+/* ========================================================================================================== */
+/* GET_SERIALIZED_GAME_BOARD */
+/* ========================================================================================================== */
 std::string get_serialized_game_board()
 {
 	std::string input = "";
@@ -150,6 +165,9 @@ std::string get_serialized_game_board()
 	return input;
 }
 
+/* ========================================================================================================== */
+/* TRAVERSAL */
+/* ========================================================================================================== */
 void traversal(T3SolverImplementation *& t3SolverImplementation)
 {
 	std::string input = "";
@@ -206,6 +224,9 @@ void traversal(T3SolverImplementation *& t3SolverImplementation)
 	}
 }
 
+/* ========================================================================================================== */
+/* IS_VALID_TRAVERSAL_INPUT */
+/* ========================================================================================================== */
 bool is_valid_traversal_input(std::string & traversal_input)
 {
 	return traversal_input.compare(_preorder) == 0
@@ -216,6 +237,9 @@ bool is_valid_traversal_input(std::string & traversal_input)
 	|| traversal_input.compare(_random_branch) == 0;
 }
 
+/* ========================================================================================================== */
+/* PLAY */
+/* ========================================================================================================== */
 void play(T3SolverImplementation *& t3SolverImplementation)
 {
 	system("clear");
@@ -237,6 +261,9 @@ void play(T3SolverImplementation *& t3SolverImplementation)
 	}
 }
 
+/* ========================================================================================================== */
+/* EXIT */
+/* ========================================================================================================== */
 void exit()
 {
 	system("clear");

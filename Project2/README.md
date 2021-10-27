@@ -6,7 +6,9 @@ https://github.com/JohnLavender474/CSCI2720_Projects/tree/master/Project2
 
 To launch the program, enter "make clean", then "make", and then "./T3Solver".
 The user will be prompted to enter a valid serialized game board
-composed of X's, O's, and asterisks (to designate blanks).
+composed of X's, O's, and asterisks (to designate blanks). No spaces. 
+Spaces will be read as chars and will result in an error message.
+Input is in row major order.
 
 Examples:
 
@@ -88,3 +90,6 @@ _________________________________
 
 P.S. BEWARE of entering the blank game board "*********"!
 You'll be sitting, waiting a long while for all the nodes to load, lol!
+Also, string input reading is NOT robust. Failure to enter an output 
+EXACTLY as it is displayed in the "valid inputs" message will result
+in the input being misread and mostly likely an error message.
