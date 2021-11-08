@@ -57,7 +57,8 @@ private:
 /* === NaryNode === */
 
 template<typename T>
-class NaryNode {
+class NaryNode
+{
 public:
 	friend class NaryTree<T>;
 	T & get_data();

@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named CSCI2720_Project3
+
+# Build rule for target.
+CSCI2720_Project3: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CSCI2720_Project3
+.PHONY : CSCI2720_Project3
+
+# fast build rule for target.
+CSCI2720_Project3/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project3.dir/build.make CMakeFiles/CSCI2720_Project3.dir/build
+.PHONY : CSCI2720_Project3/fast
+
+#=============================================================================
 # Target rules for targets named CSCI2720_Project2
 
 # Build rule for target.
@@ -334,6 +347,33 @@ Project2/T3SolverImplementation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project2.dir/build.make CMakeFiles/CSCI2720_Project2.dir/Project2/T3SolverImplementation.cpp.s
 .PHONY : Project2/T3SolverImplementation.cpp.s
 
+Project3/P3Executable.o: Project3/P3Executable.cpp.o
+.PHONY : Project3/P3Executable.o
+
+# target to build an object file
+Project3/P3Executable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project3.dir/build.make CMakeFiles/CSCI2720_Project3.dir/Project3/P3Executable.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project3/P3Executable.cpp.o
+.PHONY : Project3/P3Executable.cpp.o
+
+Project3/P3Executable.i: Project3/P3Executable.cpp.i
+.PHONY : Project3/P3Executable.i
+
+# target to preprocess a source file
+Project3/P3Executable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project3.dir/build.make CMakeFiles/CSCI2720_Project3.dir/Project3/P3Executable.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project3/P3Executable.cpp.i
+.PHONY : Project3/P3Executable.cpp.i
+
+Project3/P3Executable.s: Project3/P3Executable.cpp.s
+.PHONY : Project3/P3Executable.s
+
+# target to generate assembly for a file
+Project3/P3Executable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project3.dir/build.make CMakeFiles/CSCI2720_Project3.dir/Project3/P3Executable.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project1.dir/build.make CMakeFiles/CSCI2720_Project1.dir/Project3/P3Executable.cpp.s
+.PHONY : Project3/P3Executable.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -344,6 +384,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... CSCI2720_Project1"
 	@echo "... CSCI2720_Project2"
+	@echo "... CSCI2720_Project3"
 	@echo "... Project1/BookingNum.o"
 	@echo "... Project1/BookingNum.i"
 	@echo "... Project1/BookingNum.s"
@@ -368,6 +409,9 @@ help:
 	@echo "... Project2/T3SolverImplementation.o"
 	@echo "... Project2/T3SolverImplementation.i"
 	@echo "... Project2/T3SolverImplementation.s"
+	@echo "... Project3/P3Executable.o"
+	@echo "... Project3/P3Executable.i"
+	@echo "... Project3/P3Executable.s"
 .PHONY : help
 
 

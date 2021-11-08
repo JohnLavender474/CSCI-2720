@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirProgram.cpp.o"
   "CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.o"
   "CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.o"
+  "CMakeFiles/CSCI2720_Project1.dir/Project3/P3Executable.cpp.o"
   "CSCI2720_Project1"
   "CSCI2720_Project1.pdb"
 )
