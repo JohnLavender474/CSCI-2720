@@ -1,5 +1,7 @@
 #include "T3SolverImplementation.h"
 
+#include <algorithm>
+
 /* ========================================================================================================== */
 /* CONSTRUCTOR */
 /* ========================================================================================================== */
@@ -256,7 +258,7 @@ int T3SolverImplementation::minimax(std::string serialized_game_board, int depth
 		return BLANK_VAL;
 	}
 	bool maximizing = this->whose_turn(serialized_game_board) == this->computer;
-	int best_score = maximizing ? INT_MIN : INT_MAX;
+	int best_score = maximizing ? -1000 : 1000;
 	for (int i = 0; i < 9; i++)
 	{
 		if (serialized_game_board.at(i) == BLANK)
@@ -276,7 +278,7 @@ int T3SolverImplementation::minimax(std::string serialized_game_board, int depth
 int T3SolverImplementation::ai_get_best_move(std::string serialized_game_board)
 {
 	int move;
-	int best_score = INT_MIN;
+	int best_score = -1000;
 	for (int i = 0; i < 9; i++)
 	{
 		if (serialized_game_board.at(i) == BLANK)

@@ -87,33 +87,29 @@ void program_loop(T3SolverImplementation *& t3SolverImplementation)
 /* ========================================================================================================== */
 void printWelcome()
 {
-	system("clear");
 	std::cout << "\n\tWELCOME TO T3_SOLVER!\n" << std::endl;
-	int x = 250;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tEnter a tic-tac-toe board and see all the possibilities!" << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tWhen prompted, enter a valid serialized tic-tac-toe game board." << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tThe serialization must contain exactly 9 chars consisting of only" << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tX's, O's, and *'s. (X's and O's must be capitalized.)\n" << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tYou may keep trying new game boards and traversals for as long as you like." << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tEnter 'preorder', 'postorder', 'levelorder', " <<
 				 "'linked inversion preorder', or 'linked inversion postorder'.\n" << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tTo view the results of your input, enter 'results'." << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tTo view a random branch beginning from the root, enter 'random branch'." << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tTo go back to the beginning prompt, enter 'restart'." << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tTo play against the computer using the board you've entered, enter 'play'." << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << "\tTo exit the program, enter 'exit'." << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(x));
+	// std::this_thread::sleep_for(std::chrono::milliseconds(x));
 	std::cout << std::endl;
 }
 
