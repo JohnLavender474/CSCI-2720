@@ -5,14 +5,14 @@
 /* ========================================================================================================== */
 /* CONSTRUCTOR */
 /* ========================================================================================================== */
-T3SolverImplementation::T3SolverImplementation(std::string root_game_board) try :
+T3SolverImplementation::T3SolverImplementation(std::string root_game_board) try:
 		game_tree(new NaryTree<std::string>), size(0)
 {
 	if (root_game_board.size() != 9)
 	{
 		throw InvalidSerializedGameBoard();
 	}
-	for (char & c : root_game_board)
+	for (char &c : root_game_board)
 	{
 		if (c != 'X' && c != 'O' && c != '*')
 		{
@@ -20,7 +20,7 @@ T3SolverImplementation::T3SolverImplementation(std::string root_game_board) try 
 		}
 	}
 	if (this->count(root_game_board, O) > this->count(root_game_board, X) ||
-			this->count(root_game_board, O) < this->count(root_game_board, X) - 1)
+	    this->count(root_game_board, O) < this->count(root_game_board, X) - 1)
 	{
 		throw InvalidSerializedGameBoard();
 	}
@@ -30,7 +30,7 @@ T3SolverImplementation::T3SolverImplementation(std::string root_game_board) try 
 	}
 	this->root_game_board = root_game_board;
 }
-catch (InvalidSerializedGameBoard & e)
+catch (InvalidSerializedGameBoard &e)
 {
 	std::cout << e.exception() << std::endl;
 }
@@ -43,7 +43,7 @@ T3SolverImplementation::~T3SolverImplementation()
 /* ========================================================================================================== */
 /* PRINT APPLY */
 /* ========================================================================================================== */
-void Print::apply(NaryNode<std::string> * t)
+void Print::apply(NaryNode<std::string> *t)
 {
 	std::cout << "  " << t->get_data();
 	if (T3SolverImplementation::is_winner(t->get_data(), T3SolverImplementation::X))
@@ -53,7 +53,8 @@ void Print::apply(NaryNode<std::string> * t)
 	else if (T3SolverImplementation::is_winner(t->get_data(), T3SolverImplementation::O))
 	{
 		std::cout << "  <--- O wins!";
-	} else if (T3SolverImplementation::count(t->get_data(), T3SolverImplementation::BLANK) == 0)
+	}
+	else if (T3SolverImplementation::count(t->get_data(), T3SolverImplementation::BLANK) == 0)
 	{
 		std::cout << "  <--- draw!";
 	}
@@ -65,9 +66,10 @@ void Print::apply(NaryNode<std::string> * t)
 /* ========================================================================================================== */
 void T3SolverImplementation::solve(bool print_loading_status)
 {
-	this->game_tree->insert(
-			this->root_game_board,
-			this->count(root_game_board, BLANK));
+	this->game_tree
+			->insert(
+					this->root_game_board,
+					this->count(root_game_board, BLANK));
 	std::queue<std::string> q;
 	q.push(this->root_game_board);
 	while (!q.empty())
@@ -80,7 +82,9 @@ void T3SolverImplementation::solve(bool print_loading_status)
 			continue;
 		}
 		char character = this->whose_turn(next_game_board);
-		for (int n = 0; n < next_game_board.size(); n++)
+		for (int n = 0;
+		     n < next_game_board.size();
+		     n++)
 		{
 			if (next_game_board.at(n) == BLANK)
 			{
@@ -90,7 +94,7 @@ void T3SolverImplementation::solve(bool print_loading_status)
 				{
 					character == this->X ? this->x_num_wins++ : this->o_num_wins++;
 					game_tree->insert(
-							next_game_board_cpy,0);
+							next_game_board_cpy, 0);
 				}
 				else
 				{
@@ -116,7 +120,9 @@ void T3SolverImplementation::solve(bool print_loading_status)
 /* ========================================================================================================== */
 bool T3SolverImplementation::is_winner(std::string game_board, char character)
 {
-	for (int i = 0; i < game_board.size(); i += 3)
+	for (int i = 0;
+	     i < game_board.size();
+	     i += 3)
 	{
 		if (game_board.at(i) == character &&
 		    game_board.at(i + 1) == character &&
@@ -125,7 +131,9 @@ bool T3SolverImplementation::is_winner(std::string game_board, char character)
 			return true;
 		}
 	}
-	for (int i = 0; i < 3; i += 1)
+	for (int i = 0;
+	     i < 3;
+	     i += 1)
 	{
 		if (game_board.at(i) == character &&
 		    game_board.at(i + 3) == character &&
@@ -184,8 +192,10 @@ void T3SolverImplementation::print_levelorder()
 {
 	std::cout << std::endl;
 	std::cout << "_____LEVEL ORDER_____" << std::endl;
-	this->game_tree->levelorder_apply(print);
-	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
+	this->game_tree
+			->levelorder_apply(print);
+	std::cout << "\nsize: " << this->game_tree
+			->get_size() << std::endl;
 	std::cout << "_____________________" << std::endl;
 }
 
@@ -196,8 +206,10 @@ void T3SolverImplementation::print_preorder()
 {
 	std::cout << std::endl;
 	std::cout << "_____PRE ORDER_____" << std::endl;
-	this->game_tree->preorder_apply(print);
-	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
+	this->game_tree
+			->preorder_apply(print);
+	std::cout << "\nsize: " << this->game_tree
+			->get_size() << std::endl;
 	std::cout << "___________________" << std::endl;
 }
 
@@ -208,8 +220,10 @@ void T3SolverImplementation::print_postorder()
 {
 	std::cout << std::endl;
 	std::cout << "_____POST ORDER_____" << std::endl;
-	this->game_tree->postorder_apply(print);
-	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
+	this->game_tree
+			->postorder_apply(print);
+	std::cout << "\nsize: " << this->game_tree
+			->get_size() << std::endl;
 	std::cout << "___________________" << std::endl;
 }
 
@@ -220,8 +234,10 @@ void T3SolverImplementation::print_linked_inversion(std::string order)
 {
 	std::cout << std::endl;
 	std::cout << "_____LINKED INVERSION: " << order << "_____" << std::endl;
-	this->game_tree->linked_inversion_apply(print, order);
-	std::cout << "\nsize: " << this->game_tree->get_size() << std::endl;
+	this->game_tree
+			->linked_inversion_apply(print, order);
+	std::cout << "\nsize: " << this->game_tree
+			->get_size() << std::endl;
 	std::cout << "___________________" << std::endl;
 }
 
@@ -232,7 +248,8 @@ void T3SolverImplementation::print_random_branch()
 {
 	std::cout << std::endl;
 	std::cout << "_____RANDOM BRANCH_____" << std::endl;
-	this->game_tree->random_branch_apply(print);
+	this->game_tree
+			->random_branch_apply(print);
 	std::cout << "_______________________" << std::endl;
 }
 
@@ -259,7 +276,9 @@ int T3SolverImplementation::minimax(std::string serialized_game_board, int depth
 	}
 	bool maximizing = this->whose_turn(serialized_game_board) == this->computer;
 	int best_score = maximizing ? -1000 : 1000;
-	for (int i = 0; i < 9; i++)
+	for (int i = 0;
+	     i < 9;
+	     i++)
 	{
 		if (serialized_game_board.at(i) == BLANK)
 		{
@@ -279,7 +298,9 @@ int T3SolverImplementation::ai_get_best_move(std::string serialized_game_board)
 {
 	int move;
 	int best_score = -1000;
-	for (int i = 0; i < 9; i++)
+	for (int i = 0;
+	     i < 9;
+	     i++)
 	{
 		if (serialized_game_board.at(i) == BLANK)
 		{
@@ -406,17 +427,23 @@ void T3SolverImplementation::print_game_board(std::string serialized_game_board)
 {
 	std::cout << "\n    1 2 3" << std::endl;
 	std::cout << "\n1   ";
-	for (int i = 0; i < 3; i++)
+	for (int i = 0;
+	     i < 3;
+	     i++)
 	{
 		std::cout << serialized_game_board.at(i) << " ";
 	}
 	std::cout << "\n2   ";
-	for (int i = 3; i < 6; i++)
+	for (int i = 3;
+	     i < 6;
+	     i++)
 	{
 		std::cout << serialized_game_board.at(i) << " ";
 	}
 	std::cout << "\n3   ";
-	for (int i = 6; i < 9; i++)
+	for (int i = 6;
+	     i < 9;
+	     i++)
 	{
 		std::cout << serialized_game_board.at(i) << " ";
 	}
