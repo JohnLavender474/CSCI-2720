@@ -1,7 +1,11 @@
 #pragma once
 
+#include "Comparable.h"
+#include "Modulo.h"
+
 class Integer
-		: public Comparable<Integer>
+		: public Comparable<Integer>,
+		  public Modulo<Integer>
 {
 public:
 	Integer() = default;
@@ -29,6 +33,10 @@ public:
 	bool operator==(Integer const &other) const override;
 	
 	bool operator==(int const &other) const;
+	
+	int operator%(Integer const &other) const override;
+	
+	int operator%(int const &other) const;
 	
 	friend std::ostream &operator<<(std::ostream &stream, const Integer &integer);
 
@@ -94,6 +102,16 @@ bool Integer::operator==(const int &other) const
 std::ostream &operator<<(std::ostream &stream, const Integer &integer)
 {
 	return stream << integer.get();
+}
+
+int Integer::operator%(const Integer &other) const
+{
+	return i % other.get();
+}
+
+int Integer::operator%(const int &other) const
+{
+	return i % other;
 }
 
 

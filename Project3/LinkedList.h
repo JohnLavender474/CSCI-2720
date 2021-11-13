@@ -84,7 +84,11 @@ public:
 	
 	bool contains(T data);
 	
+	bool empty();
+	
 	T get(size_t index);
+	
+	int get_index_of(T data);
 	
 	void print();
 
@@ -148,6 +152,7 @@ void LinkedList<T>::add(size_t index, T data)
 			->prior = node;
 	node->prior = temp;
 	temp->next = node;
+	size++;
 }
 
 template<class T>
@@ -235,6 +240,24 @@ T LinkedList<T>::get(size_t index)
 	return temp->data;
 }
 
+
+template<class T>
+int LinkedList<T>::get_index_of(T data)
+{
+	LinkedNode<T> *temp = head;
+	int i = 0;
+	while (i < size)
+	{
+		if (temp == data)
+		{
+			return i;
+		}
+		temp = temp->next;
+		i++;
+	}
+	return -1;
+}
+
 template<class T>
 T LinkedList<T>::peek()
 {
@@ -248,6 +271,7 @@ T LinkedList<T>::pop()
 	LinkedNode<T> *temp = head;
 	head = head->next;
 	delete temp;
+	size--;
 	return data;
 }
 
@@ -272,6 +296,12 @@ void LinkedList<T>::print()
 		print.function(temp);
 		temp = temp->next;
 	}
+}
+
+template<class T>
+bool LinkedList<T>::empty()
+{
+	return size == 0;
 }
 
 template<class T>
