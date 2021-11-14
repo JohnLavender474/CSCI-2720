@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
 #include <queue>
 
@@ -16,7 +17,14 @@ public:
 	
 	Entry(K key, V value);
 	
+	void print();
+	
 	bool operator==(Entry<K, V> const &other) const;
+	
+	friend std::ostream &operator<<(std::ostream &stream, Entry<K, V> const &entry)
+	{
+		return stream << "key: " << entry.key << ", value: " << entry.value;
+	}
 	
 	K key;
 	V value;
@@ -35,12 +43,18 @@ bool Entry<K, V>::operator==(Entry<K, V> const &other) const
 }
 
 template<typename K, typename V>
+void Entry<K, V>::print()
+{
+	std::cout << "key: " << key << " value: " << value << std::endl;
+}
+
+template<typename K, typename V>
 class HashMap
 {
 public:
 	HashMap();
 	
-	~HashMap() = default;
+	~HashMap();
 	
 	void put(K key, V value);
 	
@@ -48,44 +62,65 @@ public:
 	
 	bool remove(K key);
 	
-	size_t get_size();
+	const size_t get_size();
+	
+	void print();
+
+protected:
+	const size_t hash_func(K key);
+	
+	void rehash();
+	
+	const size_t prime_size();
+	
+	const float get_load_factor();
 	
 	const float MAX_LOAD_FACTOR = 0.75f;
 
-protected:
-	size_t hash_func(K key);
-	
-	void rehash();
-
 private:
-	float load_factor;
+	size_t prime_bit;
 	size_t num_entries;
-	size_t num_buckets;
-	std::vector<LinkedList<Entry<K, V> *> *> buckets;
+	std::vector<LinkedList<Entry<K, V>> *> buckets;
 };
 
 template<typename K, typename V>
 HashMap<K, V>::HashMap() :
-		load_factor(0.0f),
+		prime_bit(2),
 		num_entries(0),
-		num_buckets(10),
 		buckets(11, nullptr)
 {
 }
 
 template<typename K, typename V>
+HashMap<K, V>::~HashMap()
+{
+	for (size_t i = 0; i < buckets.capacity(); i++)
+	{
+		delete buckets.at(i);
+	}
+}
+
+template<typename K, typename V>
 void HashMap<K, V>::put(K key, V value)
 {
-	Entry<K, V> *entry = new Entry<K, V>(key, value);
+	if (get_load_factor() > MAX_LOAD_FACTOR)
+	{
+		rehash();
+	}
+	Entry<K, V> entry(key, value);
 	size_t hash = hash_func(key);
 	if (buckets.at(hash) == nullptr)
 	{
-		buckets.at(hash) = new LinkedList<Entry<K, V> *>();
+		buckets.at(hash) = new LinkedList<Entry<K, V>>();
 	}
-	if (buckets.at(hash)->contains(entry))
+	if (buckets.at(hash)
+			->contains(entry))
 	{
-		int i = buckets.at(hash)->get_index_of(entry);
-		buckets.at(hash)->get(i)->value = value;
+		int i = buckets.at(hash)
+				->get_index_of(entry);
+		buckets.at(hash)
+				->get(i)
+				.value = value;
 		return;
 	}
 	buckets.at(hash)
@@ -97,12 +132,12 @@ template<typename K, typename V>
 bool HashMap<K, V>::get(K key, V &val_ref)
 {
 	size_t hash = hash_func(key);
-	LinkedList<Entry<K, V> *> *bucket = buckets.at(hash);
+	LinkedList<Entry<K, V>> *bucket = buckets.at(hash);
 	for (size_t i = 0;
 	     i < bucket->get_size();
 	     i++)
 	{
-		Entry<K, V> *entry = bucket->get(i);
+		Entry<K, V> entry = bucket->get(i);
 		if (key == entry->key)
 		{
 			val_ref = entry->value;
@@ -117,12 +152,16 @@ template<typename K, typename V>
 bool HashMap<K, V>::remove(K key)
 {
 	size_t hash = hash_func(key);
-	LinkedList<Entry<K, V> *> *bucket = buckets.at(hash);
+	LinkedList<Entry<K, V>> *bucket = buckets.at(hash);
+	if (bucket == nullptr)
+	{
+		return false;
+	}
 	for (size_t i = 0;
 	     i < bucket->get_size();
 	     i++)
 	{
-		Entry<K, V> *entry = bucket->get(i);
+		Entry<K, V> entry = bucket->get(i);
 		if (key == entry->key)
 		{
 			bucket->remove(i);
@@ -134,39 +173,76 @@ bool HashMap<K, V>::remove(K key)
 }
 
 template<typename K, typename V>
-size_t HashMap<K, V>::hash_func(K key)
+const size_t HashMap<K, V>::hash_func(K key)
 {
-	return key % num_buckets;
+	return key % buckets.capacity();
 }
 
 template<typename K, typename V>
 void HashMap<K, V>::rehash()
 {
-	std::queue<Entry<K, V> *> q;
+	std::queue<Entry<K, V>> q;
 	for (size_t i = 0;
-	     i < buckets.size();
+	     i < buckets.max_size();
 	     i++)
 	{
-		LinkedList<Entry<K, V> *> *bucket = buckets.at(i);
-		while (!bucket->empty())
+		LinkedList<Entry<K, V>> *bucket = buckets.at(i);
+		if (bucket != nullptr)
 		{
-			q.push(bucket->pop());
+			while (!bucket->empty())
+			{
+				q.push(bucket->pop());
+			}
 		}
 	}
-	num_buckets = 6 * ++prime_bit + 1;
+	buckets.resize(prime_size());
+	for (size_t i = 0; i < buckets.capacity(); i++)
+	{
+		buckets.at(i) = nullptr;
+	}
 	while (!q.empty())
 	{
-		Entry<K, V> * entry = q.front();
-		put(entry->key, entry->value);
+		Entry<K, V> entry = q.front();
+		put(entry.key, entry.value);
 		q.pop();
 	}
 }
 
 template<typename K, typename V>
-size_t HashMap<K, V>::get_size()
+const size_t HashMap<K, V>::get_size()
 {
 	return num_entries;
 }
+
+template<typename K, typename V>
+void HashMap<K, V>::print()
+{
+	for (size_t i = 0; i < buckets.capacity(); i++)
+	{
+		std::cout << "Bucket " << i + 1 << std::endl;
+		if (buckets.at(i) != nullptr)
+		{
+			buckets.at(i)->print();
+		}
+	}
+	std::cout << "\nnum_entries: " << num_entries << std::endl;
+}
+
+template<typename K, typename V>
+const size_t HashMap<K, V>::prime_size()
+{
+	return 6 * ++prime_bit + 1;
+}
+
+template<typename K, typename V>
+const float HashMap<K, V>::get_load_factor()
+{
+	return num_entries / buckets.capacity();
+}
+
+
+
+
 
 
 

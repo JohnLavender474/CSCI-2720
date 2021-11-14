@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "Function.h"
 #include "Comparable.h"
 
@@ -20,16 +22,10 @@ template<typename T>
 class LinkedList;
 
 template<typename T>
-class Print;
-
-template<typename T>
 class LinkedNode
 {
-	static_assert(std::is_base_of<Comparable<T>, T>::value, "Key must derive Comparable<Key");
 	
 	friend class LinkedList<T>;
-	
-	friend class Print<T>;
 
 public:
 	T get_data();
@@ -43,20 +39,6 @@ private:
 	LinkedNode<T> *prior;
 	LinkedNode<T> *next;
 };
-
-template<typename T>
-class Print
-		: public Function<LinkedNode<T> *>
-{
-public:
-	void function(LinkedNode<T> *t) override;
-};
-
-template<typename T>
-void Print<T>::function(LinkedNode<T> *t)
-{
-	std::cout << t->data << std::endl;
-}
 
 template<class T>
 class LinkedList
@@ -77,8 +59,6 @@ public:
 	T pop();
 	
 	void remove(T data);
-	
-	void remove(size_t index);
 	
 	size_t get_size();
 	
@@ -179,30 +159,6 @@ void LinkedList<T>::remove(T data)
 }
 
 template<class T>
-void LinkedList<T>::remove(size_t index)
-{
-	if (index >= size)
-	{
-		throw IndexOutOfBounds();
-	}
-	LinkedNode<T> *temp = head;
-	size_t i = 0;
-	while (i < index - 1)
-	{
-		temp = temp->next;
-		i++;
-	}
-	if (temp->next != nullptr)
-	{
-		temp->next
-				->prior = temp->prior;
-	}
-	temp->prior->next = temp->next;
-	delete temp;
-	size--;
-}
-
-template<class T>
 size_t LinkedList<T>::get_size()
 {
 	return size;
@@ -248,7 +204,7 @@ int LinkedList<T>::get_index_of(T data)
 	int i = 0;
 	while (i < size)
 	{
-		if (temp == data)
+		if (temp->data == data)
 		{
 			return i;
 		}
@@ -287,21 +243,20 @@ void LinkedList<T>::function(Function<T> &function)
 }
 
 template<class T>
-void LinkedList<T>::print()
-{
-	Print<T> print;
-	LinkedNode<T> *temp = head;
-	while (temp != nullptr)
-	{
-		print.function(temp);
-		temp = temp->next;
-	}
-}
-
-template<class T>
 bool LinkedList<T>::empty()
 {
 	return size == 0;
+}
+
+template<class T>
+void LinkedList<T>::print()
+{
+	LinkedNode<T> * temp = head;
+	while (temp != nullptr)
+	{
+		std::cout << "   " << temp->data << std::endl;
+		temp = temp->next;
+	}
 }
 
 template<class T>
