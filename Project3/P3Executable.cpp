@@ -184,6 +184,7 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 		{
 			Integer_String_Pair int_str_pair = q.front();
 			avl_tree->insert(int_str_pair.integer, int_str_pair.string);
+			q.pop();
 		}
 	}
 	initiated = true;

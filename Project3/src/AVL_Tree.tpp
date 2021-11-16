@@ -247,7 +247,7 @@ bool AVL_Tree<K, V>::protected_contains(AVL_Node<K, V> *&node, K key, bool print
 {
 	if (print_path)
 	{
-		std::cout << node << std::endl;
+		std::cout << *node << std::endl;
 	}
 	if (node == nullptr)
 	{
