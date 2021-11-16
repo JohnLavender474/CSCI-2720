@@ -9,8 +9,7 @@ public:
 
 const std::string IndexOutOfBounds::exception() const throw()
 {
-	std::string err_msg = "Index out of bounds exception";
-	return err_msg;
+	return "Index out of bounds exception";
 }
 
 template<class T>

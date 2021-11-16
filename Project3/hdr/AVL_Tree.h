@@ -27,6 +27,10 @@ public:
 	
 	void remove(K key);
 	
+	bool get(K key, V &value);
+	
+	bool contains(K key, bool print_path);
+	
 	void inorder_function(Function<AVL_Node<K, V> *> &function);
 	
 	void levelorder_function(Function<AVL_Node<K, V> *> &function);
@@ -44,7 +48,11 @@ protected:
 	
 	AVL_Node<K, V> *protected_insert(AVL_Node<K, V> *&node, K key, V value);
 	
-	AVL_Node<K, V> *protected_delete(AVL_Node<K, V> *&node, K key);
+	AVL_Node<K, V> *protected_remove(AVL_Node<K, V> *&node, K key);
+	
+	bool protected_get(AVL_Node<K, V> *&node, K key, V &value);
+	
+	bool protected_contains(AVL_Node<K, V> *&node, K key, bool print_path);
 	
 	void protected_inorder_function(AVL_Node<K, V> *&node, Function<AVL_Node<K, V> *> &function);
 	

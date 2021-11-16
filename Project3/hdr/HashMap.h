@@ -50,15 +50,9 @@ private:
 };
 
 
-/*
- * Entry class represents a key-value pair residing in a hashmap.
- */
 template<typename K, typename V>
 class Entry
 {
-	// The key value of an Entry instance must be of a type deriving Modulo. This ensures that the
-	// key is hashable. Even standard data types such as int, string, and so on must be encapsulated
-	// within a class that overrides the mod function of Modulo.
 	static_assert(std::is_base_of<Modulo<K>, K>::value, "Key must derive from Modulo");
 public:
 	Entry() = delete;

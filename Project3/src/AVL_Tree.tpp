@@ -32,7 +32,19 @@ void AVL_Tree<K, V>::insert(K key, V value)
 template<typename K, typename V>
 void AVL_Tree<K, V>::remove(K key)
 {
-	root = protected_delete(root, key);
+	root = protected_remove(root, key);
+}
+
+template<typename K, typename V>
+bool AVL_Tree<K, V>::get(K key, V &value)
+{
+	return protected_get(root, key, value);
+}
+
+template<typename K, typename V>
+bool AVL_Tree<K, V>::contains(K key, bool print_path)
+{
+	return protected_contains(root, key, print_path);
 }
 
 template<typename K, typename V>
@@ -73,7 +85,7 @@ void AVL_Tree<K, V>::delete_tree(AVL_Node<K, V> *&node)
 template<typename K, typename V>
 AVL_Node<K, V> *AVL_Tree<K, V>::create(K key, V value)
 {
-	std::cout << "creating new node" << std::endl;
+	std::cout << "creating new node (" << key << ", " << value << ")" << std::endl;
 	return new AVL_Node<K, V>(key, value);
 }
 
@@ -196,30 +208,6 @@ AVL_Node<K, V> *AVL_Tree<K, V>::protected_insert(AVL_Node<K, V> *&node, K key, V
 }
 
 template<typename K, typename V>
-AVL_Node<K, V> *AVL_Tree<K, V>::left_left_rotate(AVL_Node<K, V> *&x)
-{
-	AVL_Node<K, V> *y = x->right;
-	AVL_Node<K, V> *a = y->left;
-	y->left = x;
-	x->right = a;
-	x->height = protected_height(x);
-	y->height = protected_height(y);
-	return y;
-}
-
-template<typename K, typename V>
-AVL_Node<K, V> *AVL_Tree<K, V>::right_right_rotate(AVL_Node<K, V> *&y)
-{
-	AVL_Node<K, V> *x = y->left;
-	AVL_Node<K, V> *a = x->right;
-	x->right = y;
-	y->left = a;
-	x->height = protected_height(x);
-	y->height = protected_height(y);
-	return x;
-}
-
-template<typename K, typename V>
 int AVL_Tree<K, V>::get_balance(AVL_Node<K, V> *node)
 {
 	if (node != nullptr)
@@ -233,7 +221,54 @@ int AVL_Tree<K, V>::get_balance(AVL_Node<K, V> *node)
 }
 
 template<typename K, typename V>
-AVL_Node<K, V> *AVL_Tree<K, V>::protected_delete(AVL_Node<K, V> *&node, K key)
+bool AVL_Tree<K, V>::protected_get(AVL_Node<K, V> *&node, K key, V &value)
+{
+	if (node == nullptr)
+	{
+		return false;
+	}
+	else if (key == node->key)
+	{
+		value = node->get_value();
+		return true;
+	}
+	else if (key > node->key)
+	{
+		return protected_get(node->right, key, value);
+	}
+	else
+	{
+		return protected_get(node->left, key, value);
+	}
+}
+
+template<typename K, typename V>
+bool AVL_Tree<K, V>::protected_contains(AVL_Node<K, V> *&node, K key, bool print_path)
+{
+	if (print_path)
+	{
+		std::cout << node << std::endl;
+	}
+	if (node == nullptr)
+	{
+		return false;
+	}
+	else if (key == node->key)
+	{
+		return true;
+	}
+	else if (key > node->key)
+	{
+		return protected_contains(node->right, key, print_path);
+	}
+	else
+	{
+		return protected_contains(node->left, key, print_path);
+	}
+}
+
+template<typename K, typename V>
+AVL_Node<K, V> *AVL_Tree<K, V>::protected_remove(AVL_Node<K, V> *&node, K key)
 {
 	if (node == nullptr)
 	{
@@ -241,7 +276,7 @@ AVL_Node<K, V> *AVL_Tree<K, V>::protected_delete(AVL_Node<K, V> *&node, K key)
 	}
 	if (key > node->key)
 	{
-		node->right = protected_delete(node->right, key);
+		node->right = protected_remove(node->right, key);
 		if (get_balance(node) > 1)
 		{
 			if (get_balance(node->left) >= 0)
@@ -258,7 +293,7 @@ AVL_Node<K, V> *AVL_Tree<K, V>::protected_delete(AVL_Node<K, V> *&node, K key)
 	{
 		if (key < node->key)
 		{
-			node->left = protected_delete(node->left, key);
+			node->left = protected_remove(node->left, key);
 			if (get_balance(node) < -1)
 			{
 				if (get_balance(node->right) <= 0)
@@ -282,7 +317,7 @@ AVL_Node<K, V> *AVL_Tree<K, V>::protected_delete(AVL_Node<K, V> *&node, K key)
 				}
 				node->key = temp->key;
 				node->value = temp->value;
-				node->right = protected_delete(node->right, temp->key);
+				node->right = protected_remove(node->right, temp->key);
 				if (get_balance(node) > 1)
 				{
 					if (get_balance(node->left) >= 0)
@@ -320,6 +355,31 @@ AVL_Node<K, V> *AVL_Tree<K, V>::right_left_rotate(AVL_Node<K, V> *&y)
 	y = left_left_rotate(y);
 	return y;
 }
+
+template<typename K, typename V>
+AVL_Node<K, V> *AVL_Tree<K, V>::left_left_rotate(AVL_Node<K, V> *&x)
+{
+	AVL_Node<K, V> *y = x->right;
+	AVL_Node<K, V> *a = y->left;
+	y->left = x;
+	x->right = a;
+	x->height = protected_height(x);
+	y->height = protected_height(y);
+	return y;
+}
+
+template<typename K, typename V>
+AVL_Node<K, V> *AVL_Tree<K, V>::right_right_rotate(AVL_Node<K, V> *&y)
+{
+	AVL_Node<K, V> *x = y->left;
+	AVL_Node<K, V> *a = x->right;
+	x->right = y;
+	y->left = a;
+	x->height = protected_height(x);
+	y->height = protected_height(y);
+	return x;
+}
+
 
 
 

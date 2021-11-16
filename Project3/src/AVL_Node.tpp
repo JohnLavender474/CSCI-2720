@@ -16,3 +16,9 @@ V AVL_Node<K, V>::get_value()
 {
 	return value;
 }
+
+template<typename K, typename V>
+std::ostream &operator<<(std::ostream &stream, const AVL_Node<K, V> &avl_node)
+{
+	return stream << "(" << avl_node.get_key() << ", " << avl_node.get_value() << ")";
+}

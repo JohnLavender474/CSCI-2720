@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <exception>
 
 #include "hdr/String.h"
 #include "hdr/Integer.h"
@@ -7,6 +10,28 @@
 #include "hdr/AVL_Node.h"
 #include "hdr/AVL_Tree.h"
 #include "hdr/HashMap.h"
+
+/* CONST VARS ------------------------------------------------------------------------------------------------------ */
+
+const std::string AVL_TREE = "avl";
+const std::string HASH_MAP = "hashmap";
+const std::string INSERT = "insert";
+const std::string REMOVE = "remove";
+const std::string PUT = "put";
+const std::string CONTAINS = "contains";
+const std::string GET = "get";
+const std::string CLEAR = "clear";
+const std::string SIZE = "size";
+const std::string HEIGHT = "height";
+const std::string PRINT = "print";
+const std::string INORDER = "inorder";
+const std::string PREORDER = "preorder";
+const std::string POSTORDER = "postorder";
+const std::string LEVELORDER = "levelorder";
+const std::string RETURN = "return";
+const std::string EXIT = "exit";
+
+/* ----------------------------------------------------------------------------------------------------------------- */
 
 /* PRINT ----------------------------------------------------------------------------------------------------------- */
 
@@ -18,16 +43,334 @@ class Print_AVL_Data
 
 void Print_AVL_Data::function(AVL_Node<Integer, String> *t)
 {
-	std::cout << "key: " << t->get_key()
-			.get() << " value: " << t->get_value()
-			          .get() << std::endl;
+	std::cout << "(" << t->get_key()
+			.get() << ", " << t->get_value()
+			          .get() << ")" << std::endl;
 }
+
+Print_AVL_Data print_avl_data;
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
-/* DECLARATIONS ---------------------------------------------------------------------------------------------------- */
+/* INTEGER_STRING_PAIR --------------------------------------------------------------------------------------------- */
 
-void testLinkedList()
+class Integer_String_Pair
+{
+public:
+	Integer_String_Pair() = delete;
+	
+	Integer_String_Pair(Integer _integer, String _string);
+	
+	~Integer_String_Pair() = default;
+	
+	String string;
+	Integer integer;
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* BAD_PROJECT3_TEST_FILE------------------------------------------------------------------------------------------- */
+
+class BadInput
+		: public std::exception
+{
+public:
+	BadInput(const std::string &msg);
+	
+	std::string get_msg();
+
+private:
+	std::string msg;
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+/* FORWARD DECLARATIONS -------------------------------------------------------------------------------------------- */
+
+void program_loop();
+
+void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree);
+
+void hashmap_program_loop(HashMap<Integer, String> *&hashmap);
+
+void hashmap_program_loop();
+
+std::queue<Integer_String_Pair> parse_int_str_file(const std::string &src);
+
+Integer generate_integer_obj(const std::string &str);
+
+bool is_alpha(const std::string &str);
+
+bool is_num(const std::string &str, int &num);
+
+void test_AVL();
+
+void test_linked_list();
+
+void test_hashmap();
+
+bool file_exists(const std::string &src);
+
+void leave_program();
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+int main()
+{
+	/*
+	test_AVL();
+	test_linked_list();
+	test_hashmap();
+	 */
+	while (1)
+	{
+		program_loop();
+	}
+	return 0;
+}
+
+void program_loop()
+{
+	while (1)
+	{
+		try
+		{
+			std::string input;
+			std::cout << "\n\nAVL_Tree or HashMap: ";
+			getline(std::cin, input);
+			if (input.compare(AVL_TREE) == 0)
+			{
+				AVL_Tree<Integer, String> *avl_tree = new AVL_Tree<Integer, String>();
+				avl_program_loop(avl_tree);
+				delete avl_tree;
+			}
+			else if (input.compare(HASH_MAP) == 0)
+			{
+				HashMap<Integer, String> *hashmap = new HashMap<Integer, String>();
+				hashmap_program_loop(hashmap);
+				delete hashmap;
+			}
+			else if (input.compare(RETURN) == 0)
+			{
+				std::cout << "\nNothing to return to. This is the main hub of the program..." << std::endl;
+			}
+			else if (input.compare(EXIT) == 0)
+			{
+				leave_program();
+			}
+			else
+			{
+				std::cout << "\nYour input could not be read. Please try again..." << std::endl;
+			}
+		}
+		catch (BadInput bi)
+		{
+			std::cout << bi.get_msg() << std::endl;
+			std::cout << "Returning to main hub. Please try again.\n" << std::endl;
+		}
+	}
+}
+
+void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
+{
+	bool initiated = false;
+	if (!initiated)
+	{
+		std::string src;
+		std::cout << "Enter file path: ";
+		std::getline(std::cin, src);
+		std::queue<Integer_String_Pair> q = parse_int_str_file(src);
+		while (!q.empty())
+		{
+			Integer_String_Pair int_str_pair = q.front();
+			avl_tree->insert(int_str_pair.integer, int_str_pair.string);
+		}
+	}
+	initiated = true;
+	std::string input;
+	while (1)
+	{
+		try
+		{
+			std::cout << "Command: ";
+			getline(std::cin, input);
+			if (input.compare(EXIT) == 0)
+			{
+				leave_program();
+			}
+			else if (input.compare(RETURN) == 0)
+			{
+				break;
+			}
+			else if (input.compare(INSERT) == 0)
+			{
+				std::cout << "\nInteger Key: ";
+				getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				std::cout << "\nString Value: ";
+				getline(std::cin, input);
+				String str(input);
+				avl_tree->insert(num, str);
+			}
+			else if (input.compare(REMOVE) == 0)
+			{
+				std::cout << "\nInteger Key: ";
+				getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				avl_tree->remove(num);
+			}
+			else if (input.compare(GET) == 0)
+			{
+				std::cout << "\nInteger Key: ";
+				std::getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				String str;
+				if (avl_tree->get(num, str))
+				{
+					std::cout << "Found value: " << str << std::endl;
+				}
+				else
+				{
+					std::cout << "No value associated with key <" << num << ">" << std::endl;
+				}
+			}
+			else if (input.compare(CONTAINS) == 0)
+			{
+				std::cout << "\nInteger Key: ";
+				std::getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				if (avl_tree->contains(num, true))
+				{
+					std::cout << "True" << std::endl;
+				}
+				else
+				{
+					std::cout << "False" << std::endl;
+				}
+			}
+			else if (input.compare(PRINT) == 0)
+			{
+				std::cout << "\nPrint type: ";
+				std::getline(std::cin, input);
+				if (input.compare(PREORDER) == 0)
+				{
+					avl_tree->preorder_function(print_avl_data);
+				}
+				else if (input.compare(POSTORDER) == 0)
+				{
+					avl_tree->postorder_function(print_avl_data);
+				}
+				else if (input.compare(LEVELORDER) == 0)
+				{
+					avl_tree->levelorder_function(print_avl_data);
+				}
+				else if (input.compare(INORDER) == 0)
+				{
+					avl_tree->inorder_function(print_avl_data);
+				}
+				else
+				{
+					throw BadInput("Could not read input.");
+				}
+			}
+		}
+		catch (BadInput reenter_while_loop)
+		{
+			std::cout << reenter_while_loop.get_msg() << std::endl;
+			std::cout << "Try your command again..." << std::endl;
+		}
+	}
+}
+
+void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
+{
+
+}
+
+Integer generate_integer_obj(const std::string &str)
+{
+	int num;
+	if (!is_num(str, num))
+	{
+		throw BadInput(std::to_string(num) + " cannot be converted to int");
+	}
+	Integer num_int(num);
+	return num_int;
+}
+
+std::queue<Integer_String_Pair> parse_int_str_file(const std::string &src)
+{
+	if (!file_exists(src))
+	{
+		throw BadInput("File does not exist. Try again.");
+	}
+	std::queue<Integer_String_Pair> int_str_pair_q;
+	std::string line;
+	std::ifstream rfile;
+	rfile.open(src);
+	if (rfile.is_open())
+	{
+		while (std::getline(rfile, line) && line.length() != 0)
+		{
+			std::vector<std::string> tokens;
+			std::stringstream checkl(line);
+			std::string intermediate;
+			while (std::getline(checkl, intermediate, ' '))
+			{
+				std::cout << intermediate << std::endl;
+				tokens.push_back(intermediate);
+			}
+			std::string str_tok1 = tokens.at(0);
+			std::cout << "token 1: " << str_tok1 << std::endl;
+			int num;
+			if (!is_num(str_tok1, num))
+			{
+				throw BadInput(str_tok1 + " cannot be converted to type int.");
+			}
+			Integer i(num);
+			std::string str_tok2 = tokens.at(1);
+			std::cout << "token 2: " << str_tok2 << std::endl;
+			String str(str_tok2);
+			Integer_String_Pair int_string_pair(i, str);
+			int_str_pair_q.push(int_string_pair);
+		}
+		rfile.close();
+	}
+	return int_str_pair_q;
+}
+
+bool is_alpha(const std::string &str)
+{
+	for (int i = 0;
+	     i < str.size();
+	     i++)
+	{
+		if (!isalpha(str[i]) && str[i] != ' ')
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool is_num(const std::string &str, int &num)
+{
+	for (int i = 0;
+	     i < str.size();
+	     i++)
+	{
+		if (!isnumber(str[i]) && str[i] != ' ')
+		{
+			num = -1;
+			return false;
+		}
+	}
+	num = atoi(str.c_str());
+	return true;
+}
+
+
+void test_linked_list()
 {
 	Integer int1(10);
 	Integer int2(20);
@@ -75,7 +418,7 @@ void testLinkedList()
 	delete linkedList;
 }
 
-void testAVL()
+void test_AVL()
 {
 	Integer int1(10);
 	Integer int2(20);
@@ -128,10 +471,18 @@ void testAVL()
 	std::cout << "\nlevelorder function\n" << std::endl;
 	avl_tree->levelorder_function(print_AVL_Data);
 	
+	std::cout << "\ndelete 10\n" << std::endl;
+	avl_tree->remove(int1);
+	std::cout << "\ndelete 30\n" << std::endl;
+	avl_tree->remove(int3);
+	
+	std::cout << "\nlevelorder function\n" << std::endl;
+	avl_tree->levelorder_function(print_AVL_Data);
+	
 	delete avl_tree;
 }
 
-void testHashMap()
+void test_hashmap()
 {
 	Integer int1(10);
 	Integer int2(20);
@@ -184,10 +535,29 @@ void testHashMap()
 	delete hashMap;
 }
 
-int main()
+bool file_exists(const std::string &src)
 {
-	//testAVL();
-	//testLinkedList();
-	testHashMap();
-	return 0;
+	std::ifstream f(src.c_str());
+	return f.good();
+}
+
+Integer_String_Pair::Integer_String_Pair(Integer _integer, String _string)
+		: integer(_integer), string(_string)
+{
+}
+
+BadInput::BadInput(const std::string &msg)
+		: msg(msg)
+{
+}
+
+std::string BadInput::get_msg()
+{
+	return msg;
+}
+
+void leave_program()
+{
+	std::cout << "Hope you enjoyed using my Project 3 program! :)" << std::endl;
+	system("exit");
 }

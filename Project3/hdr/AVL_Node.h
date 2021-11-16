@@ -17,6 +17,8 @@ public:
 	K get_key();
 	
 	V get_value();
+	
+	friend std::ostream &operator<<(std::ostream &stream, const AVL_Node<K, V> &avl_node);
 
 private:
 	AVL_Node() = delete;
