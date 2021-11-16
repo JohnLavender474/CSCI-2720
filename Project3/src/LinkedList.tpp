@@ -1,9 +1,4 @@
-#pragma once
-
-#include <iostream>
-
-#include "Function.h"
-#include "Comparable.h"
+#include "../hdr/LinkedList.h"
 
 class IndexOutOfBounds
 		: public std::exception
@@ -17,65 +12,6 @@ const std::string IndexOutOfBounds::exception() const throw()
 	std::string err_msg = "Index out of bounds exception";
 	return err_msg;
 }
-
-template<typename T>
-class LinkedList;
-
-template<typename T>
-class LinkedNode
-{
-	
-	friend class LinkedList<T>;
-
-public:
-	T get_data();
-
-private:
-	LinkedNode() = delete;
-	
-	LinkedNode(T data);
-	
-	T data;
-	LinkedNode<T> *prior;
-	LinkedNode<T> *next;
-};
-
-template<class T>
-class LinkedList
-{
-public:
-	LinkedList();
-	
-	~LinkedList();
-	
-	void function(Function<T> &function);
-	
-	void add(T data);
-	
-	void add(size_t index, T data);
-	
-	T peek();
-	
-	T pop();
-	
-	void remove(T data);
-	
-	size_t get_size();
-	
-	bool contains(T data);
-	
-	bool empty();
-	
-	T get(size_t index);
-	
-	int get_index_of(T data);
-	
-	void print();
-
-private:
-	LinkedNode<T> *head;
-	size_t size;
-};
 
 template<class T>
 LinkedList<T>::LinkedList() :
@@ -167,6 +103,10 @@ size_t LinkedList<T>::get_size()
 template<class T>
 bool LinkedList<T>::contains(T data)
 {
+	if (head == nullptr)
+	{
+		return false;
+	}
 	LinkedNode<T> *temp = head;
 	while (temp != nullptr)
 	{
@@ -180,7 +120,7 @@ bool LinkedList<T>::contains(T data)
 }
 
 template<class T>
-T LinkedList<T>::get(size_t index)
+T &LinkedList<T>::get(size_t index)
 {
 	if (index >= size)
 	{
@@ -251,7 +191,7 @@ bool LinkedList<T>::empty()
 template<class T>
 void LinkedList<T>::print()
 {
-	LinkedNode<T> * temp = head;
+	LinkedNode<T> *temp = head;
 	while (temp != nullptr)
 	{
 		std::cout << "   " << temp->data << std::endl;

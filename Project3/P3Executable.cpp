@@ -1,12 +1,12 @@
 #include <iostream>
 
-#include "String.h"
-#include "Integer.h"
-#include "Function.h"
-#include "LinkedList.h"
-#include "AVL_Node.h"
-#include "AVL_Tree.h"
-#include "HashMap.h"
+#include "hdr/String.h"
+#include "hdr/Integer.h"
+#include "hdr/Function.h"
+#include "hdr/LinkedList.h"
+#include "hdr/AVL_Node.h"
+#include "hdr/AVL_Tree.h"
+#include "hdr/HashMap.h"
 
 /* PRINT ----------------------------------------------------------------------------------------------------------- */
 
@@ -29,7 +29,6 @@ void Print_AVL_Data::function(AVL_Node<Integer, String> *t)
 
 void testLinkedList()
 {
-	/*
 	Integer int1(10);
 	Integer int2(20);
 	Integer int3(30);
@@ -63,7 +62,9 @@ void testLinkedList()
 	std::cout << linkedList->contains(100) << std::endl;
 	std::cout << "\nget element at index 3:" << std::endl;
 	std::cout << linkedList->get(3) << std::endl;
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0;
+	     i < 3;
+	     i++)
 	{
 		std::cout << "\npop:" << std::endl;
 		std::cout << linkedList->pop() << std::endl;
@@ -72,7 +73,6 @@ void testLinkedList()
 	linkedList->print();
 	
 	delete linkedList;
-	 */
 }
 
 void testAVL()
@@ -153,18 +153,35 @@ void testHashMap()
 	String s5("A");
 	String s6("Test");
 	
-	HashMap<Integer, String> * hashMap = new HashMap<Integer, String>();
+	std::vector<Integer> ints;
 	
-	std::cout << "Put 10, Hello" << std::endl;
-	hashMap->put(int1, s1);
-	std::cout << "Put 20, World" << std::endl;
-	hashMap->put(int2, s2);
-	std::cout << "Put 30, This" << std::endl;
-	hashMap->put(int3, s3);
-	std::cout << "Put 5, Is" << std::endl;
-	hashMap->put(int4, s4);
-	std::cout << "Print:" << std::endl;
+	ints.push_back(int1);
+	ints.push_back(int2);
+	ints.push_back(int3);
+	ints.push_back(int4);
+	ints.push_back(int5);
+	ints.push_back(int6);
+	ints.push_back(int7);
+	ints.push_back(int8);
+	ints.push_back(int9);
+	ints.push_back(int10);
+	ints.push_back(int11);
+	ints.push_back(int12);
+	
+	HashMap<Integer, String> *hashMap = new HashMap<Integer, String>();
+	for (size_t i = 0;
+	     i < ints.size();
+	     i++)
+	{
+		hashMap->put(ints.at(i), s1);
+		std::cout << std::endl;
+	}
 	hashMap->print();
+	
+	std::cout << "Put 3 with World" << std::endl;
+	hashMap->put(int10, s2);
+	hashMap->print();
+	delete hashMap;
 }
 
 int main()

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FUNCTION_HPP
+#define FUNCTION_HPP
 
 template<typename T>
 class Function
@@ -10,3 +11,5 @@ public:
 	
 	virtual void function(T t) = 0;
 };
+
+#endif
