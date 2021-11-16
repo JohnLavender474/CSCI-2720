@@ -100,7 +100,7 @@ void LinkedList<T>::remove(size_t index)
 	{
 		throw IndexOutOfBounds();
 	}
-	LinkedList<T> *temp = head;
+	LinkedNode<T> *temp = head;
 	size_t i = 0;
 	while (i < index)
 	{

@@ -180,6 +180,7 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 		avl_tree->insert(int_str_pair.integer, int_str_pair.string);
 		q.pop();
 	}
+	std::cout << "Enter help for more info -------------------------------------------------------------" << std::endl;
 	std::string input;
 	while (1)
 	{
@@ -197,7 +198,7 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 				std::cout << "Returning to main hub..." << std::endl;
 				break;
 			}
-			else if (input.compare(INSERT) == 0)
+			else if (input.compare(PUT) == 0)
 			{
 				std::cout << "Integer Key: ";
 				getline(std::cin, input);
@@ -299,6 +300,7 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 		hashmap->put(int_str_pair.integer, int_str_pair.string);
 		q.pop();
 	}
+	std::cout << "Enter help for more info -------------------------------------------------------------" << std::endl;
 	std::string input;
 	while (1)
 	{
@@ -339,7 +341,7 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 				std::getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
 				String str;
-				if (avl_tree->get(num, str))
+				if (hashmap->get(num, str))
 				{
 					std::cout << "Found value: " << str << std::endl;
 				}
@@ -353,7 +355,7 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 				std::cout << "Integer Key: ";
 				std::getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
-				if (avl_tree->contains(num, true))
+				if (hashmap->contains(num))
 				{
 					std::cout << "True" << std::endl;
 				}
@@ -364,38 +366,17 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 			}
 			else if (input.compare(PRINT) == 0)
 			{
-				std::cout << "Print type: ";
-				std::getline(std::cin, input);
-				if (input.compare(PREORDER) == 0)
-				{
-					std::cout << "Performing preorder function..." << std::endl;
-					avl_tree->preorder_function(print_avl_data);
-				}
-				else if (input.compare(POSTORDER) == 0)
-				{
-					std::cout << "Performing postorder function..." << std::endl;
-					avl_tree->postorder_function(print_avl_data);
-				}
-				else if (input.compare(LEVELORDER) == 0)
-				{
-					std::cout << "Performing levelorder function..." << std::endl;
-					avl_tree->levelorder_function(print_avl_data);
-				}
-				else if (input.compare(INORDER) == 0)
-				{
-					std::cout << "Performing inorder function..." << std::endl;
-					avl_tree->inorder_function(print_avl_data);
-				}
+				hashmap->print();
 			}
 			else if (input.compare(CLEAR) == 0)
 			{
-				delete avl_tree;
-				avl_tree = new AVL_Tree<Integer, String>();
-				std::cout << "Successfully cleared avl tree.\n" << std::endl;
+				delete hashmap;
+				hashmap = new HashMap<Integer, String>();
+				std::cout << "Successfully cleared hashmap.\n" << std::endl;
 			}
 			else
 			{
-				throw BadInput("Could not read input: " + input);
+				throw BadInput("Invalid input: " + input);
 			}
 		}
 		catch (BadInput reenter_while_loop)

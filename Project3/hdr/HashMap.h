@@ -27,6 +27,8 @@ public:
 	
 	bool remove(K key);
 	
+	bool contains(K key);
+	
 	size_t get_size();
 	
 	void print();

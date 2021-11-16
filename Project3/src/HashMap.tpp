@@ -107,15 +107,32 @@ bool HashMap<K, V>::get(K key, V &val_ref)
 	     i++)
 	{
 		Entry<K, V> entry = bucket->get(i);
-		if (key == entry->key)
+		if (key == entry.key)
 		{
-			val_ref = entry->value;
+			val_ref = entry.value;
 			return true;
 		}
 	}
 	return false;
 }
 
+template<typename K, typename V>
+bool HashMap<K, V>::contains(K key)
+{
+	size_t hash = hash_func(key);
+	LinkedList<Entry<K, V>> *bucket = buckets[hash];
+	for (size_t i = 0;
+	     i < bucket->get_size();
+	     i++)
+	{
+		Entry<K, V> entry = bucket->get(i);
+		if (key == entry.key)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 template<typename K, typename V>
 bool HashMap<K, V>::remove(K key)
