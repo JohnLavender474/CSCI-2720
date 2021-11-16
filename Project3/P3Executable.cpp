@@ -99,8 +99,6 @@ std::queue<Integer_String_Pair> parse_int_str_file(const std::string &src);
 
 Integer generate_integer_obj(const std::string &str);
 
-bool is_alpha(const std::string &str);
-
 bool is_num(const std::string &str, int &num);
 
 void test_AVL();
@@ -152,7 +150,7 @@ void program_loop()
 			}
 			else if (input.compare(RETURN) == 0)
 			{
-				std::cout << "\nNothing to return to. This is the main hub of the program..." << std::endl;
+				std::cout << "Nothing to return to. This is the main hub of the program..." << std::endl;
 			}
 			else if (input.compare(EXIT) == 0)
 			{
@@ -160,39 +158,34 @@ void program_loop()
 			}
 			else
 			{
-				std::cout << "\nYour input could not be read. Please try again..." << std::endl;
+				std::cout << "Your input could not be read. Please try again..." << std::endl;
 			}
 		}
 		catch (BadInput bi)
 		{
 			std::cout << bi.get_msg() << std::endl;
-			std::cout << "Returning to main hub. Please try again.\n" << std::endl;
 		}
 	}
 }
 
 void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 {
-	bool initiated = false;
-	if (!initiated)
+	std::string src;
+	std::cout << "Enter file path: ";
+	std::getline(std::cin, src);
+	std::queue<Integer_String_Pair> q = parse_int_str_file(src);
+	while (!q.empty())
 	{
-		std::string src;
-		std::cout << "Enter file path: ";
-		std::getline(std::cin, src);
-		std::queue<Integer_String_Pair> q = parse_int_str_file(src);
-		while (!q.empty())
-		{
-			Integer_String_Pair int_str_pair = q.front();
-			avl_tree->insert(int_str_pair.integer, int_str_pair.string);
-			q.pop();
-		}
+		Integer_String_Pair int_str_pair = q.front();
+		avl_tree->insert(int_str_pair.integer, int_str_pair.string);
+		q.pop();
 	}
-	initiated = true;
 	std::string input;
 	while (1)
 	{
 		try
 		{
+			std::cout << "AVL_TREE ------------------------------------------------------------------" << std::endl;
 			std::cout << "Command: ";
 			getline(std::cin, input);
 			if (input.compare(EXIT) == 0)
@@ -201,28 +194,29 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 			}
 			else if (input.compare(RETURN) == 0)
 			{
+				std::cout << "Returning to main hub..." << std::endl;
 				break;
 			}
 			else if (input.compare(INSERT) == 0)
 			{
-				std::cout << "\nInteger Key: ";
+				std::cout << "Integer Key: ";
 				getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
-				std::cout << "\nString Value: ";
+				std::cout << "String Value: ";
 				getline(std::cin, input);
 				String str(input);
 				avl_tree->insert(num, str);
 			}
 			else if (input.compare(REMOVE) == 0)
 			{
-				std::cout << "\nInteger Key: ";
+				std::cout << "Integer Key: ";
 				getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
 				avl_tree->remove(num);
 			}
 			else if (input.compare(GET) == 0)
 			{
-				std::cout << "\nInteger Key: ";
+				std::cout << "Integer Key: ";
 				std::getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
 				String str;
@@ -237,7 +231,7 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 			}
 			else if (input.compare(CONTAINS) == 0)
 			{
-				std::cout << "\nInteger Key: ";
+				std::cout << "Integer Key: ";
 				std::getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
 				if (avl_tree->contains(num, true))
@@ -251,28 +245,38 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 			}
 			else if (input.compare(PRINT) == 0)
 			{
-				std::cout << "\nPrint type: ";
+				std::cout << "Print type: ";
 				std::getline(std::cin, input);
 				if (input.compare(PREORDER) == 0)
 				{
+					std::cout << "Performing preorder function..." << std::endl;
 					avl_tree->preorder_function(print_avl_data);
 				}
 				else if (input.compare(POSTORDER) == 0)
 				{
+					std::cout << "Performing postorder function..." << std::endl;
 					avl_tree->postorder_function(print_avl_data);
 				}
 				else if (input.compare(LEVELORDER) == 0)
 				{
+					std::cout << "Performing levelorder function..." << std::endl;
 					avl_tree->levelorder_function(print_avl_data);
 				}
 				else if (input.compare(INORDER) == 0)
 				{
+					std::cout << "Performing inorder function..." << std::endl;
 					avl_tree->inorder_function(print_avl_data);
 				}
-				else
-				{
-					throw BadInput("Could not read input.");
-				}
+			}
+			else if (input.compare(CLEAR) == 0)
+			{
+				delete avl_tree;
+				avl_tree = new AVL_Tree<Integer, String>();
+				std::cout << "Successfully cleared avl tree.\n" << std::endl;
+			}
+			else
+			{
+				throw BadInput("Could not read input: " + input);
 			}
 		}
 		catch (BadInput reenter_while_loop)
@@ -285,7 +289,121 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 
 void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 {
-
+	std::string src;
+	std::cout << "Enter file path: ";
+	std::getline(std::cin, src);
+	std::queue<Integer_String_Pair> q = parse_int_str_file(src);
+	while (!q.empty())
+	{
+		Integer_String_Pair int_str_pair = q.front();
+		hashmap->put(int_str_pair.integer, int_str_pair.string);
+		q.pop();
+	}
+	std::string input;
+	while (1)
+	{
+		try
+		{
+			std::cout << "HASH MAP ------------------------------------------------------------------" << std::endl;
+			std::cout << "Command: ";
+			getline(std::cin, input);
+			if (input.compare(EXIT) == 0)
+			{
+				leave_program();
+			}
+			else if (input.compare(RETURN) == 0)
+			{
+				std::cout << "Returning to main hub..." << std::endl;
+				break;
+			}
+			else if (input.compare(INSERT) == 0)
+			{
+				std::cout << "Integer Key: ";
+				getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				std::cout << "String Value: ";
+				getline(std::cin, input);
+				String str(input);
+				hashmap->put(num, str);
+			}
+			else if (input.compare(REMOVE) == 0)
+			{
+				std::cout << "Integer Key: ";
+				getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				hashmap->remove(num);
+			}
+			else if (input.compare(GET) == 0)
+			{
+				std::cout << "Integer Key: ";
+				std::getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				String str;
+				if (avl_tree->get(num, str))
+				{
+					std::cout << "Found value: " << str << std::endl;
+				}
+				else
+				{
+					std::cout << "No value associated with key <" << num << ">" << std::endl;
+				}
+			}
+			else if (input.compare(CONTAINS) == 0)
+			{
+				std::cout << "Integer Key: ";
+				std::getline(std::cin, input);
+				Integer num = generate_integer_obj(input);
+				if (avl_tree->contains(num, true))
+				{
+					std::cout << "True" << std::endl;
+				}
+				else
+				{
+					std::cout << "False" << std::endl;
+				}
+			}
+			else if (input.compare(PRINT) == 0)
+			{
+				std::cout << "Print type: ";
+				std::getline(std::cin, input);
+				if (input.compare(PREORDER) == 0)
+				{
+					std::cout << "Performing preorder function..." << std::endl;
+					avl_tree->preorder_function(print_avl_data);
+				}
+				else if (input.compare(POSTORDER) == 0)
+				{
+					std::cout << "Performing postorder function..." << std::endl;
+					avl_tree->postorder_function(print_avl_data);
+				}
+				else if (input.compare(LEVELORDER) == 0)
+				{
+					std::cout << "Performing levelorder function..." << std::endl;
+					avl_tree->levelorder_function(print_avl_data);
+				}
+				else if (input.compare(INORDER) == 0)
+				{
+					std::cout << "Performing inorder function..." << std::endl;
+					avl_tree->inorder_function(print_avl_data);
+				}
+			}
+			else if (input.compare(CLEAR) == 0)
+			{
+				delete avl_tree;
+				avl_tree = new AVL_Tree<Integer, String>();
+				std::cout << "Successfully cleared avl tree.\n" << std::endl;
+			}
+			else
+			{
+				throw BadInput("Could not read input: " + input);
+			}
+		}
+		catch (BadInput reenter_while_loop)
+		{
+			std::cout << reenter_while_loop.get_msg() << std::endl;
+			std::cout << "Try your command again..." << std::endl;
+		}
+	}
 }
 
 Integer generate_integer_obj(const std::string &str)
@@ -293,7 +411,7 @@ Integer generate_integer_obj(const std::string &str)
 	int num;
 	if (!is_num(str, num))
 	{
-		throw BadInput(std::to_string(num) + " cannot be converted to int");
+		throw BadInput(str + " cannot be converted to integer.");
 	}
 	Integer num_int(num);
 	return num_int;
@@ -340,20 +458,6 @@ std::queue<Integer_String_Pair> parse_int_str_file(const std::string &src)
 	return int_str_pair_q;
 }
 
-bool is_alpha(const std::string &str)
-{
-	for (int i = 0;
-	     i < str.size();
-	     i++)
-	{
-		if (!isalpha(str[i]) && str[i] != ' ')
-		{
-			return false;
-		}
-	}
-	return true;
-}
-
 bool is_num(const std::string &str, int &num)
 {
 	for (int i = 0;
@@ -369,7 +473,6 @@ bool is_num(const std::string &str, int &num)
 	num = atoi(str.c_str());
 	return true;
 }
-
 
 void test_linked_list()
 {
@@ -560,5 +663,5 @@ std::string BadInput::get_msg()
 void leave_program()
 {
 	std::cout << "Hope you enjoyed using my Project 3 program! :)" << std::endl;
-	system("exit");
+	exit(0);
 }

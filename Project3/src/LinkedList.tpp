@@ -93,6 +93,31 @@ void LinkedList<T>::remove(T data)
 	}
 }
 
+template<typename T>
+void LinkedList<T>::remove(size_t index)
+{
+	if (index >= size)
+	{
+		throw IndexOutOfBounds();
+	}
+	LinkedList<T> *temp = head;
+	size_t i = 0;
+	while (i < index)
+	{
+		temp = temp->next;
+		i++;
+	}
+	if (temp->next != nullptr)
+	{
+		temp->next
+				->prior = temp->prior;
+	}
+	temp->prior
+			->next = temp->next;
+	delete temp;
+	size--;
+}
+
 template<class T>
 size_t LinkedList<T>::get_size()
 {

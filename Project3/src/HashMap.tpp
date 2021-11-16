@@ -131,7 +131,7 @@ bool HashMap<K, V>::remove(K key)
 	     i++)
 	{
 		Entry<K, V> entry = bucket->get(i);
-		if (key == entry->key)
+		if (key == entry.key)
 		{
 			bucket->remove(i);
 			num_entries--;

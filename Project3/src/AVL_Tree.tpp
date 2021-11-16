@@ -176,7 +176,11 @@ AVL_Node<K, V> *AVL_Tree<K, V>::protected_insert(AVL_Node<K, V> *&node, K key, V
 	{
 		return create(key, value);
 	}
-	if (node->key > key)
+	if (node->key == key)
+	{
+		node->value = value;
+	}
+	else if (node->key > key)
 	{
 		node->left = protected_insert(node->left, key, value);
 	}
@@ -247,7 +251,7 @@ bool AVL_Tree<K, V>::protected_contains(AVL_Node<K, V> *&node, K key, bool print
 {
 	if (print_path)
 	{
-		std::cout << *node << std::endl;
+		std::cout << node << std::endl;
 	}
 	if (node == nullptr)
 	{

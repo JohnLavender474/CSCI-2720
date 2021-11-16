@@ -48,6 +48,8 @@ public:
 	
 	void remove(T data);
 	
+	void remove(size_t index);
+	
 	size_t get_size();
 	
 	bool contains(T data);
