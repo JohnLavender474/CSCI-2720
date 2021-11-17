@@ -30,15 +30,20 @@ void AVL_Tree<K, V>::insert(K key, V value)
 }
 
 template<typename K, typename V>
-void AVL_Tree<K, V>::remove(K key)
+bool AVL_Tree<K, V>::remove(K key)
 {
+	if (!contains(key, false))
+	{
+		return false;
+	}
 	root = protected_remove(root, key);
+	return true;
 }
 
 template<typename K, typename V>
-bool AVL_Tree<K, V>::get(K key, V &value)
+bool AVL_Tree<K, V>::get(K key, V &value, bool print_path)
 {
-	return protected_get(root, key, value);
+	return protected_get(root, key, value, print_path);
 }
 
 template<typename K, typename V>
@@ -85,7 +90,6 @@ void AVL_Tree<K, V>::delete_tree(AVL_Node<K, V> *&node)
 template<typename K, typename V>
 AVL_Node<K, V> *AVL_Tree<K, V>::create(K key, V value)
 {
-	std::cout << "creating new node (" << key << ", " << value << ")" << std::endl;
 	return new AVL_Node<K, V>(key, value);
 }
 
@@ -225,8 +229,12 @@ int AVL_Tree<K, V>::get_balance(AVL_Node<K, V> *node)
 }
 
 template<typename K, typename V>
-bool AVL_Tree<K, V>::protected_get(AVL_Node<K, V> *&node, K key, V &value)
+bool AVL_Tree<K, V>::protected_get(AVL_Node<K, V> *node, K key, V &value, bool print_path)
 {
+	if (print_path)
+	{
+		std::cout << "(" << node->key << ", " << node->value << ")" << std::endl;
+	}
 	if (node == nullptr)
 	{
 		return false;
@@ -238,20 +246,20 @@ bool AVL_Tree<K, V>::protected_get(AVL_Node<K, V> *&node, K key, V &value)
 	}
 	else if (key > node->key)
 	{
-		return protected_get(node->right, key, value);
+		return protected_get(node->right, key, value, print_path);
 	}
 	else
 	{
-		return protected_get(node->left, key, value);
+		return protected_get(node->left, key, value, print_path);
 	}
 }
 
 template<typename K, typename V>
-bool AVL_Tree<K, V>::protected_contains(AVL_Node<K, V> *&node, K key, bool print_path)
+bool AVL_Tree<K, V>::protected_contains(AVL_Node<K, V> *node, K key, bool print_path)
 {
 	if (print_path)
 	{
-		std::cout << node << std::endl;
+		std::cout << "(" << node->key << ", " << node->value << ")" << std::endl;
 	}
 	if (node == nullptr)
 	{

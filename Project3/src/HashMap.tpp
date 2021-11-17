@@ -62,10 +62,8 @@ template<typename K, typename V>
 void HashMap<K, V>::put(K key, V value)
 {
 	float load_factor = get_load_factor();
-	std::cout << "load factor: " << load_factor << std::endl;
 	if (load_factor > MAX_LOAD_FACTOR)
 	{
-		std::cout << "REHASH!" << std::endl;
 		rehash();
 	}
 	Entry<K, V> entry(key, value);
@@ -78,15 +76,9 @@ void HashMap<K, V>::put(K key, V value)
 	     i < buckets[hash]->get_size();
 	     i++)
 	{
-		std::cout << "size: " << buckets[hash]->get_size() << std::endl;
 		if (buckets[hash]->get(i)
 				    .key == entry.key)
 		{
-			std::cout << "reassign old val <" << buckets[hash]->get(i)
-					.value
-			          << "> at key <" << buckets[hash]->get(i)
-					          .key
-			          << "> to new val <" << entry.value << ">" << std::endl;
 			buckets[hash]->get(i)
 					.set_value(entry.value);
 			return;
@@ -162,7 +154,6 @@ template<typename K, typename V>
 size_t HashMap<K, V>::hash_func(K key)
 {
 	size_t hash_func_val = key % capacity;
-	std::cout << "Hash func val: " << hash_func_val << std::endl;
 	return hash_func_val;
 }
 
@@ -200,7 +191,6 @@ void HashMap<K, V>::rehash()
 	num_entries = 0;
 	capacity = prime_size();
 	buckets = new LinkedList<Entry<K, V>> *[capacity]();
-	std::cout << "new capacity: " << capacity << std::endl;
 	while (!q.empty())
 	{
 		Entry<K, V> entry = q.front();
@@ -229,6 +219,8 @@ void HashMap<K, V>::print()
 		}
 	}
 	std::cout << "\nnum_entries: " << num_entries << std::endl;
+	std::cout << "current load factor: " << get_load_factor() << std::endl;
+	std::cout << "if load factor is greater than 0.85, next put op will cause rehash" << std::endl;
 }
 
 template<typename K, typename V>

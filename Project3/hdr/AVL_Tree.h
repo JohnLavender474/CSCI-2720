@@ -25,9 +25,9 @@ public:
 	
 	void insert(K key, V value);
 	
-	void remove(K key);
+	bool remove(K key);
 	
-	bool get(K key, V &value);
+	bool get(K key, V &value, bool print_path);
 	
 	bool contains(K key, bool print_path);
 	
@@ -50,9 +50,9 @@ protected:
 	
 	AVL_Node<K, V> *protected_remove(AVL_Node<K, V> *&node, K key);
 	
-	bool protected_get(AVL_Node<K, V> *&node, K key, V &value);
+	bool protected_get(AVL_Node<K, V> *node, K key, V &value, bool print_path);
 	
-	bool protected_contains(AVL_Node<K, V> *&node, K key, bool print_path);
+	bool protected_contains(AVL_Node<K, V> *node, K key, bool print_path);
 	
 	void protected_inorder_function(AVL_Node<K, V> *&node, Function<AVL_Node<K, V> *> &function);
 	

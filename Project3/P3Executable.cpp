@@ -2,34 +2,36 @@
 #include <fstream>
 #include <sstream>
 #include <exception>
+#include <algorithm>
+#include <cctype>
 
 #include "hdr/String.h"
 #include "hdr/Integer.h"
 #include "hdr/Function.h"
-#include "hdr/LinkedList.h"
 #include "hdr/AVL_Node.h"
 #include "hdr/AVL_Tree.h"
 #include "hdr/HashMap.h"
 
 /* CONST VARS ------------------------------------------------------------------------------------------------------ */
 
-const std::string AVL_TREE = "avl";
-const std::string HASH_MAP = "hashmap";
-const std::string INSERT = "insert";
-const std::string REMOVE = "remove";
-const std::string PUT = "put";
-const std::string CONTAINS = "contains";
-const std::string GET = "get";
-const std::string CLEAR = "clear";
-const std::string SIZE = "size";
-const std::string HEIGHT = "height";
-const std::string PRINT = "print";
-const std::string INORDER = "inorder";
-const std::string PREORDER = "preorder";
-const std::string POSTORDER = "postorder";
-const std::string LEVELORDER = "levelorder";
-const std::string RETURN = "return";
-const std::string EXIT = "exit";
+const std::string AVL_TREE = "AVL";
+const std::string HASH_MAP = "HASHMAP";
+const std::string INSERT = "INSERT";
+const std::string REMOVE = "REMOVE";
+const std::string PUT = "PUT";
+const std::string CONTAINS = "CONTAINS";
+const std::string GET = "GET";
+const std::string CLEAR = "CLEAR";
+const std::string SIZE = "SIZE";
+const std::string HEIGHT = "HEIGHT";
+const std::string PRINT = "PRINT";
+const std::string INORDER = "INORDER";
+const std::string PREORDER = "PREORDER";
+const std::string POSTORDER = "POSTORDER";
+const std::string LEVELORDER = "LEVELORDER";
+const std::string HELP = "HELP";
+const std::string RETURN = "RETURN";
+const std::string EXIT = "EXIT";
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
@@ -75,7 +77,7 @@ class BadInput
 		: public std::exception
 {
 public:
-	BadInput(const std::string &msg);
+	BadInput(std::string &msg);
 	
 	std::string get_msg();
 
@@ -93,21 +95,21 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree);
 
 void hashmap_program_loop(HashMap<Integer, String> *&hashmap);
 
-void hashmap_program_loop();
+std::queue<Integer_String_Pair> parse_int_str_file(std::string &src);
 
-std::queue<Integer_String_Pair> parse_int_str_file(const std::string &src);
+Integer generate_integer_obj(std::string &str);
 
-Integer generate_integer_obj(const std::string &str);
+bool is_num(std::string &str, int &num);
 
-bool is_num(const std::string &str, int &num);
+bool file_exists(std::string &src);
 
-void test_AVL();
+void remove_whitespace(std::string &str);
 
-void test_linked_list();
+void to_upper(std::string &str);
 
-void test_hashmap();
+void avl_help();
 
-bool file_exists(const std::string &src);
+void hashmap_help();
 
 void leave_program();
 
@@ -115,16 +117,10 @@ void leave_program();
 
 int main()
 {
-	/*
-	test_AVL();
-	test_linked_list();
-	test_hashmap();
-	 */
 	while (1)
 	{
 		program_loop();
 	}
-	return 0;
 }
 
 void program_loop()
@@ -133,9 +129,12 @@ void program_loop()
 	{
 		try
 		{
+			system("clear");
 			std::string input;
-			std::cout << "\n\nAVL_Tree or HashMap: ";
+			std::cout << "avl / hashmap: ";
 			getline(std::cin, input);
+			remove_whitespace(input);
+			to_upper(input);
 			if (input.compare(AVL_TREE) == 0)
 			{
 				AVL_Tree<Integer, String> *avl_tree = new AVL_Tree<Integer, String>();
@@ -180,15 +179,17 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 		avl_tree->insert(int_str_pair.integer, int_str_pair.string);
 		q.pop();
 	}
-	std::cout << "Enter help for more info -------------------------------------------------------------" << std::endl;
+	avl_help();
 	std::string input;
 	while (1)
 	{
 		try
 		{
-			std::cout << "AVL_TREE ------------------------------------------------------------------" << std::endl;
+			std::cout << "\nAVL_TREE ------------------------------------------------------------------" << std::endl;
 			std::cout << "Command: ";
 			getline(std::cin, input);
+			remove_whitespace(input);
+			to_upper(input);
 			if (input.compare(EXIT) == 0)
 			{
 				leave_program();
@@ -198,13 +199,14 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 				std::cout << "Returning to main hub..." << std::endl;
 				break;
 			}
-			else if (input.compare(PUT) == 0)
+			else if (input.compare(INSERT) == 0)
 			{
 				std::cout << "Integer Key: ";
 				getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
 				std::cout << "String Value: ";
 				getline(std::cin, input);
+				to_upper(input);
 				String str(input);
 				avl_tree->insert(num, str);
 			}
@@ -213,7 +215,10 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 				std::cout << "Integer Key: ";
 				getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
-				avl_tree->remove(num);
+				if (!avl_tree->remove(num))
+				{
+					std::cout << "Key <" << num << "> not found!" << std::endl;
+				}
 			}
 			else if (input.compare(GET) == 0)
 			{
@@ -221,13 +226,13 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 				std::getline(std::cin, input);
 				Integer num = generate_integer_obj(input);
 				String str;
-				if (avl_tree->get(num, str))
+				if (avl_tree->get(num, str, true))
 				{
 					std::cout << "Found value: " << str << std::endl;
 				}
 				else
 				{
-					std::cout << "No value associated with key <" << num << ">" << std::endl;
+					std::cout << "Key <" << num << "> not found!" << std::endl;
 				}
 			}
 			else if (input.compare(CONTAINS) == 0)
@@ -248,36 +253,51 @@ void avl_program_loop(AVL_Tree<Integer, String> *&avl_tree)
 			{
 				std::cout << "Print type: ";
 				std::getline(std::cin, input);
+				remove_whitespace(input);
+				to_upper(input);
 				if (input.compare(PREORDER) == 0)
 				{
-					std::cout << "Performing preorder function..." << std::endl;
+					std::cout << "\nPerforming preorder function..." << std::endl;
 					avl_tree->preorder_function(print_avl_data);
 				}
 				else if (input.compare(POSTORDER) == 0)
 				{
-					std::cout << "Performing postorder function..." << std::endl;
+					std::cout << "\nPerforming postorder function..." << std::endl;
 					avl_tree->postorder_function(print_avl_data);
 				}
 				else if (input.compare(LEVELORDER) == 0)
 				{
-					std::cout << "Performing levelorder function..." << std::endl;
+					std::cout << "\nPerforming levelorder function..." << std::endl;
 					avl_tree->levelorder_function(print_avl_data);
 				}
 				else if (input.compare(INORDER) == 0)
 				{
-					std::cout << "Performing inorder function..." << std::endl;
+					std::cout << "\nPerforming inorder function..." << std::endl;
 					avl_tree->inorder_function(print_avl_data);
 				}
+			}
+			else if (input.compare(SIZE) == 0)
+			{
+				std::cout << "size: " << avl_tree->get_size() << std::endl;
+			}
+			else if (input.compare(HEIGHT) == 0)
+			{
+				std::cout << "height: " << avl_tree->get_height() << std::endl;
 			}
 			else if (input.compare(CLEAR) == 0)
 			{
 				delete avl_tree;
 				avl_tree = new AVL_Tree<Integer, String>();
-				std::cout << "Successfully cleared avl tree.\n" << std::endl;
+				std::cout << "\nSuccessfully cleared avl tree.\n" << std::endl;
+			}
+			else if (input.compare(HELP) == 0)
+			{
+				avl_help();
 			}
 			else
 			{
-				throw BadInput("Could not read input: " + input);
+				std::string err_msg = "\nCould not read input: " + input;
+				throw BadInput(err_msg);
 			}
 		}
 		catch (BadInput reenter_while_loop)
@@ -300,25 +320,27 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 		hashmap->put(int_str_pair.integer, int_str_pair.string);
 		q.pop();
 	}
-	std::cout << "Enter help for more info -------------------------------------------------------------" << std::endl;
+	hashmap_help();
 	std::string input;
 	while (1)
 	{
 		try
 		{
-			std::cout << "HASH MAP ------------------------------------------------------------------" << std::endl;
-			std::cout << "Command: ";
+			std::cout << "\nHASH MAP ------------------------------------------------------------------" << std::endl;
+			std::cout << "\nCommand: ";
 			getline(std::cin, input);
+			remove_whitespace(input);
+			to_upper(input);
 			if (input.compare(EXIT) == 0)
 			{
 				leave_program();
 			}
 			else if (input.compare(RETURN) == 0)
 			{
-				std::cout << "Returning to main hub..." << std::endl;
+				std::cout << "\nReturning to main hub..." << std::endl;
 				break;
 			}
-			else if (input.compare(INSERT) == 0)
+			else if (input.compare(PUT) == 0)
 			{
 				std::cout << "Integer Key: ";
 				getline(std::cin, input);
@@ -347,7 +369,7 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 				}
 				else
 				{
-					std::cout << "No value associated with key <" << num << ">" << std::endl;
+					std::cout << "Key <" << num << "> not found!" << std::endl;
 				}
 			}
 			else if (input.compare(CONTAINS) == 0)
@@ -368,15 +390,24 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 			{
 				hashmap->print();
 			}
+			else if (input.compare(SIZE) == 0)
+			{
+				std::cout << "size: " << hashmap->get_size() << std::endl;
+			}
 			else if (input.compare(CLEAR) == 0)
 			{
 				delete hashmap;
 				hashmap = new HashMap<Integer, String>();
 				std::cout << "Successfully cleared hashmap.\n" << std::endl;
 			}
+			else if (input.compare(HELP) == 0)
+			{
+				hashmap_help();
+			}
 			else
 			{
-				throw BadInput("Invalid input: " + input);
+				std::string err_msg = "Invalid input: " + input;
+				throw BadInput(err_msg);
 			}
 		}
 		catch (BadInput reenter_while_loop)
@@ -387,22 +418,25 @@ void hashmap_program_loop(HashMap<Integer, String> *&hashmap)
 	}
 }
 
-Integer generate_integer_obj(const std::string &str)
+Integer generate_integer_obj(std::string &str)
 {
 	int num;
+	remove_whitespace(str);
 	if (!is_num(str, num))
 	{
-		throw BadInput(str + " cannot be converted to integer.");
+		std::string err_msg = str + " cannot be converted to integer.";
+		throw BadInput(err_msg);
 	}
 	Integer num_int(num);
 	return num_int;
 }
 
-std::queue<Integer_String_Pair> parse_int_str_file(const std::string &src)
+std::queue<Integer_String_Pair> parse_int_str_file(std::string &src)
 {
 	if (!file_exists(src))
 	{
-		throw BadInput("File does not exist. Try again.");
+		std::string err_msg = "File does not exist. Try again.";
+		throw BadInput(err_msg);
 	}
 	std::queue<Integer_String_Pair> int_str_pair_q;
 	std::string line;
@@ -412,34 +446,35 @@ std::queue<Integer_String_Pair> parse_int_str_file(const std::string &src)
 	{
 		while (std::getline(rfile, line) && line.length() != 0)
 		{
+			std::cout << std::endl;
 			std::vector<std::string> tokens;
 			std::stringstream checkl(line);
 			std::string intermediate;
 			while (std::getline(checkl, intermediate, ' '))
 			{
-				std::cout << intermediate << std::endl;
+				std::cout << intermediate << " ";
 				tokens.push_back(intermediate);
 			}
 			std::string str_tok1 = tokens.at(0);
-			std::cout << "token 1: " << str_tok1 << std::endl;
 			int num;
 			if (!is_num(str_tok1, num))
 			{
-				throw BadInput(str_tok1 + " cannot be converted to type int.");
+				std::string err_msg = str_tok1 + " cannot be converted to int.";
+				throw BadInput(err_msg);
 			}
 			Integer i(num);
 			std::string str_tok2 = tokens.at(1);
-			std::cout << "token 2: " << str_tok2 << std::endl;
 			String str(str_tok2);
 			Integer_String_Pair int_string_pair(i, str);
 			int_str_pair_q.push(int_string_pair);
 		}
 		rfile.close();
 	}
+	std::cout << std::endl;
 	return int_str_pair_q;
 }
 
-bool is_num(const std::string &str, int &num)
+bool is_num(std::string &str, int &num)
 {
 	for (int i = 0;
 	     i < str.size();
@@ -451,179 +486,72 @@ bool is_num(const std::string &str, int &num)
 			return false;
 		}
 	}
+	remove_whitespace(str);
 	num = atoi(str.c_str());
 	return true;
 }
 
-void test_linked_list()
+void remove_whitespace(std::string &str)
 {
-	Integer int1(10);
-	Integer int2(20);
-	Integer int3(30);
-	Integer int4(5);
-	Integer int5(25);
-	Integer int6(15);
-	
-	std::cout << "\n\nLINKEDLIST:\n" << std::endl;
-	LinkedList<Integer> *linkedList = new LinkedList<Integer>();
-	std::cout << "aded 10" << std::endl;
-	linkedList->add(int1);
-	std::cout << "aded 20" << std::endl;
-	linkedList->add(int2);
-	std::cout << "aded 30" << std::endl;
-	linkedList->add(int3);
-	std::cout << "aded 5" << std::endl;
-	linkedList->add(int4);
-	std::cout << "aded 25" << std::endl;
-	linkedList->add(int5);
-	std::cout << "aded 15" << std::endl;
-	linkedList->add(int6);
-	std::cout << "\nprint:" << std::endl;
-	linkedList->print();
-	std::cout << "\nremove 5" << std::endl;
-	linkedList->remove(5);
-	std::cout << "\nprint:" << std::endl;
-	linkedList->print();
-	std::cout << "\ncontains 10:" << std::endl;
-	std::cout << linkedList->contains(10) << std::endl;
-	std::cout << "\ncontains 100:" << std::endl;
-	std::cout << linkedList->contains(100) << std::endl;
-	std::cout << "\nget element at index 3:" << std::endl;
-	std::cout << linkedList->get(3) << std::endl;
-	for (size_t i = 0;
-	     i < 3;
-	     i++)
+	std::string::iterator end_pos = std::remove(str.begin(), str.end(), ' ');
+	str.erase(end_pos, str.end());
+}
+
+void to_upper(std::string &str)
+{
+	for(unsigned int l = 0; l < str.length(); l++)
 	{
-		std::cout << "\npop:" << std::endl;
-		std::cout << linkedList->pop() << std::endl;
+		str[l] = toupper(str[l]);
 	}
-	std::cout << "\nprint:" << std::endl;
-	linkedList->print();
-	
-	delete linkedList;
 }
 
-void test_AVL()
-{
-	Integer int1(10);
-	Integer int2(20);
-	Integer int3(30);
-	Integer int4(5);
-	Integer int5(25);
-	Integer int6(15);
-	Integer int7(100);
-	Integer int8(18);
-	Integer int9(12);
-	Integer int10(3);
-	Integer int11(27);
-	Integer int12(31);
-	
-	String s1("Hello");
-	String s2("World");
-	String s3("This");
-	String s4("Is");
-	String s5("A");
-	String s6("Test");
-	
-	std::cout << "\n\nAVL TREE:\n" << std::endl;
-	
-	AVL_Tree<Integer, String> *avl_tree = new AVL_Tree<Integer, String>();
-	
-	avl_tree->insert(int1, s1);
-	avl_tree->insert(int2, s2);
-	avl_tree->insert(int3, s3);
-	avl_tree->insert(int4, s4);
-	avl_tree->insert(int5, s5);
-	avl_tree->insert(int6, s6);
-	avl_tree->insert(int7, s1);
-	avl_tree->insert(int8, s2);
-	avl_tree->insert(int9, s3);
-	avl_tree->insert(int10, s4);
-	avl_tree->insert(int11, s5);
-	avl_tree->insert(int12, s6);
-	
-	Print_AVL_Data print_AVL_Data;
-	
-	std::cout << "\ninorder function\n" << std::endl;
-	avl_tree->inorder_function(print_AVL_Data);
-	
-	std::cout << "\npreorder function\n" << std::endl;
-	avl_tree->preorder_function(print_AVL_Data);
-	
-	std::cout << "\npostorder function\n" << std::endl;
-	avl_tree->postorder_function(print_AVL_Data);
-	
-	std::cout << "\nlevelorder function\n" << std::endl;
-	avl_tree->levelorder_function(print_AVL_Data);
-	
-	std::cout << "\ndelete 10\n" << std::endl;
-	avl_tree->remove(int1);
-	std::cout << "\ndelete 30\n" << std::endl;
-	avl_tree->remove(int3);
-	
-	std::cout << "\nlevelorder function\n" << std::endl;
-	avl_tree->levelorder_function(print_AVL_Data);
-	
-	delete avl_tree;
-}
-
-void test_hashmap()
-{
-	Integer int1(10);
-	Integer int2(20);
-	Integer int3(30);
-	Integer int4(5);
-	Integer int5(25);
-	Integer int6(15);
-	Integer int7(100);
-	Integer int8(18);
-	Integer int9(12);
-	Integer int10(3);
-	Integer int11(27);
-	Integer int12(31);
-	
-	String s1("Hello");
-	String s2("World");
-	String s3("This");
-	String s4("Is");
-	String s5("A");
-	String s6("Test");
-	
-	std::vector<Integer> ints;
-	
-	ints.push_back(int1);
-	ints.push_back(int2);
-	ints.push_back(int3);
-	ints.push_back(int4);
-	ints.push_back(int5);
-	ints.push_back(int6);
-	ints.push_back(int7);
-	ints.push_back(int8);
-	ints.push_back(int9);
-	ints.push_back(int10);
-	ints.push_back(int11);
-	ints.push_back(int12);
-	
-	HashMap<Integer, String> *hashMap = new HashMap<Integer, String>();
-	for (size_t i = 0;
-	     i < ints.size();
-	     i++)
-	{
-		hashMap->put(ints.at(i), s1);
-		std::cout << std::endl;
-	}
-	hashMap->print();
-	
-	std::cout << "Put 3 with World" << std::endl;
-	hashMap->put(int10, s2);
-	hashMap->print();
-	delete hashMap;
-}
-
-bool file_exists(const std::string &src)
+bool file_exists(std::string &src)
 {
 	std::ifstream f(src.c_str());
 	return f.good();
+}
+
+void avl_help()
+{
+	std::cout << "\nAVL VALID COMMANDS:" << std::endl;
+	std::cout << "insert" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "\tprogram will ask for string value" << std::endl;
+	std::cout << "remove" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "contains" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "get" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "print" << std::endl;
+	std::cout << "\tprogram will ask for print type:" << std::endl;
+	std::cout <<"\t\tpreorder" << std::endl;
+	std::cout <<"\t\tpostorder" << std::endl;
+	std::cout <<"\t\tlevelorder" << std::endl;
+	std::cout <<"\t\tinorder" << std::endl;
+	std::cout << "size" << std::endl;
+	std::cout << "height" << std::endl;
+	std::cout << "clear" << std::endl;
+	std::cout << "return (return to main hub)" << std::endl;
+	std::cout <<"help (will print these instructions)" << std::endl;
+}
+
+void hashmap_help()
+{
+	std::cout << "\nHASHMAP VALID COMMANDS:" << std::endl;
+	std::cout << "put" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "\tprogram will ask for string value" << std::endl;
+	std::cout << "remove" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "get" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "contains" << std::endl;
+	std::cout << "\tprogram will ask for integer key" << std::endl;
+	std::cout << "size" << std::endl;
+	std::cout << "clear" << std::endl;
+	std::cout << "return (return on main hub" << std::endl;
+	std::cout << "help (will print these instructions)" << std::endl;
 }
 
 Integer_String_Pair::Integer_String_Pair(Integer _integer, String _string)
@@ -631,7 +559,7 @@ Integer_String_Pair::Integer_String_Pair(Integer _integer, String _string)
 {
 }
 
-BadInput::BadInput(const std::string &msg)
+BadInput::BadInput(std::string &msg)
 		: msg(msg)
 {
 }
@@ -643,6 +571,7 @@ std::string BadInput::get_msg()
 
 void leave_program()
 {
+	system("clear");
 	std::cout << "Hope you enjoyed using my Project 3 program! :)" << std::endl;
 	exit(0);
 }

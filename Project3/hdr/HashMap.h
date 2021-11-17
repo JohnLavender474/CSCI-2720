@@ -42,7 +42,7 @@ protected:
 	
 	float get_load_factor();
 	
-	float MAX_LOAD_FACTOR = 0.70f;
+	const float MAX_LOAD_FACTOR = 0.85f;
 
 private:
 	size_t prime_bit;
