@@ -258,13 +258,13 @@ bool AVL_Tree<K, V>::protected_get(AVL_Node<K, V> *node, K key, V &value, bool p
 template<typename K, typename V>
 bool AVL_Tree<K, V>::protected_contains(AVL_Node<K, V> *node, K key, bool print_path)
 {
-	if (print_path)
-	{
-		std::cout << "(" << node->key << ", " << node->value << ")" << std::endl;
-	}
 	if (node == nullptr)
 	{
 		return false;
+	}
+	else if (print_path)
+	{
+		std::cout << "(" << node->key << ", " << node->value << ")" << std::endl;
 	}
 	else if (key == node->key)
 	{
