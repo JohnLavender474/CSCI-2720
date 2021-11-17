@@ -18,7 +18,10 @@ public:
 	
 	V get_value();
 	
-	friend std::ostream &operator<<(std::ostream &stream, const AVL_Node<K, V> &avl_node);
+	// Types A and B are synonymous with types K and V.
+	// Compiler complains without redefinition of template types.
+	template<typename A, typename B>
+	friend std::ostream &operator<<(std::ostream &stream, const AVL_Node<A, B> &avl_node);
 
 private:
 	AVL_Node() = delete;

@@ -37,6 +37,7 @@ bool AVL_Tree<K, V>::remove(K key)
 		return false;
 	}
 	root = protected_remove(root, key);
+	size--;
 	return true;
 }
 
@@ -104,7 +105,6 @@ void AVL_Tree<K, V>::protected_inorder_function(AVL_Node<K, V> *&node, Function<
 	function.function(node);
 	protected_inorder_function(node->right, function);
 }
-
 
 template<typename K, typename V>
 void AVL_Tree<K, V>::protected_levelorder_function(AVL_Node<K, V> *&node, Function<AVL_Node<K, V> *> &function)
@@ -178,6 +178,7 @@ AVL_Node<K, V> *AVL_Tree<K, V>::protected_insert(AVL_Node<K, V> *&node, K key, V
 {
 	if (node == nullptr)
 	{
+		size++;
 		return create(key, value);
 	}
 	if (node->key == key)

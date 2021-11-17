@@ -480,7 +480,7 @@ bool is_num(std::string &str, int &num)
 	     i < str.size();
 	     i++)
 	{
-		if (!isnumber(str[i]) && str[i] != ' ')
+		if (!isdigit(str[i]) && str[i] != ' ')
 		{
 			num = -1;
 			return false;
