@@ -262,11 +262,11 @@ bool AVL_Tree<K, V>::protected_contains(AVL_Node<K, V> *node, K key, bool print_
 	{
 		return false;
 	}
-	else if (print_path)
+	if (print_path)
 	{
 		std::cout << "(" << node->key << ", " << node->value << ")" << std::endl;
 	}
-	else if (key == node->key)
+	if (key == node->key)
 	{
 		return true;
 	}
