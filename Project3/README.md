@@ -147,4 +147,9 @@ pair with key = 83, clearing the avl tree and then returning to main hub.
 
 Working with "hashmap" is nearly identical to working with "avl". Differences
 are minor, such as "insert" in "avl" being replaced with "put" in hashmap.
+In "avl", attempting to insert an integer-value pair where the integer key
+already exists in the tree will result in the value of that particular node
+being overwritten by the new value. (This is the expected behavior since of
+course there cannot be duplicate keys in an avl tree.) This same behavior
+occurs when working with "hashmap" "put".
 
