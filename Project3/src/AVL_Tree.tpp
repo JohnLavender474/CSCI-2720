@@ -232,15 +232,15 @@ int AVL_Tree<K, V>::get_balance(AVL_Node<K, V> *node)
 template<typename K, typename V>
 bool AVL_Tree<K, V>::protected_get(AVL_Node<K, V> *node, K key, V &value, bool print_path)
 {
-	if (print_path)
-	{
-		std::cout << "(" << node->key << ", " << node->value << ")" << std::endl;
-	}
 	if (node == nullptr)
 	{
 		return false;
 	}
-	else if (key == node->key)
+	if (print_path)
+	{
+		std::cout << "(" << node->key << ", " << node->value << ")" << std::endl;
+	}
+	if (key == node->key)
 	{
 		value = node->get_value();
 		return true;
