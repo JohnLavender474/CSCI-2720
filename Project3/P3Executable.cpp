@@ -533,6 +533,7 @@ void avl_help()
 	std::cout << "height" << std::endl;
 	std::cout << "clear" << std::endl;
 	std::cout << "return (return to main hub)" << std::endl;
+	std::cout << "exit (exit program entirely)" << std::endl;
 	std::cout <<"help (will print these instructions)" << std::endl;
 }
 
@@ -551,6 +552,7 @@ void hashmap_help()
 	std::cout << "size" << std::endl;
 	std::cout << "clear" << std::endl;
 	std::cout << "return (return on main hub" << std::endl;
+	std::cout << "exit (exit program entirely)" << std::endl;
 	std::cout << "help (will print these instructions)" << std::endl;
 }
 
