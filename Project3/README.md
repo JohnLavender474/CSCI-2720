@@ -150,3 +150,7 @@ being overwritten by the new value. (This is the expected behavior since of
 course there cannot be duplicate keys in an avl tree.) This same behavior
 occurs when working with "hashmap" "put".
 
+KNOWN ERROR:
+When the program prompts for a file to be entered, entering a nonexistent file
+or a bad directory does not result in an error message. Instead, the screen is
+cleared and the program returns to the "avl / hashmap: " prompt.
