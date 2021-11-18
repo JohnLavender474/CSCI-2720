@@ -101,6 +101,13 @@ void LinkedList<T>::remove(size_t index)
 		throw IndexOutOfBounds();
 	}
 	LinkedNode<T> *temp = head;
+	if (index == 0)
+	{
+		head = head->next;
+		delete temp;
+		size--;
+		return;
+	}
 	size_t i = 0;
 	while (i < index)
 	{

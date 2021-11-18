@@ -140,6 +140,7 @@ bool HashMap<K, V>::remove(K key)
 	     i++)
 	{
 		Entry<K, V> entry = bucket->get(i);
+		std::cout << "found entry" << std::endl;
 		if (key == entry.key)
 		{
 			bucket->remove(i);
