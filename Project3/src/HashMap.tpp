@@ -87,7 +87,6 @@ void HashMap<K, V>::put(K key, V value)
 	buckets[hash]
 			->add(entry);
 	num_entries++;
-	std::cout << "num entries: " << num_entries << std::endl;
 }
 
 template<typename K, typename V>

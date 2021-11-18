@@ -551,7 +551,7 @@ void hashmap_help()
 	std::cout << "\tprogram will ask for integer key" << std::endl;
 	std::cout << "size" << std::endl;
 	std::cout << "clear" << std::endl;
-	std::cout << "return (return on main hub" << std::endl;
+	std::cout << "return (return to main hub)" << std::endl;
 	std::cout << "exit (exit program entirely)" << std::endl;
 	std::cout << "help (will print these instructions)" << std::endl;
 }

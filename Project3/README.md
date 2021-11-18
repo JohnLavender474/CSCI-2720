@@ -111,9 +111,6 @@ pair with key = 83, clearing the avl tree and then returning to main hub.
      (83, FACES)
 
      AVL_TREE ------------------------------------------------------------------
-     Command: 
-
-     AVL_TREE ------------------------------------------------------------------
      Command: remove
      Integer Key: 39
 
