@@ -1,4 +1,6 @@
 #include "../hdr/HashMap.h"
+#include "../../Project4/hdr/SortedArrayMap.h"
+
 
 template<typename K, typename V>
 Entry<K, V>::Entry(K key, V value) :

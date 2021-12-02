@@ -4,40 +4,36 @@
 #include "Comparable.h"
 #include "Pair.h"
 #include "Edge.h"
-
+#include "SortedArray.h"
+#include "SortedArrayMap.h"
+#include "Vertex.h"
 
 #include <cstddef>
 #include <vector>
-
-template<typename T>
-class Vertex;
-
-template<typename T>
-class Edge;
+#include <memory>
+#include <type_traits>
 
 template<typename T>
 class Graph
 {
-	static_assert(std::is_base_of<Comparable<T>, T>::value, "T type must derive Comparable<T>");
+	
 public:
-	Graph();
+	Graph() = default;
 	
-	void add(T data);
+	~Graph() = default;
 	
-	void remove(T data);
+	bool add_vertex(T t);
 	
-	void connect(T from, T to, size_t weight);
+	bool add_edge(T u, T v);
 	
-	void disconnect(T from, T to);
+	bool remove_vertex(Vertex<T> v);
 	
-	std::vector<Pair<T, size_t>> adjacencies(T data);
-	
-	std::vector<Pair<T, size_t>> shortest_path();
+	bool remove_edge(Vertex<T> u, Vertex<T> v);
 
 private:
 	
-	std::vector<Vertex<T>> vertices;
-	std::vector<Edge<T>> edges;
+	SortedArrayMap<Vertex<T>, SortedArray<Vertex<T>>> vertices;
+	
 };
 
 #include "../src/Graph.tpp"

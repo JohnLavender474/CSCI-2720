@@ -2,8 +2,13 @@
 
 #include <iostream>
 
+Integer::Integer() :
+		i(0)
+{
+}
+
 Integer::Integer(int _i) :
-i(_i)
+		i(_i)
 {}
 
 int Integer::get() const

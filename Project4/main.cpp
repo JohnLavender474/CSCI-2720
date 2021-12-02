@@ -1,5 +1,6 @@
 #include "hdr/SortedArray.h"
 #include "hdr/Integer.h"
+#include "hdr/String.h"
 #include "hdr/Pair.h"
 
 #include <iostream>
@@ -44,6 +45,23 @@ int main()
 	for (int i = 0; i < sorted_int_array.get_size(); i++)
 	{
 		std::cout << sorted_int_array.get(i) << std::endl;
+	}
+	std::cout << "iterator: " << std::endl;
+	for (auto it = sorted_int_array.begin(); it != sorted_int_array.end(); ++it)
+	{
+		std::cout << *it << std::endl;
+	}
+	std::cout << "remove elements greater than 3 and less than 9" << std::endl;
+	for (auto it = sorted_int_array.begin(); it != sorted_int_array.end(); ++it)
+	{
+		if (*it > 3 && *it < 9)
+		{
+			sorted_int_array.remove_all(*it);
+		}
+	}
+	for (auto it = sorted_int_array.begin(); it != sorted_int_array.end(); ++it)
+	{
+		std::cout << *it << std::endl;
 	}
 	return 0;
 }

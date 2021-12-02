@@ -20,7 +20,7 @@ SortedArray<T>::SortedArray(const SortedArray<T> &sorted_array)
 template<typename T>
 SortedArray<T>::~SortedArray()
 {
-	delete array;
+	delete []array;
 }
 
 template<typename T>
@@ -41,13 +41,13 @@ SortedArray<T> &SortedArray<T>::operator=(const SortedArray<T> &sorted_array)
 }
 
 template<typename T>
-int SortedArray<T>::get_size()
+int SortedArray<T>::get_size() const
 {
 	return size;
 }
 
 template<typename T>
-int SortedArray<T>::get_capacity()
+int SortedArray<T>::get_capacity() const
 {
 	return capacity;
 }
@@ -61,7 +61,7 @@ void SortedArray<T>::clear()
 }
 
 template<typename T>
-T SortedArray<T>::get(int i)
+T SortedArray<T>::get(int i) const
 {
 	if (i < 0 || i >= size)
 	{
@@ -71,14 +71,14 @@ T SortedArray<T>::get(int i)
 }
 
 template<typename T>
-bool SortedArray<T>::contains(T t)
+bool SortedArray<T>::contains(T t) const
 {
 	int dummy;
 	return binary_search(t, 0, size, dummy);
 }
 
 template<typename T>
-bool SortedArray<T>::contains(T t, int &index)
+bool SortedArray<T>::contains(T t, int &index) const
 {
 	if (binary_search(t, 0, size, index))
 	{
@@ -92,7 +92,7 @@ bool SortedArray<T>::contains(T t, int &index)
 }
 
 template<typename T>
-Pair<int, int> SortedArray<T>::range_of_occurrences(T t)
+Pair<int, int> SortedArray<T>::range_of_occurrences(T t) const
 {
 	Pair<int, int> pair(-1, -1);
 	int index;
@@ -136,16 +136,44 @@ void SortedArray<T>::add(T t)
 		resize();
 	}
 	int insertion_pos;
-	binary_search(t, 0, size, insertion_pos);
+	binary_search(t, insertion_pos);
 	shift_forward(insertion_pos);
 	array[insertion_pos] = t;
 	size++;
 }
 
 template<typename T>
+bool SortedArray<T>::add_if_not_present(T t)
+{
+	if (size == capacity)
+	{
+		resize();
+	}
+	int insertion_pos;
+	if (!binary_search(t, insertion_pos))
+	{
+		shift_forward(insertion_pos);
+		array[insertion_pos] = t;
+		size++;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+template<typename T>
 void SortedArray<T>::remove_if(bool (*predicate)(T))
 {
-
+	for (auto it = begin(); it != end(); ++it)
+	{
+		T t = *it;
+		if (predicate(t))
+		{
+			remove(t);
+		}
+	}
 }
 
 template<typename T>
@@ -233,11 +261,17 @@ T SortedArray<T>::remove(int i)
 }
 
 template<typename T>
+bool SortedArray<T>::binary_search(T t, int &index)
+{
+	return binary_search(t, 0, size, index);
+}
+
+template<typename T>
 bool SortedArray<T>::binary_search(T t, int low, int high, int &index)
 {
 	if (size <= 0)
 	{
-		index = 0;
+		index = -1;
 		return false;
 	}
 	if (high <= low)
@@ -266,6 +300,18 @@ bool SortedArray<T>::binary_search(T t, int low, int high, int &index)
 		index = mid;
 		return true;
 	}
+}
+
+template<typename T>
+Iterator<T> SortedArray<T>::begin()
+{
+	return Iterator<T>(&array[0]);
+}
+
+template<typename T>
+Iterator<T> SortedArray<T>::end()
+{
+	return Iterator<T>(&array[size]);
 }
 
 template<typename T>

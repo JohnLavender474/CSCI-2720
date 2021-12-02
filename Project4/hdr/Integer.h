@@ -2,14 +2,12 @@
 #define INTEGER_H
 
 #include "Comparable.h"
-#include "Modulo.h"
 
 class Integer
 		: public Comparable<Integer>,
-		  public Modulo<Integer>
 {
 public:
-	Integer() = default;
+	Integer();
 	
 	Integer(int _i);
 	
@@ -35,7 +33,7 @@ public:
 	
 	bool operator==(int const &other) const;
 	
-	int operator%(Integer const &other) const override;
+	int operator%(Integer const &other) const;
 	
 	int operator%(int const &other) const;
 	

@@ -3,19 +3,20 @@
 
 template<typename K, typename V>
 class Pair
+		: public Comparable<Pair<K, V>>
 {
 public:
 	Pair() = default;
 	Pair(K k, V v);
+	~Pair() = default;
 	K k;
 	V v;
+	bool operator>(Pair<K, V> const &other) const override;
+	bool operator<(Pair<K, V> const &other) const override;
+	bool operator==(Pair<K, V> const &other) const override;
+	bool operator!=(Pair<K, V> const &other) const override;
 };
 
-template<typename K, typename V>
-Pair<K, V>::Pair(K k, V v) :
-		k(k),
-		v(v)
-{
-}
+#include "../src/Pair.tpp"
 
 #endif

@@ -1,45 +1,38 @@
 #include "../hdr/Graph.h"
 #include "../hdr/Vertex.h"
 
-
 template<typename T>
-Graph<T>::Graph()
+bool Graph<T>::add_vertex(T t)
 {
-
+	return vertices.put(Vertex<T>(t), SortedArray<Vertex<T>>());
 }
 
 template<typename T>
-void Graph<T>::add(T data)
+bool Graph<T>::add_edge(T u, T v)
 {
-
+	int i_u;
+	int i_v;
+	if (vertices.contains_key(Vertex<T>(u), i_u) &&
+	    vertices.contains_key(Vertex<T>(v), i_v))
+	{
+		vertices.get_val_ref(i_u).add_if_not_present(Vertex<T>(v));
+		vertices.get_val_ref(i_v).add_if_not_present(Vertex<T>(u));
+	}
 }
 
 template<typename T>
-void Graph<T>::remove(T data)
+bool Graph<T>::remove_vertex(T v)
 {
-
+	int i;
+	if (vertices.contains_key(Vertex<T>(v), i))
+	{
+		SortedArray<Vertex<T>> v_adjacencies = vertices.get_val_ref(i);
+		for (auto it = v_adjacencies.begin(); it != v_adjacencies.end(); ++it)
+		{
+			
+		}
+	}
 }
 
-template<typename T>
-void Graph<T>::connect(T from, T to, size_t weight)
-{
 
-}
 
-template<typename T>
-void Graph<T>::disconnect(T from, T to)
-{
-
-}
-
-template<typename T>
-std::vector<Pair<T, size_t>> Graph<T>::adjacencies(T data)
-{
-	return std::vector<Pair<T, size_t>>();
-}
-
-template<typename T>
-std::vector<Pair<T, size_t>> Graph<T>::shortest_path()
-{
-	return std::vector<Pair<T, size_t>>();
-}

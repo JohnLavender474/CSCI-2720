@@ -3,6 +3,7 @@
 
 #include "Comparable.h"
 #include "Pair.h"
+#include "Iterator.h"
 
 #include <functional>
 #include <vector>
@@ -11,7 +12,9 @@
 template<typename T>
 class SortedArray
 {
-	static_assert(std::is_base_of<Comparable<T>, T>::value, "SortedArray: T must derive Comparable<T>");
+	
+	template<typename K, typename V>
+	friend class SortedArrayMap;
 
 public:
 	
@@ -23,21 +26,23 @@ public:
 	
 	SortedArray<T> &operator=(const SortedArray<T> &sorted_array);
 	
-	int get_size();
+	int get_size() const;
 	
-	int get_capacity();
+	int get_capacity() const;
 	
 	void clear();
 	
-	T get(int i);
+	T get(int i) const;
 	
-	bool contains(T t);
+	bool contains(T t) const;
 	
-	bool contains(T t, int &index);
+	bool contains(T t, int &index) const;
 	
-	Pair<int, int> range_of_occurrences(T t);
+	Pair<int, int> range_of_occurrences(T t) const;
 	
 	void add(T t);
+	
+	bool add_if_not_present(T t);
 	
 	T remove(int i);
 	
@@ -47,7 +52,13 @@ public:
 	
 	bool remove_all(T t);
 	
+	bool binary_search(T t, int &index);
+	
 	bool binary_search(T t, int low, int high, int &index);
+	
+	Iterator<T> begin();
+	
+	Iterator<T> end();
 
 private:
 	

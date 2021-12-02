@@ -14,8 +14,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/apple/CLionProjects/CSCI2720_Projects/Project1/GoAirProgram.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project1/GoAirProgram.cpp.o"
   "/Users/apple/CLionProjects/CSCI2720_Projects/Project1/Passenger.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project1/Passenger.cpp.o"
   "/Users/apple/CLionProjects/CSCI2720_Projects/Project1/SortedList.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project1/SortedList.cpp.o"
-  "/Users/apple/CLionProjects/CSCI2720_Projects/Project3/P3Executable.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project3/P3Executable.cpp.o"
-  "/Users/apple/CLionProjects/CSCI2720_Projects/Project4/main.cpp" "/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles/CSCI2720_Project1.dir/Project4/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
