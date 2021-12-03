@@ -6,11 +6,27 @@ class Comparable
 {
 	virtual bool operator>(T const &other) const = 0;
 	
+	virtual bool operator>(T &other) const = 0;
+	
+	virtual bool operator>=(T const &other) const = 0;
+	
+	virtual bool operator>=(T &other) const = 0;
+	
 	virtual bool operator<(T const &other) const = 0;
+	
+	virtual bool operator<(T &other) const = 0;
+	
+	virtual bool operator<=(T const &other) const = 0;
+	
+	virtual bool operator<=(T &other) const = 0;
 	
 	virtual bool operator==(T const &other) const = 0;
 	
+	virtual bool operator==(T &other) const = 0;
+	
 	virtual bool operator!=(T const &other) const = 0;
+	
+	virtual bool operator!=(T &other) const = 0;
 };
 
 #endif

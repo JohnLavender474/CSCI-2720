@@ -1,68 +1,117 @@
 #include "hdr/SortedArray.h"
-#include "hdr/Integer.h"
-#include "hdr/String.h"
+#include "hdr/SortedArrayMap.h"
 #include "hdr/Pair.h"
+#include "hdr/Graph.h"
 
 #include <iostream>
 
+void test_sorted_array();
+void test_sorted_array_map();
+void test_graph();
+
 int main()
 {
-	SortedArray<Integer> sorted_int_array;
-	Integer int1(5);
-	Integer int2(7);
-	Integer int3(2);
-	Integer int4(9);
-	Integer int5(100);
-	Integer int6(-3);
-	Integer int7(3);
-	Integer int8(99);
-	sorted_int_array.add(int1);
-	sorted_int_array.add(int2);
-	sorted_int_array.add(int3);
-	sorted_int_array.add(int4);
-	sorted_int_array.add(int1);
-	sorted_int_array.add(int5);
-	sorted_int_array.add(int6);
-	sorted_int_array.add(int2);
-	sorted_int_array.add(int2);
-	sorted_int_array.add(int7);
-	std::cout << "size: " << sorted_int_array.get_size() << std::endl;
-	std::cout << "capacity: " << sorted_int_array.get_capacity() << std::endl;
-	for (int i = 0; i < sorted_int_array.get_size(); i++)
-	{
-		std::cout << sorted_int_array.get(i) << std::endl;
-	}
-	std::cout << "get range of occurrences of 7:" << std::endl;
-	Pair<int, int> occurrences_of_7 = sorted_int_array.range_of_occurrences(int2);
-	std::cout << "from " << occurrences_of_7.k << " to " << occurrences_of_7.v << std::endl;
-	int index;
-	bool contains_7 = sorted_int_array.contains(int2, index);
-	std::cout << "contains 7: " << contains_7 << " at index " << index << std::endl;
-	bool contains_99 = sorted_int_array.contains(int8, index);
-	std::cout << "contains 99: " << contains_99 << " at index " << index << std::endl;
-	std::cout << "remove 7:" << std::endl;
-	sorted_int_array.remove_all(int2);
-	for (int i = 0; i < sorted_int_array.get_size(); i++)
-	{
-		std::cout << sorted_int_array.get(i) << std::endl;
-	}
-	std::cout << "iterator: " << std::endl;
-	for (auto it = sorted_int_array.begin(); it != sorted_int_array.end(); ++it)
-	{
-		std::cout << *it << std::endl;
-	}
-	std::cout << "remove elements greater than 3 and less than 9" << std::endl;
-	for (auto it = sorted_int_array.begin(); it != sorted_int_array.end(); ++it)
-	{
-		if (*it > 3 && *it < 9)
-		{
-			sorted_int_array.remove_all(*it);
-		}
-	}
-	for (auto it = sorted_int_array.begin(); it != sorted_int_array.end(); ++it)
-	{
-		std::cout << *it << std::endl;
-	}
+	std::cout << "\n\nSORTED ARRAY\n" << std::endl;
+	test_sorted_array();
+	std::cout << "\n\nSORTED ARRAY MAP\n" << std::endl;
+	test_sorted_array_map();
+	std::cout << "\n\nGRAPH\n" << std::endl;
+	// test_graph();
 	return 0;
 }
+
+void test_graph()
+{
+	Graph<int, int> graph;
+	
+}
+
+void test_sorted_array_map()
+{
+	SortedArrayMap<int, std::string> sorted_int_str_map;
+	sorted_int_str_map.put(7, "hello");
+	sorted_int_str_map.put(4, "world");
+	sorted_int_str_map.put(8, "my");
+	sorted_int_str_map.put(2, "name");
+	sorted_int_str_map.put(5, "is");
+	sorted_int_str_map.put(3, "john");
+	sorted_int_str_map.put(6, "lavender");
+	sorted_int_str_map.put(10, "YAY!");
+	sorted_int_str_map.put(2, "TRAP!");
+	sorted_int_str_map.put(3, "YES! TRAP!");
+	sorted_int_str_map.put(6, "TRAP?");
+	sorted_int_str_map.put(11, "not a trap");
+	std::cout << sorted_int_str_map << std::endl;
+	std::string str_10;
+	sorted_int_str_map.get(10, str_10);
+	std::cout << str_10 << std::endl;
+	std::cout << "contains key 8: " << sorted_int_str_map.contains_key(8) << std::endl;
+	std::cout << "contains key 12: " << sorted_int_str_map.contains_key(12) << std::endl;
+	std::cout << "contains key 9: " << sorted_int_str_map.contains_key(9) << std::endl;
+	std::cout << "contains key 2: " << sorted_int_str_map.contains_key(2) << std::endl;
+	Pair<int, std::string> i_3_pair = sorted_int_str_map.get_pair(3);
+	std::cout << i_3_pair << std::endl;
+	sorted_int_str_map.remove_index(3);
+	std::cout << "removed index 3: " << sorted_int_str_map << std::endl;
+}
+
+void test_sorted_array()
+{
+	SortedArray<int> sorted_int_array;
+	sorted_int_array.add_if_not_present(2);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(5);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(10);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(3);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(11);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(7);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(1);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(14);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(15);
+	std::cout << sorted_int_array << std::endl;
+	std::cout << "at index 2: " << sorted_int_array.get(2) << std::endl;
+	std::cout << "at index 4: " << sorted_int_array.get(4) << std::endl;
+	std::cout << "at index 5: " << sorted_int_array.get(5) << std::endl;
+	std::cout << "at index 0: " << sorted_int_array.get(0) << std::endl;
+	std::cout << "size: " << sorted_int_array.get_size() << std::endl;
+	sorted_int_array.remove_if([](int r){return r > 3 && r < 11;});
+	std::cout << "removed r > 3 && r < 11: " << sorted_int_array << std::endl;
+	std::cout << "size: " << sorted_int_array.get_size() << std::endl;
+	sorted_int_array.add(50);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add(38);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add(38);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(1);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(-2);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add_if_not_present(-10);
+	sorted_int_array.add_if_not_present(-10);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add(-11);
+	std::cout << sorted_int_array << std::endl;
+	sorted_int_array.add(-10);
+	std::cout << sorted_int_array << std::endl;
+	for (int i = 0; i < 6; i++)
+	{
+		sorted_int_array.add(2);
+	}
+	std::cout << sorted_int_array << std::endl;
+	std::cout << "contains 2: " << sorted_int_array.contains(2) << std::endl;
+	std::cout << "range of 2: " << sorted_int_array.range_of_occurrences(2) << std::endl;
+	sorted_int_array.remove_all(2);
+	std::cout << "removed all 2's: " << sorted_int_array << std::endl;
+	std::cout << "contains 2: " << sorted_int_array.contains(2) << std::endl;
+}
+
+
 

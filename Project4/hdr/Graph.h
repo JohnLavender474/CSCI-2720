@@ -3,17 +3,11 @@
 
 #include "Comparable.h"
 #include "Pair.h"
-#include "Edge.h"
 #include "SortedArray.h"
 #include "SortedArrayMap.h"
 #include "Vertex.h"
 
-#include <cstddef>
-#include <vector>
-#include <memory>
-#include <type_traits>
-
-template<typename T>
+template<typename T, typename W>
 class Graph
 {
 	
@@ -24,15 +18,26 @@ public:
 	
 	bool add_vertex(T t);
 	
-	bool add_edge(T u, T v);
+	bool put_edge(T u, T v, W w);
 	
-	bool remove_vertex(Vertex<T> v);
+	bool remove_vertex(T t);
 	
-	bool remove_edge(Vertex<T> u, Vertex<T> v);
+	bool remove_edge(T u, T v);
+	
+	std::queue<Pair<T, W>> shortest_path(T u, T v);
+	
+	/*
+	friend std::ostream &operator<<(std::ostream &stream, const Graph<T, W> &graph)
+	{
+		int i = 0;
+		SortedArray<Vertex<T>> sorted_array = graph.vertices.sorted_key_array();
+		
+	}
+	 */
 
 private:
 	
-	SortedArrayMap<Vertex<T>, SortedArray<Vertex<T>>> vertices;
+	SortedArrayMap<Vertex<T>, SortedArrayMap<Vertex<T>, W>> vertices;
 	
 };
 

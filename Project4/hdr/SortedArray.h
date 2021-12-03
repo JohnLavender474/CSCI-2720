@@ -11,6 +11,7 @@
 
 template<typename T>
 class SortedArray
+		: public Comparable<SortedArray<T>>
 {
 	
 	template<typename K, typename V>
@@ -22,9 +23,13 @@ public:
 	
 	SortedArray(const SortedArray<T> &sorted_array);
 	
+	SortedArray(SortedArray<T> &sorted_array);
+	
 	~SortedArray();
 	
 	SortedArray<T> &operator=(const SortedArray<T> &sorted_array);
+	
+	SortedArray<T> &operator=(SortedArray<T> &sorted_array);
 	
 	int get_size() const;
 	
@@ -33,6 +38,8 @@ public:
 	void clear();
 	
 	T get(int i) const;
+	
+	int index_of(T t) const;
 	
 	bool contains(T t) const;
 	
@@ -44,21 +51,70 @@ public:
 	
 	bool add_if_not_present(T t);
 	
-	T remove(int i);
-	
 	void remove_if(bool (*predicate)(T));
 	
-	bool remove_first(T t);
+	void remove_index(int i);
 	
-	bool remove_all(T t);
+	bool remove(T t);
 	
-	bool binary_search(T t, int &index);
+	void remove_all(T t);
 	
-	bool binary_search(T t, int low, int high, int &index);
+	Iterator<T> erase(Iterator<T> it);
 	
-	Iterator<T> begin();
+	bool binary_search(T t, int &index) const;
 	
-	Iterator<T> end();
+	bool binary_search(T t, int low, int high, int &index) const;
+	
+	Iterator<T> begin() const;
+	
+	Iterator<T> end() const;
+	
+	Iterator<T> iter_at(int i) const;
+	
+	bool operator>(const SortedArray<T> &other) const override;
+	
+	bool operator>(SortedArray<T> &other) const override;
+	
+	bool operator>=(const SortedArray<T> &other) const override;
+	
+	bool operator>=(SortedArray<T> &other) const override;
+	
+	bool operator<(const SortedArray<T> &other) const override;
+	
+	bool operator<(SortedArray<T> &other) const override;
+	
+	bool operator<=(const SortedArray<T> &other) const override;
+	
+	bool operator<=(SortedArray<T> &other) const override;
+	
+	bool operator==(const SortedArray<T> &other) const override;
+	
+	bool operator==(SortedArray<T> &other) const override;
+	
+	bool operator!=(const SortedArray<T> &other) const override;
+	
+	bool operator!=(SortedArray<T> &other) const override;
+	
+	
+	friend std::ostream &operator<<(std::ostream &stream, const SortedArray<T> &sorted_array)
+	{
+		stream << "{";
+		auto it = sorted_array.begin();
+		while (true)
+		{
+			stream << *it;
+			if (++it == sorted_array.end())
+			{
+				break;
+			}
+			else
+			{
+				stream << ", ";
+			}
+		}
+		stream << "}";
+		return stream;
+	}
 
 private:
 	
@@ -66,14 +122,17 @@ private:
 	
 	void arr_cpy(const SortedArray<T> &sorted_array);
 	
+	void arr_cpy(SortedArray<T> &sorted_array);
+	
 	void shift_forward(int index);
 	
 	void shift_back(int index);
-
+	
+	void throw_err_if_not_in_size_range(std::string func_name, int i) const;
+	
 	T *array;
 	unsigned int size;
 	unsigned int capacity;
-	bool allow_duplicates;
 	const static int INIT_ARRAY_CAP = 16;
 	const static int DYN_ARRAY_MULTI = 2;
 };

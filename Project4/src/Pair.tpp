@@ -14,19 +14,67 @@ bool Pair<K, V>::operator>(const Pair<K, V> &other) const
 }
 
 template<typename K, typename V>
+bool Pair<K, V>::operator>=(const Pair<K, V> &other) const
+{
+	return k >= other.k;
+}
+
+template<typename K, typename V>
 bool Pair<K, V>::operator<(const Pair<K, V> &other) const
 {
 	return k < other.k;
 }
 
 template<typename K, typename V>
+bool Pair<K, V>::operator<=(const Pair<K, V> &other) const
+{
+	return k <= other.k;
+}
+
+template<typename K, typename V>
 bool Pair<K, V>::operator==(const Pair<K, V> &other) const
 {
-	return k == other.k && v == other.v;
+	return (k == other.k) && (v == other.v);
 }
 
 template<typename K, typename V>
 bool Pair<K, V>::operator!=(const Pair<K, V> &other) const
 {
-	return k != other.k || v != other.v;
+	return (k != other.k) || (v != other.v);
+}
+
+template<typename K, typename V>
+bool Pair<K, V>::operator>(Pair<K, V> &other) const
+{
+	return k > other.k;
+}
+
+template<typename K, typename V>
+bool Pair<K, V>::operator>=(Pair<K, V> &other) const
+{
+	return k >= other.k;
+}
+
+template<typename K, typename V>
+bool Pair<K, V>::operator<(Pair<K, V> &other) const
+{
+	return k < other.k;
+}
+
+template<typename K, typename V>
+bool Pair<K, V>::operator<=(Pair<K, V> &other) const
+{
+	return k <= other.k;
+}
+
+template<typename K, typename V>
+bool Pair<K, V>::operator==(Pair<K, V> &other) const
+{
+	return (k == other.k) && (v == other.v);
+}
+
+template<typename K, typename V>
+bool Pair<K, V>::operator!=(Pair<K, V> &other) const
+{
+	return (k != other.k) || (v != other.v);
 }

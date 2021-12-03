@@ -6,15 +6,11 @@
 #include "Pair.h"
 
 template<typename T>
-class Graph;
-
-template<typename T>
 class Vertex
 		: public Comparable<Vertex<T>>
 {
-	friend class Graph<T>;
 
-private:
+public:
 	Vertex();
 	
 	Vertex(T info);
@@ -29,17 +25,33 @@ private:
 	
 	bool operator>(Vertex<T> const &other) const override;
 	
+	bool operator>(Vertex<T> &other) const override;
+	
+	bool operator>=(Vertex<T> const &other) const override;
+	
+	bool operator>=(Vertex<T> &other) const override;
+	
 	bool operator<(Vertex<T> const &other) const override;
+	
+	bool operator<(Vertex<T> &other) const override;
+	
+	bool operator<=(Vertex<T> const &other) const override;
+	
+	bool operator<=(Vertex<T> &other) const override;
 	
 	bool operator==(Vertex<T> const &other) const override;
 	
+	bool operator==(Vertex<T> &other) const override;
+	
 	bool operator!=(Vertex<T> const &other) const override;
+	
+	bool operator!=(Vertex<T> &other) const override;
 	
 	friend std::ostream &operator<<(std::ostream &stream, const Vertex<T> &vertex);
 	
 	T info;
 	Vertex<T> *predecessor;
-	unsigned int distance;
+	bool is_discovered;
 };
 
 #include "../src/Vertex.tpp"

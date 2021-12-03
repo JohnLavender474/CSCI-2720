@@ -2,6 +2,8 @@
 
 #include <cmath>
 #include <iostream>
+#include <queue>
+#include <sstream>
 
 template<typename T>
 SortedArray<T>::SortedArray() :
@@ -18,13 +20,36 @@ SortedArray<T>::SortedArray(const SortedArray<T> &sorted_array)
 }
 
 template<typename T>
+SortedArray<T>::SortedArray(SortedArray<T> &sorted_array)
+{
+	arr_cpy(sorted_array);
+}
+
+template<typename T>
 SortedArray<T>::~SortedArray()
 {
-	delete []array;
+	delete[]array;
 }
 
 template<typename T>
 SortedArray<T> &SortedArray<T>::operator=(const SortedArray<T> &sorted_array)
+{
+	if (this == &sorted_array)
+	{
+		goto done;
+	}
+	if (sorted_array.get_size() == 0)
+	{
+		clear();
+		goto done;
+	}
+	arr_cpy(sorted_array);
+	done:
+	return *this;
+}
+
+template<typename T>
+SortedArray<T> &SortedArray<T>::operator=(SortedArray<T> &sorted_array)
 {
 	if (this == &sorted_array)
 	{
@@ -63,11 +88,22 @@ void SortedArray<T>::clear()
 template<typename T>
 T SortedArray<T>::get(int i) const
 {
-	if (i < 0 || i >= size)
-	{
-		throw std::invalid_argument("get: i must be between 0 and size - 1");
-	}
+	throw_err_if_not_in_size_range("get", i);
 	return array[i];
+}
+
+template<typename T>
+int SortedArray<T>::index_of(T t) const
+{
+	int index;
+	if (binary_search(t, index))
+	{
+		return index;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 template<typename T>
@@ -80,7 +116,7 @@ bool SortedArray<T>::contains(T t) const
 template<typename T>
 bool SortedArray<T>::contains(T t, int &index) const
 {
-	if (binary_search(t, 0, size, index))
+	if (binary_search(t, index))
 	{
 		return true;
 	}
@@ -95,35 +131,34 @@ template<typename T>
 Pair<int, int> SortedArray<T>::range_of_occurrences(T t) const
 {
 	Pair<int, int> pair(-1, -1);
-	int index;
-	if (binary_search(t, 0, size, index))
+	int start_index;
+	if (binary_search(t, start_index))
 	{
-		int left_index = index;
-		int right_index = index;
-		while (left_index > 0)
+		while (start_index > 0)
 		{
-			if (array[left_index - 1] == t)
+			if (array[start_index - 1] == t)
 			{
-				left_index--;
+				--start_index;
 			}
 			else
 			{
 				break;
 			}
 		}
-		while (right_index != size)
+		int end_index = start_index;
+		while (end_index < size - 1)
 		{
-			if (array[right_index + 1] == t)
+			if (array[end_index + 1] == t)
 			{
-				right_index++;
+				++end_index;
 			}
 			else
 			{
 				break;
 			}
 		}
-		pair.k = left_index;
-		pair.v = right_index;
+		pair.k = start_index;
+		pair.v = end_index;
 	}
 	return pair;
 }
@@ -131,6 +166,12 @@ Pair<int, int> SortedArray<T>::range_of_occurrences(T t) const
 template<typename T>
 void SortedArray<T>::add(T t)
 {
+	if (size == 0)
+	{
+		array[0] = t;
+		++size;
+		return;
+	}
 	if (size == capacity)
 	{
 		resize();
@@ -139,12 +180,18 @@ void SortedArray<T>::add(T t)
 	binary_search(t, insertion_pos);
 	shift_forward(insertion_pos);
 	array[insertion_pos] = t;
-	size++;
+	++size;
 }
 
 template<typename T>
 bool SortedArray<T>::add_if_not_present(T t)
 {
+	if (size == 0)
+	{
+		array[0] = t;
+		++size;
+		return true;
+	}
 	if (size == capacity)
 	{
 		resize();
@@ -154,7 +201,7 @@ bool SortedArray<T>::add_if_not_present(T t)
 	{
 		shift_forward(insertion_pos);
 		array[insertion_pos] = t;
-		size++;
+		++size;
 		return true;
 	}
 	else
@@ -166,108 +213,97 @@ bool SortedArray<T>::add_if_not_present(T t)
 template<typename T>
 void SortedArray<T>::remove_if(bool (*predicate)(T))
 {
-	for (auto it = begin(); it != end(); ++it)
+	for (auto it = begin();
+	     it != end();)
 	{
-		T t = *it;
-		if (predicate(t))
+		if (predicate(*it))
 		{
-			remove(t);
+			it = erase(it);
+		}
+		else
+		{
+			++it;
 		}
 	}
 }
 
 template<typename T>
-bool SortedArray<T>::remove_first(T t)
+void SortedArray<T>::remove_index(int i)
 {
-	int removal_pos;
-	if (binary_search(t, 0, size, removal_pos))
+	if (i >= size || i < 0)
 	{
-		while (removal_pos > 0)
-		{
-			if (array[removal_pos - 1] == t)
-			{
-				removal_pos--;
-			}
-			else
-			{
-				break;
-			}
-		}
-		shift_back(removal_pos);
-		size--;
-		return true;
+		throw std::invalid_argument("remove_index: i must be between 0 and size - 1");
 	}
-	else
-	{
-		return false;
-	}
-}
-
-template<typename T>
-bool SortedArray<T>::remove_all(T t)
-{
-	int removal_pos;
-	if (binary_search(t, 0, size, removal_pos))
-	{
-		while (removal_pos > 0)
-		{
-			if (array[removal_pos - 1] == t)
-			{
-				removal_pos--;
-			}
-			else
-			{
-				break;
-			}
-		}
-		int temp_removal_pos = removal_pos;
-		int removal_count = 0;
-		while (temp_removal_pos != size)
-		{
-			if (array[temp_removal_pos] == t)
-			{
-				temp_removal_pos++;
-				removal_count++;
-			}
-			else
-			{
-				break;
-			}
-		}
-		for (int i = 0; i < removal_count; i++)
-		{
-			shift_back(removal_pos);
-			size--;
-		}
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-template<typename T>
-T SortedArray<T>::remove(int i)
-{
-	if (i < 0 || i >= size)
-	{
-		throw std::invalid_argument("remove: i must be between 0 and size - 1");
-	}
-	T t = array[i];
 	shift_back(i);
 	size--;
-	return t;
 }
 
 template<typename T>
-bool SortedArray<T>::binary_search(T t, int &index)
+bool SortedArray<T>::remove(T t)
+{
+	int removal_pos;
+	if (binary_search(t, 0, size, removal_pos))
+	{
+		while (removal_pos > 0)
+		{
+			if (array[removal_pos - 1] == t)
+			{
+				removal_pos--;
+			}
+			else
+			{
+				break;
+			}
+		}
+		remove_index(removal_pos);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+template<typename T>
+void SortedArray<T>::remove_all(T t)
+{
+	int index;
+	if (binary_search(t, index))
+	{
+		while (index > 0)
+		{
+			if (array[index - 1] == t)
+			{
+				--index;
+			}
+			else
+			{
+				break;
+			}
+		}
+		auto it = iter_at(index);
+		while (*it == t)
+		{
+			it = erase(it);
+		}
+	}
+}
+
+template<typename T>
+Iterator<T> SortedArray<T>::erase(Iterator<T> it)
+{
+	remove(*it);
+	return it;
+}
+
+template<typename T>
+bool SortedArray<T>::binary_search(T t, int &index) const
 {
 	return binary_search(t, 0, size, index);
 }
 
 template<typename T>
-bool SortedArray<T>::binary_search(T t, int low, int high, int &index)
+bool SortedArray<T>::binary_search(T t, int low, int high, int &index) const
 {
 	if (size <= 0)
 	{
@@ -303,15 +339,22 @@ bool SortedArray<T>::binary_search(T t, int low, int high, int &index)
 }
 
 template<typename T>
-Iterator<T> SortedArray<T>::begin()
+Iterator<T> SortedArray<T>::begin() const
 {
 	return Iterator<T>(&array[0]);
 }
 
 template<typename T>
-Iterator<T> SortedArray<T>::end()
+Iterator<T> SortedArray<T>::end() const
 {
 	return Iterator<T>(&array[size]);
+}
+
+template<typename T>
+Iterator<T> SortedArray<T>::iter_at(int i) const
+{
+	throw_err_if_not_in_size_range("iter_at", i);
+	return Iterator<T>(&array[i]);
 }
 
 template<typename T>
@@ -319,7 +362,9 @@ void SortedArray<T>::resize()
 {
 	int new_capacity = capacity * DYN_ARRAY_MULTI;
 	T *new_array = new T[new_capacity];
-	for (int i = 0; i < size; i++)
+	for (int i = 0;
+	     i < size;
+	     i++)
 	{
 		new_array[i] = array[i];
 	}
@@ -331,7 +376,23 @@ void SortedArray<T>::resize()
 template<typename T>
 void SortedArray<T>::arr_cpy(const SortedArray<T> &sorted_array)
 {
-	array = new T[sorted_array.get_capacity()];
+	int cap = sorted_array.get_capacity();
+	array = new T[cap];
+	for (int i = 0;
+	     i < sorted_array.get_size();
+	     i++)
+	{
+		array[i] = sorted_array.get(i);
+	}
+	size = sorted_array.get_size();
+	capacity = sorted_array.get_capacity();
+}
+
+template<typename T>
+void SortedArray<T>::arr_cpy(SortedArray<T> &sorted_array)
+{
+	int cap = sorted_array.get_capacity();
+	array = new T[cap];
 	for (int i = 0;
 	     i < sorted_array.get_size();
 	     i++)
@@ -363,6 +424,159 @@ void SortedArray<T>::shift_back(int index)
 		array[i] = array[i + 1];
 	}
 }
+
+template<typename T>
+void SortedArray<T>::throw_err_if_not_in_size_range(std::string func_name, int i) const
+{
+	if (i < 0)
+	{
+		goto error;
+	}
+	if (size > 0 && i >= size)
+	{
+		goto error;
+	}
+	else if (size == 0 && i != 0)
+	{
+		goto error;
+	}
+	else
+	{
+		return;
+	}
+	error:
+	throw std::invalid_argument(func_name +
+	                            ": i must be between 0 and size - 1" +
+	                            ", i is " + std::to_string(i) +
+	                            ", size is " + std::to_string(size));
+}
+
+template<typename T>
+bool SortedArray<T>::operator>(const SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator>(SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator>=(const SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator>=(SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator<(const SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator<(SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator<=(const SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator<=(SortedArray<T> &other) const
+{
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator==(const SortedArray<T> &other) const
+{
+	if (size != other.size)
+	{
+		return false;
+	}
+	for (int i = 0;
+	     i < size;
+	     i++)
+	{
+		if (get(i) != other.get(i))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+template<typename T>
+bool SortedArray<T>::operator==(SortedArray<T> &other) const
+{
+	if (size != other.size)
+	{
+		return false;
+	}
+	for (int i = 0;
+	     i < size;
+	     i++)
+	{
+		if (get(i) != other.get(i))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+template<typename T>
+bool SortedArray<T>::operator!=(const SortedArray<T> &other) const
+{
+	if (size != other.size)
+	{
+		return true;
+	}
+	for (int i = 0;
+	     i < size;
+	     i++)
+	{
+		if (get(i) != other.get(i))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+template<typename T>
+bool SortedArray<T>::operator!=(SortedArray<T> &other) const
+{
+	if (size != other.size)
+	{
+		return true;
+	}
+	for (int i = 0;
+	     i < size;
+	     i++)
+	{
+		if (get(i) != other.get(i))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
 
 
 
