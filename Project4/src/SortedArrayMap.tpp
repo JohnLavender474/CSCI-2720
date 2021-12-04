@@ -118,7 +118,7 @@ void SortedArrayMap<K, V>::remove_index(int i)
 }
 
 template<typename K, typename V>
-void SortedArrayMap<K, V>::remove_if(bool (*predicate)(Pair<K, V>))
+void SortedArrayMap<K, V>::remove_if(std::function<bool(const Pair<K, V> &)> predicate)
 {
 	entries.remove_if(predicate);
 }
@@ -138,13 +138,6 @@ SortedArray<K> SortedArrayMap<K, V>::sorted_key_array() const
 		sorted_keys.array[i] = entries.get(i).k;
 		++sorted_keys.size;
 	}
-	/*
-	SortedArray<K> sorted_keys;
-	for (auto it = entries.begin(); it != entries.end(); ++it)
-	{
-		sorted_keys.add(it->k);
-	}
-	 */
 	return sorted_keys;
 }
 
@@ -269,6 +262,12 @@ template<typename K, typename V>
 bool SortedArrayMap<K, V>::operator!=(SortedArrayMap<K, V> &sorted_array_map) const
 {
 	return entries != sorted_array_map.entries;
+}
+
+template<typename K, typename V>
+void SortedArrayMap<K, V>::for_each(std::function<void(Pair<K, V> &)> apply)
+{
+	entries.for_each(apply);
 }
 
 

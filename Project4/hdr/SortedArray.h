@@ -51,7 +51,7 @@ public:
 	
 	bool add_if_not_present(T t);
 	
-	void remove_if(bool (*predicate)(T));
+	void remove_if(std::function<bool(const T&)> predicate);
 	
 	void remove_index(int i);
 	
@@ -70,6 +70,8 @@ public:
 	Iterator<T> end() const;
 	
 	Iterator<T> iter_at(int i) const;
+	
+	void for_each(std::function<void(T&)> f);
 	
 	bool operator>(const SortedArray<T> &other) const override;
 	
@@ -95,7 +97,6 @@ public:
 	
 	bool operator!=(SortedArray<T> &other) const override;
 	
-	
 	friend std::ostream &operator<<(std::ostream &stream, const SortedArray<T> &sorted_array)
 	{
 		stream << "{";
@@ -115,7 +116,7 @@ public:
 		stream << "}";
 		return stream;
 	}
-
+	
 private:
 	
 	void resize();
@@ -129,6 +130,14 @@ private:
 	void shift_back(int index);
 	
 	void throw_err_if_not_in_size_range(std::string func_name, int i) const;
+	
+	void quick_sort();
+	
+	static int partition(T *arr, int begin, int end);
+	
+	static void quick_sort(T *arr, int begin, int end);
+	
+	static void swap(T &i, T &j);
 	
 	T *array;
 	unsigned int size;

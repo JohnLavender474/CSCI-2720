@@ -47,11 +47,13 @@ public:
 	
 	void remove_index(int i);
 	
-	void remove_if(bool (*predicate)(Pair<K, V>));
+	void remove_if(std::function<bool(const Pair<K, V> &)> predicate);
 	
 	SortedArray<Pair<K, V>> sorted_entry_array() const;
 	
 	SortedArray<K> sorted_key_array() const;
+	
+	void for_each(std::function<void(Pair<K, V> &)> apply);
 	
 	bool operator>(const SortedArrayMap<K, V> &sorted_array_map) const override;
 	

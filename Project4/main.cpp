@@ -11,19 +11,25 @@ void test_graph();
 
 int main()
 {
+	/*
 	std::cout << "\n\nSORTED ARRAY\n" << std::endl;
 	test_sorted_array();
 	std::cout << "\n\nSORTED ARRAY MAP\n" << std::endl;
 	test_sorted_array_map();
+	 */
 	std::cout << "\n\nGRAPH\n" << std::endl;
-	// test_graph();
+	test_graph();
 	return 0;
 }
 
 void test_graph()
 {
 	Graph<int, int> graph;
-	
+	graph.add_vertex(10);
+	graph.add_vertex(2);
+	graph.add_vertex(3);
+	graph.put_edge(10, 2, 1);
+	graph.put_edge(10, 3, 2);
 }
 
 void test_sorted_array_map()
@@ -76,12 +82,23 @@ void test_sorted_array()
 	std::cout << sorted_int_array << std::endl;
 	sorted_int_array.add_if_not_present(15);
 	std::cout << sorted_int_array << std::endl;
+	std::cout << "for each, increment or decrement key by rand val:" << std::endl;
+	bool incr = true;
+	srand(time(NULL));
+	sorted_int_array.for_each([&incr](int &r)
+	{
+		std::cout << "incr: " << incr << std::endl;
+		int d = rand() % 10;
+		r = incr ? r - d : r + d;
+		incr = !incr;
+	});
+	std::cout << sorted_int_array << std::endl;
 	std::cout << "at index 2: " << sorted_int_array.get(2) << std::endl;
 	std::cout << "at index 4: " << sorted_int_array.get(4) << std::endl;
 	std::cout << "at index 5: " << sorted_int_array.get(5) << std::endl;
 	std::cout << "at index 0: " << sorted_int_array.get(0) << std::endl;
 	std::cout << "size: " << sorted_int_array.get_size() << std::endl;
-	sorted_int_array.remove_if([](int r){return r > 3 && r < 11;});
+	sorted_int_array.remove_if([](const int &r){return r > 3 && r < 11;});
 	std::cout << "removed r > 3 && r < 11: " << sorted_int_array << std::endl;
 	std::cout << "size: " << sorted_int_array.get_size() << std::endl;
 	sorted_int_array.add(50);

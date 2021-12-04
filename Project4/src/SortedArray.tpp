@@ -4,6 +4,7 @@
 #include <iostream>
 #include <queue>
 #include <sstream>
+#include <functional>
 
 template<typename T>
 SortedArray<T>::SortedArray() :
@@ -211,7 +212,7 @@ bool SortedArray<T>::add_if_not_present(T t)
 }
 
 template<typename T>
-void SortedArray<T>::remove_if(bool (*predicate)(T))
+void SortedArray<T>::remove_if(std::function<bool(const T&)> predicate)
 {
 	for (auto it = begin();
 	     it != end();)
@@ -355,6 +356,18 @@ Iterator<T> SortedArray<T>::iter_at(int i) const
 {
 	throw_err_if_not_in_size_range("iter_at", i);
 	return Iterator<T>(&array[i]);
+}
+
+template<typename T>
+void SortedArray<T>::for_each(std::function<void(T&)> f)
+{
+	for (auto it = begin();
+	it != end();
+	++it)
+	{
+		f(*it);
+	}
+	quick_sort();
 }
 
 template<typename T>
@@ -574,6 +587,49 @@ bool SortedArray<T>::operator!=(SortedArray<T> &other) const
 	}
 	return false;
 }
+
+template<typename T>
+void SortedArray<T>::quick_sort()
+{
+	quick_sort(array, 0, size - 1);
+}
+
+template<typename T>
+void SortedArray<T>::quick_sort(T *arr, int begin, int end)
+{
+	if (begin < end)
+	{
+		int p = partition(arr, begin, end);
+		quick_sort(arr, begin, p - 1);
+		quick_sort(arr, p + 1, end);
+	}
+}
+
+template<typename T>
+int SortedArray<T>::partition(T *arr, int begin, int end)
+{
+	int pivot = end;
+	int j = begin;
+	for (int i = begin; i < end; ++i)
+	{
+		if (arr[i] < arr[pivot])
+		{
+			swap(arr[i], arr[j]);
+			++j;
+		}
+	}
+	swap(arr[j], arr[pivot]);
+	return j;
+}
+
+template<typename T>
+void SortedArray<T>::swap(T &i, T &j)
+{
+	T temp = i;
+	i = j;
+	j = temp;
+}
+
 
 
 
