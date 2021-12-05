@@ -36,6 +36,6 @@ private:
 	pointer ptr;
 };
 
-#include "../src/Iterator.tpp"
+#include "Iterator.tpp"
 
 #endif

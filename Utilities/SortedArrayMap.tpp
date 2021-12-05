@@ -1,4 +1,4 @@
-#include "../hdr/SortedArrayMap.h"
+#include "SortedArrayMap.h"
 
 #include <iostream>
 #include <sstream>
@@ -13,6 +13,24 @@ template<typename K, typename V>
 SortedArrayMap<K, V>::SortedArrayMap(SortedArrayMap<K, V> &sorted_array_map)
 {
 	entries.arr_cpy(sorted_array_map.entries);
+}
+
+template<typename K, typename V>
+SortedArrayMap<K, V>::SortedArrayMap(const SortedArray<K> &keys, V default_val)
+{
+	for (auto it = keys.begin(); it != keys.end(); ++it)
+	{
+		entries.add(Pair<K, V>(*it, default_val));
+	}
+}
+
+template<typename K, typename V>
+SortedArrayMap<K, V>::SortedArrayMap(SortedArray<K> &keys, V default_val)
+{
+	for (auto it = keys.begin(); it != keys.end(); ++it)
+	{
+		entries.add(Pair<K, V>(*it, default_val));
+	}
 }
 
 template<typename K, typename V>
@@ -265,9 +283,15 @@ bool SortedArrayMap<K, V>::operator!=(SortedArrayMap<K, V> &sorted_array_map) co
 }
 
 template<typename K, typename V>
-void SortedArrayMap<K, V>::for_each(std::function<void(Pair<K, V> &)> apply)
+void SortedArrayMap<K, V>::for_each(std::function<void(Pair<K, V> &)> f)
 {
-	entries.for_each(apply);
+	entries.for_each(f);
+}
+
+template<typename K, typename V>
+void SortedArrayMap<K, V>::for_each_const(std::function<void(const Pair<K, V> &)> f) const
+{
+	entries.for_each_const(f);
 }
 
 

@@ -1,4 +1,4 @@
-#include "../hdr/SortedArray.h"
+#include "SortedArray.h"
 
 #include <cmath>
 #include <iostream>
@@ -368,6 +368,17 @@ void SortedArray<T>::for_each(std::function<void(T&)> f)
 		f(*it);
 	}
 	quick_sort();
+}
+
+template<typename T>
+void SortedArray<T>::for_each_const(std::function<void(const T&)> f) const
+{
+	for (auto it = begin();
+	it != end();
+	++it)
+	{
+		f(*it);
+	}
 }
 
 template<typename T>

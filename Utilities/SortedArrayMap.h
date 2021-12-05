@@ -19,6 +19,10 @@ public:
 	
 	SortedArrayMap(const SortedArrayMap<K, V> &sorted_array_map);
 	
+	SortedArrayMap(SortedArray<K> &keys, V default_val);
+	
+	SortedArrayMap(const SortedArray<K> &keys, V default_val);
+	
 	~SortedArrayMap() = default;
 	
 	SortedArrayMap<K, V> &operator=(const SortedArrayMap<K, V> &sorted_array_map);
@@ -47,13 +51,15 @@ public:
 	
 	void remove_index(int i);
 	
-	void remove_if(std::function<bool(const Pair<K, V> &)> predicate);
+	void remove_if(std::function<bool(const Pair<K, V>&)> predicate);
 	
 	SortedArray<Pair<K, V>> sorted_entry_array() const;
 	
 	SortedArray<K> sorted_key_array() const;
 	
-	void for_each(std::function<void(Pair<K, V> &)> apply);
+	void for_each(std::function<void(Pair<K, V>&)> f);
+	
+	void for_each_const(std::function<void(const Pair<K, V>&)> f) const;
 	
 	bool operator>(const SortedArrayMap<K, V> &sorted_array_map) const override;
 	
@@ -69,7 +75,7 @@ public:
 	
 	bool operator<=(const SortedArrayMap<K, V> &sorted_array_map) const override;
 	
-	bool operator<=(SortedArrayMap<K, V> & sorted_array_map) const override;
+	bool operator<=(SortedArrayMap<K, V> &sorted_array_map) const override;
 	
 	bool operator==(const SortedArrayMap<K, V> &sorted_array_map) const override;
 	
@@ -82,7 +88,9 @@ public:
 	friend std::ostream &operator<<(std::ostream &stream, const SortedArrayMap<K, V> &sorted_array_map)
 	{
 		stream << "{";
-		for (int i = 0; i < sorted_array_map.get_size(); i++)
+		for (int i = 0;
+		     i < sorted_array_map.get_size();
+		     i++)
 		{
 			Pair<K, V> pair = sorted_array_map.get_pair(i);
 			stream << pair;
@@ -107,6 +115,6 @@ private:
 	
 };
 
-#include "../src/SortedArrayMap.tpp"
+#include "SortedArrayMap.tpp"
 
 #endif

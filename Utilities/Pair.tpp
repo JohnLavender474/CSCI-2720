@@ -1,4 +1,4 @@
-#include "../hdr/Pair.h"
+#include "Pair.h"
 
 template<typename K, typename V>
 Pair<K, V>::Pair(K k, V v) :

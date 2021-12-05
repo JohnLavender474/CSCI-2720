@@ -5,6 +5,7 @@
 #include "Pair.h"
 #include "Iterator.h"
 
+#include <iostream>
 #include <functional>
 #include <vector>
 #include <cstddef>
@@ -72,6 +73,8 @@ public:
 	Iterator<T> iter_at(int i) const;
 	
 	void for_each(std::function<void(T&)> f);
+	
+	void for_each_const(std::function<void(const T&)> f) const;
 	
 	bool operator>(const SortedArray<T> &other) const override;
 	
@@ -146,6 +149,6 @@ private:
 	const static int DYN_ARRAY_MULTI = 2;
 };
 
-#include "../src/SortedArray.tpp"
+#include "SortedArray.tpp"
 
 #endif

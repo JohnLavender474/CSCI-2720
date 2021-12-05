@@ -1,4 +1,4 @@
-#include "../hdr/Iterator.h"
+#include "Iterator.h"
 
 template<typename T>
 Iterator<T>::Iterator(Iterator<T>::pointer ptr) :

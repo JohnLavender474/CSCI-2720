@@ -47,6 +47,6 @@ public:
 	}
 };
 
-#include "../src/Pair.tpp"
+#include "Pair.tpp"
 
 #endif
