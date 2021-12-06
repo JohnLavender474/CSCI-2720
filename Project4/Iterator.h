@@ -1,5 +1,4 @@
-#ifndef ITERATOR_H
-#define ITERATOR_H
+#pragma once
 
 #include <iterator>
 #include <cstddef>
@@ -36,6 +35,28 @@ private:
 	pointer ptr;
 };
 
-#include "Iterator.tpp"
+template<typename T>
+Iterator<T>::Iterator(Iterator<T>::pointer ptr) :
+		ptr(ptr)
+{
+}
 
-#endif
+template<typename T>
+typename Iterator<T>::reference Iterator<T>::operator*() const
+{
+	return *ptr;
+}
+
+template<typename T>
+typename Iterator<T>::pointer Iterator<T>::operator->()
+{
+	return ptr;
+}
+
+template<typename T>
+Iterator<T> &Iterator<T>::operator++()
+{
+	ptr++;
+	return *this;
+}
+

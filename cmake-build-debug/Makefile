@@ -384,6 +384,30 @@ Project3/P3Executable.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project3.dir/build.make CMakeFiles/CSCI2720_Project3.dir/Project3/P3Executable.cpp.s
 .PHONY : Project3/P3Executable.cpp.s
 
+Project4/US_Graph_Program.o: Project4/US_Graph_Program.cpp.o
+.PHONY : Project4/US_Graph_Program.o
+
+# target to build an object file
+Project4/US_Graph_Program.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/Project4/US_Graph_Program.cpp.o
+.PHONY : Project4/US_Graph_Program.cpp.o
+
+Project4/US_Graph_Program.i: Project4/US_Graph_Program.cpp.i
+.PHONY : Project4/US_Graph_Program.i
+
+# target to preprocess a source file
+Project4/US_Graph_Program.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/Project4/US_Graph_Program.cpp.i
+.PHONY : Project4/US_Graph_Program.cpp.i
+
+Project4/US_Graph_Program.s: Project4/US_Graph_Program.cpp.s
+.PHONY : Project4/US_Graph_Program.s
+
+# target to generate assembly for a file
+Project4/US_Graph_Program.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/Project4/US_Graph_Program.cpp.s
+.PHONY : Project4/US_Graph_Program.cpp.s
+
 Project4/main.o: Project4/main.cpp.o
 .PHONY : Project4/main.o
 
@@ -447,6 +471,9 @@ help:
 	@echo "... Project3/P3Executable.o"
 	@echo "... Project3/P3Executable.i"
 	@echo "... Project3/P3Executable.s"
+	@echo "... Project4/US_Graph_Program.o"
+	@echo "... Project4/US_Graph_Program.i"
+	@echo "... Project4/US_Graph_Program.s"
 	@echo "... Project4/main.o"
 	@echo "... Project4/main.i"
 	@echo "... Project4/main.s"

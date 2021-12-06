@@ -1,8 +1,9 @@
 #pragma once
 
-#include <vector>
 #include <queue>
+#include <deque>
 #include <set>
+#include <algorithm>
 
 #include "DynamicArray.h"
 
@@ -31,19 +32,27 @@ public:
 	
 	bool remove_edge(T u, T v);
 	
+	std::vector<T> shortest_path(T u, T v);
+	
+	std::vector<std::vector<T>> shortest_path_tree(T u);
+	
+	int degree(T t);
+	
 	friend std::ostream &operator<<(std::ostream &stream, const Graph<T> &graph)
 	{
 		int index_v = 0;
-		graph.vertices.for_each([&graph, &stream, &index_v](Vertex<T> *v)
-		{
-			stream << "VERTEX " << ++index_v << ": " << v->info << std::endl;
-			int index_e = 0;
-			for (const int &i : v->edges)
-			{
-				Vertex<T> * o = *graph.vertices.ptr_to(i);
-				stream << "\tEDGE " << ++index_e << ": " << o->info << std::endl;
-			}
-		});
+		graph.vertices
+				.for_each([&graph, &stream, &index_v](Vertex<T> *v)
+				          {
+					          stream << "VERTEX " << ++index_v << ": " << *v << std::endl;
+					          int index_e = 0;
+					          for (const int &i : v->edges)
+					          {
+						          Vertex<T> *o = *graph.vertices
+								          .ptr_to(i);
+						          stream << "\tEDGE " << ++index_e << ": " << *o << std::endl;
+					          }
+				          });
 		return stream;
 	}
 
@@ -52,6 +61,8 @@ private:
 	DynamicArray<Vertex<T> *> vertices;
 	
 	int index_of_vertex(T t);
+	
+	Vertex<T> *get_vertex(T t);
 	
 	int generate_id();
 	
@@ -77,6 +88,7 @@ private:
 	T info;
 	int id;
 	std::set<int> edges;
+	bool encountered;
 	int predecessor_id;
 	
 	friend bool operator==(const Vertex<T> &v1, const Vertex<T> &v2)
@@ -84,20 +96,25 @@ private:
 		return v1.info == v2.info;
 	}
 	
+	friend std::ostream &operator<<(std::ostream &stream, const Vertex<T> &v)
+	{
+		return stream << v.info;
+	}
+	
 };
-
 
 template<typename T>
 Vertex<T>::Vertex(T info, int id) :
-info(info),
-id(id),
-predecessor_id(-1)
+		info(info),
+		id(id),
+		encountered(false),
+		predecessor_id(-1)
 {
 }
 
 template<typename T>
 Graph<T>::Graph() :
-max_id(0)
+		max_id(0)
 {
 }
 
@@ -115,12 +132,12 @@ bool Graph<T>::contains_vertex(T t)
 {
 	bool contains = false;
 	vertices.for_each([&t, &contains](const Vertex<T> *v)
-	{
-		if (t == v->info)
-		{
-			contains = true;
-		}
-	});
+	                  {
+		                  if (t == v->info)
+		                  {
+			                  contains = true;
+		                  }
+	                  });
 	return contains;
 }
 
@@ -163,8 +180,10 @@ bool Graph<T>::put_edge(T u, T v)
 	}
 	Vertex<T> *u_v = *vertices.ptr_to(u_index);
 	Vertex<T> *v_v = *vertices.ptr_to(v_index);
-	u_v->edges.insert(v_index);
-	v_v->edges.insert(u_index);
+	u_v->edges
+			.insert(v_index);
+	v_v->edges
+			.insert(u_index);
 	return true;
 }
 
@@ -181,7 +200,8 @@ bool Graph<T>::remove_vertex(T t)
 	for (const int &j : edges)
 	{
 		Vertex<T> *o_v = *vertices.ptr_to(j);
-		o_v->edges.erase(i);
+		o_v->edges
+				.erase(i);
 	}
 	delete t_v;
 	vertices.put(i, nullptr);
@@ -195,10 +215,17 @@ bool Graph<T>::remove_edge(T u, T v)
 {
 	int u_index = index_of_vertex(u);
 	int v_index = index_of_vertex(v);
-	Vertex<T> *u_v = vertices.ptr_to(u_index);
-	Vertex<T> *v_v = vertices.ptr_to(v_v);
-	u_v->edges.erase(v_index);
-	v_v->edges.erase(u_index);
+	if (u_index == -1 || v_index == -1)
+	{
+		return false;
+	}
+	Vertex<T> *u_v = *vertices.ptr_to(u_index);
+	Vertex<T> *v_v = *vertices.ptr_to(v_index);
+	u_v->edges
+			.erase(v_index);
+	v_v->edges
+			.erase(u_index);
+	return true;
 }
 
 template<typename T>
@@ -234,3 +261,88 @@ int Graph<T>::generate_id()
 		return i;
 	}
 }
+
+template<typename T>
+std::vector<T> Graph<T>::shortest_path(T u, T v)
+{
+	std::vector<T> path;
+	vertices.for_each([](Vertex<T> *v)
+	                  {
+		                  v->encountered = false;
+		                  v->predecessor_id = -1;
+	                  });
+	Vertex<T> *start = get_vertex(u);
+	Vertex<T> *end = get_vertex(v);
+	if (start == nullptr || end == nullptr)
+	{
+		return path;
+	}
+	std::queue<Vertex<T> *> v_q;
+	start->encountered = true;
+	v_q.push(start);
+	Vertex<T> *temp;
+	while (!v_q.empty())
+	{
+		temp = v_q.front();
+		v_q.pop();
+		for (const int &i : temp->edges)
+		{
+			Vertex<T> *neighbor = *vertices.ptr_to(i);
+			if (!neighbor->encountered)
+			{
+				neighbor->encountered = true;
+				neighbor->predecessor_id = temp->id;
+				v_q.push(neighbor);
+			}
+		}
+	}
+	temp = end;
+	while (temp->predecessor_id != -1)
+	{
+		path.push_back(temp->info);
+		int pred_id = temp->predecessor_id;
+		temp = *vertices.ptr_to(pred_id);
+	}
+	path.push_back(temp->info);
+	return path;
+}
+
+template<typename T>
+std::vector<std::vector<T>> Graph<T>::shortest_path_tree(T u)
+{
+	DynamicArray<Vertex<T> *> v_cpy = vertices;
+	v_cpy.remove_if([&u](const Vertex<T> *v)
+	{
+		return u == v->info;
+	});
+	std::vector<std::vector<T>> vec_of_paths;
+	v_cpy.for_each([&](const Vertex<T> * v)
+	{
+		std::vector<T> path = shortest_path(u, v->info);
+		if (!path.empty())
+		{
+			vec_of_paths.push_back(path);
+		}
+	});
+	sort(vec_of_paths.begin(), vec_of_paths.end(),
+		 [](const std::vector<T> &vec1, const std::vector<T> &vec2)
+		 {
+			 return vec1.size() < vec2.size();
+		 });
+	return vec_of_paths;
+}
+
+template<typename T>
+int Graph<T>::degree(T t)
+{
+	Vertex<T> *v = get_vertex(t);
+	return v != nullptr ? v->edges.size() : -1;
+}
+
+template<typename T>
+Vertex<T> *Graph<T>::get_vertex(T t)
+{
+	int i = index_of_vertex(t);
+	return i == -1 ? nullptr : *vertices.ptr_to(index_of_vertex(t));
+}
+

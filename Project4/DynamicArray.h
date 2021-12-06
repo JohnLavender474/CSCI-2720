@@ -72,6 +72,8 @@ public:
 	
 	void for_each(std::function<void(const T&)> function) const;
 	
+	std::vector<T> as_vector();
+	
 	friend std::ostream &operator<<(std::ostream &stream, const DynamicArray<T> &dynamic_array)
 	{
 		stream << "\n{ " << std::endl;
@@ -425,12 +427,13 @@ void DynamicArray<T>::arr_cpy(DynamicArray<T> &dynamic_array)
 {
 	capacity = dynamic_array.get_capacity();
 	array = new T[capacity];
-	std::queue<int> temp_q = dynamic_array.occupied;
-	while (!temp_q.empty())
+	std::set<int> occupiers = dynamic_array.occupied;
+	for (auto it = occupiers.begin();
+	     it != occupiers.end();
+	     ++it)
 	{
-		int i = temp_q.front();
+		int i = *it;
 		put(i, dynamic_array.array[i]);
-		temp_q.pop();
 	}
 	occupied = dynamic_array.occupied;
 }
@@ -473,6 +476,17 @@ template<typename T>
 T DynamicArray<T>::peek_back()
 {
 	return array[get_max_occupied()];
+}
+
+template<typename T>
+std::vector<T> DynamicArray<T>::as_vector()
+{
+	std::vector<T> vec;
+	for_each([&vec](const T& t)
+	{
+		vec.push_back(t);
+	});
+	return vec;
 }
 
 

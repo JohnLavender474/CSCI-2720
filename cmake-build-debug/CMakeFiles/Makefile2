@@ -87,12 +87,12 @@ clean: CMakeFiles/CSCI2720_Project1.dir/clean
 CMakeFiles/CSCI2720_Project4.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=13,14 "Built target CSCI2720_Project4"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles --progress-num=13,14,15 "Built target CSCI2720_Project4"
 .PHONY : CMakeFiles/CSCI2720_Project4.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CSCI2720_Project4.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/CSCI2720_Project4.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/apple/CLionProjects/CSCI2720_Projects/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/CSCI2720_Project4.dir/rule

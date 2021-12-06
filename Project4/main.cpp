@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "Graph.h"
-#include "DynamicArray.h"
+#include "US_States.h"
 
 class Object
 {
@@ -24,23 +24,72 @@ public:
 int main()
 {
 	Graph<int> graph;
-	graph.add_vertex(10);
-	graph.add_vertex(15);
+	for (int i = 1; i < 13; i++)
+	{
+		graph.add_vertex(i);
+	}
+	graph.put_edge(1, 2);
+	graph.put_edge(1, 4);
+	graph.put_edge(1, 5);
+	graph.put_edge(1, 12);
+	graph.put_edge(2, 5);
+	graph.put_edge(2, 3);
+	graph.put_edge(3, 5);
+	graph.put_edge(3, 6);
+	graph.put_edge(4, 5);
+	graph.put_edge(4, 7);
+	graph.put_edge(5, 8);
+	graph.put_edge(6, 8);
+	graph.put_edge(7, 9);
+	graph.put_edge(8, 10);
+	graph.put_edge(9, 10);
+	graph.put_edge(9, 11);
+	graph.put_edge(2, 1);
+	graph.put_edge(4, 1);
+	graph.put_edge(5, 1);
+	graph.put_edge(12, 11);
+	std::cout << graph << std::endl;
+	std::vector<int> path = graph.shortest_path(1, 11);
+	for (auto it = path.rbegin();
+	     it != path.rend();
+	     ++it)
+	{
+		std::cout << *it << std::endl;
+	}
+	std::cout << "shortest path tree" << std::endl;
+	std::vector<std::vector<int>> shortest_path_tree = graph.shortest_path_tree(1);
+	for (std::vector<int> &v : shortest_path_tree)
+	{
+		for (auto it = v.rbegin();
+		     it != v.rend();
+		     ++it)
+		{
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+	}
+	/*
+	std::deque<int> d;
+	(graph.shortest_path(1, 11, d));
+	while (!d.empty())
+	{
+		std::cout << d.front() << std::endl;
+		d.pop_front();
+	}
+	 */
+	/*
+	std::cout << "remove vertex 10" << std::endl;
+	graph.remove_vertex(10);
+	graph.remove_vertex(6);
+	graph.remove_edge(1, 2);
+	std::cout << graph << std::endl;
+	std::cout << "put 2 new vertices: 20 and 25. connect 20 to 13 and 7, connect 25 to 7" << std::endl;
 	graph.add_vertex(20);
 	graph.add_vertex(25);
-	graph.add_vertex(30);
-	graph.add_vertex(35);
-	graph.add_vertex(40);
-	graph.add_vertex(45);
-	graph.add_vertex(50);
-	graph.put_edge(10, 15);
-	graph.put_edge(10, 20);
-	graph.put_edge(30, 40);
-	graph.put_edge(30, 10);
-	graph.put_edge(50, 45);
-	graph.put_edge(10, 45);
+	graph.put_edge(20, 7);
+	graph.put_edge(20, 13);
+	graph.put_edge(25, 7);
 	std::cout << graph << std::endl;
-	/*
 	O_Container<Object *> o_container;
 	Object *o1 = new Object;
 	Object *o2 = new Object;
