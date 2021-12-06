@@ -1,16 +1,16 @@
 CC = g++
 CFLAGS = -g -std=c++11
 
-all : main
+all : US_Graph_Program
 
-OBJECTS = main.o
+OBJECTS = US_Graph_Program.o
 
-main.o : main.cpp
+US_Graph_Program.o : US_Graph_Program.cpp
 	$(CC) -c $(CFLAGS) $< -o $@
 
-main : $(OBJECTS)
+US_Graph_Program : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@
 
 clean:
-	rm -f main.o
-	rm -f main
+	rm -f US_Graph_Program.o
+	rm -f US_Graph_Program

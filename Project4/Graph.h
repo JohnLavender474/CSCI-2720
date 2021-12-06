@@ -1,8 +1,10 @@
 #pragma once
 
+#include <vector>
 #include <queue>
 #include <deque>
 #include <set>
+#include <functional>
 #include <algorithm>
 
 #include "DynamicArray.h"
@@ -28,13 +30,21 @@ public:
 	
 	bool put_edge(T u, T v);
 	
+	int edge_count(T t);
+	
 	bool remove_vertex(T t);
 	
 	bool remove_edge(T u, T v);
 	
+	bool edges(T t, std::vector<T> &edges);
+	
+	bool highest_edge_count(T &t, std::vector<T> &edges);
+	
 	std::vector<T> shortest_path(T u, T v);
 	
 	std::vector<std::vector<T>> shortest_path_tree(T u);
+	
+	void for_each(std::function<void(const T&, const std::vector<T>&)> function);
 	
 	int degree(T t);
 	
@@ -188,6 +198,57 @@ bool Graph<T>::put_edge(T u, T v)
 }
 
 template<typename T>
+int Graph<T>::edge_count(T t)
+{
+	Vertex<T> *vertex = get_vertex(t);
+	return vertex != nullptr ? vertex->edges.size() : -1;
+}
+
+template<typename T>
+bool Graph<T>::edges(T t, std::vector<T> &edges)
+{
+	Vertex<T> *vertex = get_vertex(t);
+	if (vertex != nullptr)
+	{
+		std::set<int> edges_i = vertex->edges;
+		for (const int &i : edges_i)
+		{
+			Vertex<T> *edge = *vertices.ptr_to(i);
+			edges.push_back(edge->info);
+		}
+		return true;
+	}
+	return false;
+}
+
+template<typename T>
+bool Graph<T>::highest_edge_count(T &t, std::vector<T> &edges)
+{
+	if (vertices.get_size() == 0)
+	{
+		return false;
+	}
+	Vertex<T> *temp;
+	int count = 0;
+	vertices.for_each([&temp, &count](Vertex<T> *v)
+	{
+		if (count < v->edges.size())
+		{
+			count = v->edges.size();
+			temp = v;
+		}
+	});
+	t = temp->info;
+	std::set<int> edges_i = temp->edges;
+	for (const int &i : edges_i)
+	{
+		Vertex<T> *v = *vertices.ptr_to(i);
+		edges.push_back(v->info);
+	}
+	return true;
+}
+
+template<typename T>
 bool Graph<T>::remove_vertex(T t)
 {
 	int i = index_of_vertex(t);
@@ -277,6 +338,10 @@ std::vector<T> Graph<T>::shortest_path(T u, T v)
 	{
 		return path;
 	}
+	if (start->edges.size() == 0 || end->edges.size() == 0)
+	{
+		return path;
+	}
 	std::queue<Vertex<T> *> v_q;
 	start->encountered = true;
 	v_q.push(start);
@@ -345,4 +410,21 @@ Vertex<T> *Graph<T>::get_vertex(T t)
 	int i = index_of_vertex(t);
 	return i == -1 ? nullptr : *vertices.ptr_to(index_of_vertex(t));
 }
+
+template<typename T>
+void Graph<T>::for_each(std::function<void(const T&, const std::vector<T>&)> function)
+{
+	vertices.for_each([&, function](Vertex<T> *v)
+	{
+		std::vector<T> edges_info;
+		for (const int &e : v->edges)
+		{
+			Vertex<T> *edge = *vertices.ptr_to(e);
+			edges_info.push_back(edge->info);
+		}
+		function(v->info, edges_info);
+	});
+}
+
+
 

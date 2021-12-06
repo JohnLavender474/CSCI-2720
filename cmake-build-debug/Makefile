@@ -408,30 +408,6 @@ Project4/US_Graph_Program.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/Project4/US_Graph_Program.cpp.s
 .PHONY : Project4/US_Graph_Program.cpp.s
 
-Project4/main.o: Project4/main.cpp.o
-.PHONY : Project4/main.o
-
-# target to build an object file
-Project4/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/Project4/main.cpp.o
-.PHONY : Project4/main.cpp.o
-
-Project4/main.i: Project4/main.cpp.i
-.PHONY : Project4/main.i
-
-# target to preprocess a source file
-Project4/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/Project4/main.cpp.i
-.PHONY : Project4/main.cpp.i
-
-Project4/main.s: Project4/main.cpp.s
-.PHONY : Project4/main.s
-
-# target to generate assembly for a file
-Project4/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CSCI2720_Project4.dir/build.make CMakeFiles/CSCI2720_Project4.dir/Project4/main.cpp.s
-.PHONY : Project4/main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -474,9 +450,6 @@ help:
 	@echo "... Project4/US_Graph_Program.o"
 	@echo "... Project4/US_Graph_Program.i"
 	@echo "... Project4/US_Graph_Program.s"
-	@echo "... Project4/main.o"
-	@echo "... Project4/main.i"
-	@echo "... Project4/main.s"
 .PHONY : help
 
 
