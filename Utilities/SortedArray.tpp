@@ -129,42 +129,6 @@ bool SortedArray<T>::contains(T t, int &index) const
 }
 
 template<typename T>
-Pair<int, int> SortedArray<T>::range_of_occurrences(T t) const
-{
-	Pair<int, int> pair(-1, -1);
-	int start_index;
-	if (binary_search(t, start_index))
-	{
-		while (start_index > 0)
-		{
-			if (array[start_index - 1] == t)
-			{
-				--start_index;
-			}
-			else
-			{
-				break;
-			}
-		}
-		int end_index = start_index;
-		while (end_index < size - 1)
-		{
-			if (array[end_index + 1] == t)
-			{
-				++end_index;
-			}
-			else
-			{
-				break;
-			}
-		}
-		pair.k = start_index;
-		pair.v = end_index;
-	}
-	return pair;
-}
-
-template<typename T>
 void SortedArray<T>::add(T t)
 {
 	if (size == 0)

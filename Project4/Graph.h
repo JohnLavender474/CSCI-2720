@@ -4,6 +4,8 @@
 #include <queue>
 #include <set>
 
+#include "DynamicArray.h"
+
 template<typename T>
 class Vertex;
 
@@ -28,10 +30,26 @@ public:
 	bool remove_vertex(T t);
 	
 	bool remove_edge(T u, T v);
+	
+	friend std::ostream &operator<<(std::ostream &stream, const Graph<T> &graph)
+	{
+		int index_v = 0;
+		graph.vertices.for_each([&graph, &stream, &index_v](Vertex<T> *v)
+		{
+			stream << "VERTEX " << ++index_v << ": " << v->info << std::endl;
+			int index_e = 0;
+			for (const int &i : v->edges)
+			{
+				Vertex<T> * o = *graph.vertices.ptr_to(i);
+				stream << "\tEDGE " << ++index_e << ": " << o->info << std::endl;
+			}
+		});
+		return stream;
+	}
 
 private:
 	
-	std::vector<Vertex<T> *> vertices;
+	DynamicArray<Vertex<T> *> vertices;
 	
 	int index_of_vertex(T t);
 	
@@ -68,10 +86,12 @@ private:
 	
 };
 
+
 template<typename T>
 Vertex<T>::Vertex(T info, int id) :
 info(info),
-predecessor_id(-1),
+id(id),
+predecessor_id(-1)
 {
 }
 
@@ -93,14 +113,15 @@ Graph<T>::~Graph()
 template<typename T>
 bool Graph<T>::contains_vertex(T t)
 {
-	for (Vertex<T> * v : vertices)
+	bool contains = false;
+	vertices.for_each([&t, &contains](const Vertex<T> *v)
 	{
 		if (t == v->info)
 		{
-			return true;
+			contains = true;
 		}
-	}
-	return false;
+	});
+	return contains;
 }
 
 template<typename T>
@@ -111,7 +132,8 @@ bool Graph<T>::add_vertex(T t)
 		return false;
 	}
 	int id = generate_id();
-	vertices.at(id) = new Vertex<T>(t, id);
+	vertices.put(id, new Vertex<T>(t, id));
+	return true;
 }
 
 template<typename T>
@@ -123,9 +145,11 @@ bool Graph<T>::contains_edge(T u, T v)
 	{
 		return false;
 	}
-	std::set<int> u_edges = vertices.at(u_index)->edges;
-	std::set<int> v_edges = vertices.at(v_index)->edges;
-	return u_edges.find(v_index) != u_edges.end() && v_edges.template find(u_index) != v_edges.end();
+	Vertex<T> *u_v = *vertices.ptr_to(u_index);
+	Vertex<T> *v_v = *vertices.ptr_to(v_index);
+	std::set<int> u_edges = u_v->edges;
+	std::set<int> v_edges = v_v->edges;
+	return u_edges.find(v_index) != u_edges.end() && v_edges.find(u_index) != v_edges.end();
 }
 
 template<typename T>
@@ -137,8 +161,10 @@ bool Graph<T>::put_edge(T u, T v)
 	{
 		return false;
 	}
-	vertices.at(u_index)->edges.insert(v_index);
-	vertices.at(v_index)->edges.insert(u_index);
+	Vertex<T> *u_v = *vertices.ptr_to(u_index);
+	Vertex<T> *v_v = *vertices.ptr_to(v_index);
+	u_v->edges.insert(v_index);
+	v_v->edges.insert(u_index);
 	return true;
 }
 
@@ -150,13 +176,16 @@ bool Graph<T>::remove_vertex(T t)
 	{
 		return false;
 	}
-	std::set<int> edges = vertices.at(i)->edges;
-	for (int j : edges)
+	Vertex<T> *t_v = *vertices.ptr_to(i);
+	std::set<int> edges = t_v->edges;
+	for (const int &j : edges)
 	{
-		vertices.at(j)->edges.erase(i);
+		Vertex<T> *o_v = *vertices.ptr_to(j);
+		o_v->edges.erase(i);
 	}
-	delete vertices.at(i);
-	vertices.at(i) = nullptr;
+	delete t_v;
+	vertices.put(i, nullptr);
+	vertices.remove_at(i);
 	recycled_ids.push(i);
 	return true;
 }
@@ -166,18 +195,26 @@ bool Graph<T>::remove_edge(T u, T v)
 {
 	int u_index = index_of_vertex(u);
 	int v_index = index_of_vertex(v);
-	vertices.at(u_index)->edges.erase(v_index);
-	vertices.at(v_index)->edges.erase(u_index);
+	Vertex<T> *u_v = vertices.ptr_to(u_index);
+	Vertex<T> *v_v = vertices.ptr_to(v_v);
+	u_v->edges.erase(v_index);
+	v_v->edges.erase(u_index);
 }
 
 template<typename T>
 int Graph<T>::index_of_vertex(T t)
 {
-	for (int i = 0; i < vertices.size(); i++)
+	for (auto it = vertices.begin();
+	     it != vertices.end();
+	     ++it)
 	{
-		if (t == vertices.at(i)->info)
+		Vertex<T> *v = *it;
+		if (v != nullptr)
 		{
-			return i;
+			if (t == v->info)
+			{
+				return v->id;
+			}
 		}
 	}
 	return -1;
