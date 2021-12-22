@@ -2,18 +2,13 @@
 
 #include "NaryTree.h"
 
-class Print
-		: public Apply<NaryNode<std::string> *>
-{
+class Print : public Apply<NaryNode<std::string> *> {
 	void apply(NaryNode<std::string> *t) override;
 };
 
-class InvalidSerializedGameBoard
-		: public std::exception
-{
+class InvalidSerializedGameBoard : public std::exception {
 public:
-	const std::string exception() const throw()
-	{
+	const std::string exception() const throw() {
 		std::string err_msg_ln1 = "Invalid serialized game board string!\n";
 		std::string err_msg_ln2 = "Must be exactly 9 chars.\n";
 		std::string err_msg_ln3 = "Must contain only *'s, X's, and O's.\n";
@@ -25,8 +20,7 @@ public:
 	}
 };
 
-class T3SolverImplementation
-{
+class T3SolverImplementation {
 public:
 	T3SolverImplementation() = delete;
 	

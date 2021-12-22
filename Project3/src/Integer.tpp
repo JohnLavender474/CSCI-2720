@@ -1,72 +1,57 @@
 #include "../hdr/Integer.h"
 
-Integer::Integer(int _i) :
-		i(_i)
-{}
+Integer::Integer(int _i) : i(_i) {}
 
-int Integer::get() const
-{
+int Integer::get() const {
 	return i;
 }
 
-void Integer::set(int _i)
-{
+void Integer::set(int _i) {
 	i = _i;
 }
 
-bool Integer::operator>(const Integer &other) const
-{
+bool Integer::operator>(const Integer &other) const {
 	return i > other.get();
 }
 
-bool Integer::operator>(const int &other) const
-{
+bool Integer::operator>(const int &other) const {
 	return i > other;
 }
 
-bool Integer::operator<(const Integer &other) const
-{
+bool Integer::operator<(const Integer &other) const {
 	return i < other.get();
 }
 
-bool Integer::operator<(const int &other) const
-{
+bool Integer::operator<(const int &other) const {
 	return i < other;
 }
 
-bool Integer::operator!=(const Integer &other) const
-{
+bool Integer::operator!=(const Integer &other) const {
 	std::cout << "!= Integer" << std::endl;
 	return i != other.get();
 }
 
-bool Integer::operator==(const Integer &other) const
-{
+bool Integer::operator==(const Integer &other) const {
 	return i == other.get();
 }
 
-bool Integer::operator!=(const int &other) const
-{
+bool Integer::operator!=(const int &other) const {
 	return i != other;
 }
 
-bool Integer::operator==(const int &other) const
-{
+bool Integer::operator==(const int &other) const {
 	return i == other;
 }
 
-std::ostream &operator<<(std::ostream &stream, const Integer &integer)
-{
+std::ostream &operator<<(std::ostream &stream, const Integer &integer) {
 	return stream << integer.get();
 }
 
-int Integer::operator%(const Integer &other) const
-{
+int Integer::operator%(const Integer &other) const {
 	return i % other.get();
 }
 
-int Integer::operator%(const int &other) const
-{
+int Integer::operator%(const int &other) const {
 	return i % other;
 }
 

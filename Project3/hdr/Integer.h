@@ -4,10 +4,7 @@
 #include "Comparable.h"
 #include "Modulo.h"
 
-class Integer
-		: public Comparable<Integer>,
-		  public Modulo<Integer>
-{
+class Integer : public Comparable<Integer>, public Modulo<Integer> {
 public:
 	Integer() = default;
 	

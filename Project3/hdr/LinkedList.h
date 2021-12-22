@@ -6,12 +6,9 @@
 #include "Function.h"
 #include "Comparable.h"
 
-template<typename T>
-class LinkedList;
+template<typename T> class LinkedList;
 
-template<typename T>
-class LinkedNode
-{
+template<typename T> class LinkedNode {
 	
 	friend class LinkedList<T>;
 
@@ -28,9 +25,7 @@ private:
 	LinkedNode<T> *next;
 };
 
-template<class T>
-class LinkedList
-{
+template<class T> class LinkedList {
 public:
 	LinkedList();
 	

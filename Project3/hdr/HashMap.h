@@ -10,12 +10,9 @@
 #include "LinkedList.h"
 #include "Predicate.h"
 
-template<typename K, typename V>
-class Entry;
+template<typename K, typename V> class Entry;
 
-template<typename K, typename V>
-class HashMap
-{
+template<typename K, typename V> class HashMap {
 public:
 	HashMap();
 	
@@ -52,9 +49,7 @@ private:
 };
 
 
-template<typename K, typename V>
-class Entry
-{
+template<typename K, typename V> class Entry {
 	static_assert(std::is_base_of<Modulo<K>, K>::value, "Key must derive from Modulo");
 public:
 	Entry() = delete;
@@ -65,8 +60,7 @@ public:
 	
 	bool operator==(Entry<K, V> const &other) const;
 	
-	friend std::ostream &operator<<(std::ostream &stream, Entry<K, V> const &entry)
-	{
+	friend std::ostream &operator<<(std::ostream &stream, Entry<K, V> const &entry) {
 		return stream << "key: " << entry.key << ", value: " << entry.value;
 	}
 	

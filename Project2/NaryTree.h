@@ -10,9 +10,7 @@
 /* ========================================================================================================== */
 /* === Apply === */
 
-template<typename T>
-class Apply
-{
+template<typename T> class Apply {
 public:
 	Apply();
 	
@@ -27,12 +25,9 @@ public:
 /* === NaryTree === */
 
 // NaryNode forward declaration
-template<typename T>
-class NaryNode;
+template<typename T> class NaryNode;
 
-template<typename T>
-class NaryTree
-{
+template<typename T> class NaryTree {
 public:
 	NaryTree();
 	
@@ -73,9 +68,7 @@ private:
 /* ========================================================================================================== */
 /* === NaryNode === */
 
-template<typename T>
-class NaryNode
-{
+template<typename T> class NaryNode {
 public:
 	friend class NaryTree<T>;
 	
@@ -101,57 +94,37 @@ protected:
 
 /* ========================================================================================================== */
 /* === Apply === */
-template<typename T>
-Apply<T>::Apply()
-{}
+template<typename T> Apply<T>::Apply() {}
 
-template<typename T>
-Apply<T>::~Apply()
-{}
+template<typename T> Apply<T>::~Apply() {}
 
 /* ========================================================================================================== */
 
 /* ========================================================================================================== */
 /* === NaryTree === */
 
-template<typename T>
-NaryTree<T>::NaryTree() :
-		root(nullptr)
-{}
+template<typename T> NaryTree<T>::NaryTree() :
+		root(nullptr) {}
 
-template<typename T>
-NaryTree<T>::~NaryTree()
-{
+template<typename T> NaryTree<T>::~NaryTree() {
 	delete_tree(root);
 }
 
-template<typename T>
-void NaryTree<T>::insert(T data_field, int max_num_children)
-{
-	if (this->root == nullptr)
-	{
+template<typename T> void NaryTree<T>::insert(T data_field, int max_num_children) {
+	if (this->root == nullptr) {
 		this->root = this->create(nullptr, data_field, max_num_children);
-	}
-	else
-	{
+	} else {
 		std::queue<NaryNode<T> *> q;
 		q.push(this->root);
-		while (!q.empty())
-		{
+		while (!q.empty()) {
 			NaryNode<T> *parent = q.front();
 			q.pop();
-			for (int n = 0;
-			     n < parent->max_num_children;
-			     n++)
-			{
+			for (int n = 0; n < parent->max_num_children; n++) {
 				if (parent->children
-						    .at(n) != nullptr)
-				{
+						    .at(n) != nullptr) {
 					q.push(parent->children
 							       .at(n));
-				}
-				else
-				{
+				} else {
 					parent->children
 							.at(n) = this->create(parent, data_field, max_num_children);
 					return;
@@ -161,46 +134,28 @@ void NaryTree<T>::insert(T data_field, int max_num_children)
 	}
 }
 
-template<typename T>
-NaryNode<T> *NaryTree<T>::create(NaryNode<T> *parent, T data_field, int max_num_children)
-{
+template<typename T> NaryNode<T> *NaryTree<T>::create(NaryNode<T> *parent, T data_field, int max_num_children) {
 	size++;
 	return new NaryNode<T>(parent, data_field, max_num_children);
 }
 
-template<typename T>
-void NaryTree<T>::protected_preorder_apply(NaryNode<T> *&temp, Apply<NaryNode<T> *> &apply)
-{
-	if (temp == nullptr)
-	{
+template<typename T> void NaryTree<T>::protected_preorder_apply(NaryNode<T> *&temp, Apply<NaryNode<T> *> &apply) {
+	if (temp == nullptr) {
 		return;
-	}
-	else
-	{
+	} else {
 		apply.apply(temp);
-		for (int n = 0;
-		     n < temp->max_num_children;
-		     n++)
-		{
+		for (int n = 0; n < temp->max_num_children; n++) {
 			protected_preorder_apply(temp->children
 					                         .at(n), apply);
 		}
 	}
 }
 
-template<typename T>
-void NaryTree<T>::protected_postorder_apply(NaryNode<T> *&temp, Apply<NaryNode<T> *> &apply)
-{
-	if (temp == nullptr)
-	{
+template<typename T> void NaryTree<T>::protected_postorder_apply(NaryNode<T> *&temp, Apply<NaryNode<T> *> &apply) {
+	if (temp == nullptr) {
 		return;
-	}
-	else
-	{
-		for (int n = 0;
-		     n < temp->max_num_children;
-		     n++)
-		{
+	} else {
+		for (int n = 0; n < temp->max_num_children; n++) {
 			protected_postorder_apply(temp->children
 					                          .at(n), apply);
 		}
@@ -208,32 +163,20 @@ void NaryTree<T>::protected_postorder_apply(NaryNode<T> *&temp, Apply<NaryNode<T
 	}
 }
 
-template<typename T>
-void NaryTree<T>::protected_levelorder_apply(NaryNode<T> *&temp, Apply<NaryNode<T> *> &apply)
-{
-	if (temp == nullptr)
-	{
+template<typename T> void NaryTree<T>::protected_levelorder_apply(NaryNode<T> *&temp, Apply<NaryNode<T> *> &apply) {
+	if (temp == nullptr) {
 		return;
-	}
-	else
-	{
+	} else {
 		std::queue<NaryNode<T> *> q;
 		q.push(temp);
-		while (!q.empty())
-		{
+		while (!q.empty()) {
 			NaryNode<T> *node = q.front();
 			q.pop();
-			if (node == nullptr)
-			{
+			if (node == nullptr) {
 				return;
-			}
-			else
-			{
+			} else {
 				apply.apply(node);
-				for (int n = 0;
-				     n < node->max_num_children;
-				     n++)
-				{
+				for (int n = 0; n < node->max_num_children; n++) {
 					q.push(node->children
 							       .at(n));
 				}
@@ -242,38 +185,26 @@ void NaryTree<T>::protected_levelorder_apply(NaryNode<T> *&temp, Apply<NaryNode<
 	}
 }
 
-template<typename T>
-void NaryTree<T>::preorder_apply(Apply<NaryNode<T> *> &apply)
-{
+template<typename T> void NaryTree<T>::preorder_apply(Apply<NaryNode<T> *> &apply) {
 	protected_preorder_apply(root, apply);
 }
 
-template<typename T>
-void NaryTree<T>::postorder_apply(Apply<NaryNode<T> *> &apply)
-{
+template<typename T> void NaryTree<T>::postorder_apply(Apply<NaryNode<T> *> &apply) {
 	protected_postorder_apply(root, apply);
 }
 
-template<typename T>
-void NaryTree<T>::levelorder_apply(Apply<NaryNode<T> *> &apply)
-{
+template<typename T> void NaryTree<T>::levelorder_apply(Apply<NaryNode<T> *> &apply) {
 	protected_levelorder_apply(root, apply);
 }
 
 
-template<typename T>
-void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> &apply, std::string traversal)
-{
-	try
-	{
+template<typename T> void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> &apply, std::string traversal) {
+	try {
 		NaryNode<T> *prev, *temp, *curr;
 		curr = this->root;
-		while (1)
-		{
-			while (curr != nullptr)
-			{
-				if (traversal.compare("preorder") == 0)
-				{
+		while (1) {
+			while (curr != nullptr) {
+				if (traversal.compare("preorder") == 0) {
 					apply.apply(curr);
 				}
 				curr->inversion_bit = false;
@@ -284,8 +215,7 @@ void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> &apply, std::strin
 				prev = curr;
 				curr = temp;
 			}
-			while (prev != nullptr && prev->inversion_bit && prev->initialized == 0)
-			{
+			while (prev != nullptr && prev->inversion_bit && prev->initialized == 0) {
 				temp = prev->children
 						.at(prev->traversal_bit);
 				prev->children
@@ -293,17 +223,13 @@ void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> &apply, std::strin
 				curr = prev;
 				prev = temp;
 				curr->traversal_bit = 0;
-				if (traversal.compare("postorder") == 0)
-				{
+				if (traversal.compare("postorder") == 0) {
 					apply.apply(curr);
 				}
 			}
-			if (prev == nullptr || prev->initialized != 0)
-			{
+			if (prev == nullptr || prev->initialized != 0) {
 				return;
-			}
-			else
-			{
+			} else {
 				temp = prev->children
 						.at(prev->traversal_bit);
 				prev->children
@@ -311,12 +237,9 @@ void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> &apply, std::strin
 				curr = prev;
 				prev = temp;
 				if (curr->traversal_bit < curr->children
-						                          .size() - 1)
-				{
+						                          .size() - 1) {
 					curr->traversal_bit++;
-				}
-				else
-				{
+				} else {
 					curr->inversion_bit = true;
 				}
 				temp = curr->children
@@ -327,9 +250,7 @@ void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> &apply, std::strin
 				curr = temp;
 			}
 		}
-	}
-	catch (const std::out_of_range &oor)
-	{
+	} catch (const std::out_of_range &oor) {
 		std::cout << "/*" << std::endl;
 		std::cout << "linked inversion traversal has stopped either because" << std::endl;
 		std::cout << "the traversal has reached its end or because an error" << std::endl;
@@ -341,25 +262,15 @@ void NaryTree<T>::linked_inversion_apply(Apply<NaryNode<T> *> &apply, std::strin
 }
 
 
-template<typename T>
-int NaryTree<T>::get_size()
-{
+template<typename T> int NaryTree<T>::get_size() {
 	return size;
 }
 
-template<typename T>
-void NaryTree<T>::delete_tree(NaryNode<T> *node)
-{
-	if (node == nullptr)
-	{
+template<typename T> void NaryTree<T>::delete_tree(NaryNode<T> *node) {
+	if (node == nullptr) {
 		return;
-	}
-	else
-	{
-		for (int n = 0;
-		     n < node->max_num_children;
-		     n++)
-		{
+	} else {
+		for (int n = 0; n < node->max_num_children; n++) {
 			delete_tree(node->children
 					            .at(n));
 		}
@@ -367,28 +278,22 @@ void NaryTree<T>::delete_tree(NaryNode<T> *node)
 	}
 }
 
-template<typename T>
-void NaryTree<T>::random_branch_apply(Apply<NaryNode<T> *> &apply)
-{
+template<typename T> void NaryTree<T>::random_branch_apply(Apply<NaryNode<T> *> &apply) {
 	NaryNode<T> *temp = root;
 	std::queue<NaryNode<T> *> q;
 	q.push(temp);
 	srand(time(0));
-	while (1)
-	{
+	while (1) {
 		if (temp->children
-				    .size() == 0)
-		{
+				    .size() == 0) {
 			goto done;
 		}
 		int random = rand() % temp->children
 				.size();
 		while (temp->children
-				       .at(random) == nullptr)
-		{
+				       .at(random) == nullptr) {
 			random--;
-			if (random < 0)
-			{
+			if (random < 0) {
 				goto done;
 			}
 		}
@@ -398,13 +303,11 @@ void NaryTree<T>::random_branch_apply(Apply<NaryNode<T> *> &apply)
 	}
 	done:
 	std::queue<NaryNode<T> *> reversed_q;
-	while (!q.empty())
-	{
+	while (!q.empty()) {
 		reversed_q.push(q.front());
 		q.pop();
 	}
-	while (!reversed_q.empty())
-	{
+	while (!reversed_q.empty()) {
 		apply.apply(reversed_q.front());
 		reversed_q.pop();
 	}
@@ -415,26 +318,15 @@ void NaryTree<T>::random_branch_apply(Apply<NaryNode<T> *> &apply)
 /* ========================================================================================================== */
 /* === NaryNode === */
 
-template<typename T>
-T &NaryNode<T>::get_data()
-{
+template<typename T> T &NaryNode<T>::get_data() {
 	return data_field;
 }
 
-template<typename T>
-NaryNode<T>::NaryNode(NaryNode<T> *parent, T data_field, int max_num_children) :
-		data_field(data_field),
-		parent(parent),
-		children(max_num_children + 1, nullptr),
-		max_num_children(max_num_children),
-		inversion_bit(true),
-		traversal_bit(0),
-		initialized(0)
-{}
+template<typename T> NaryNode<T>::NaryNode(NaryNode<T> *parent, T data_field, int max_num_children) :
+		data_field(data_field), parent(parent), children(max_num_children + 1, nullptr),
+		max_num_children(max_num_children), inversion_bit(true), traversal_bit(0), initialized(0) {}
 
-template<typename T>
-NaryNode<T>::~NaryNode()
-{
+template<typename T> NaryNode<T>::~NaryNode() {
 	children.clear();
 }
 

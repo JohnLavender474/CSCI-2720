@@ -3,12 +3,9 @@
 
 #include "Comparable.h"
 
-template<typename K, typename V>
-class AVL_Tree;
+template<typename K, typename V> class AVL_Tree;
 
-template<typename K, typename V>
-class AVL_Node
-{
+template<typename K, typename V> class AVL_Node {
 	static_assert(std::is_base_of<Comparable<K>, K>::value, "Key must derive Comparable<Key>");
 	
 	friend class AVL_Tree<K, V>;

@@ -1,9 +1,7 @@
 #ifndef FUNCTION_HPP
 #define FUNCTION_HPP
 
-template<typename T>
-class Function
-{
+template<typename T> class Function {
 public:
 	Function() = default;
 	

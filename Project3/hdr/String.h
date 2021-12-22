@@ -5,9 +5,7 @@
 
 #include "Comparable.h"
 
-class String
-		: public Comparable<String>
-{
+class String : public Comparable<String> {
 public:
 	String() = default;
 	
