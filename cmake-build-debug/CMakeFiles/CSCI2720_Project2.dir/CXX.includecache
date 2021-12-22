@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/apple/CLionProjects/CSCI2720_Projects/Project2/NaryTree.h
+cstddef
+-
+iostream
+-
+queue
+-
+random
+-
+T3SolverImplementation.h
+/Users/apple/CLionProjects/CSCI2720_Projects/Project2/T3SolverImplementation.h
+
+/Users/apple/CLionProjects/CSCI2720_Projects/Project2/T3SolverImplementation.cpp
+T3SolverImplementation.h
+/Users/apple/CLionProjects/CSCI2720_Projects/Project2/T3SolverImplementation.h
+algorithm
+-
+
+/Users/apple/CLionProjects/CSCI2720_Projects/Project2/T3SolverImplementation.h
+NaryTree.h
+/Users/apple/CLionProjects/CSCI2720_Projects/Project2/NaryTree.h
+

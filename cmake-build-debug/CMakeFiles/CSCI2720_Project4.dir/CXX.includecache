@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/DynamicArray.h
+set
+-
+queue
+-
+functional
+-
+Iterator.h
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/Iterator.h
+
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/Iterator.h
+iterator
+-
+cstddef
+-
+Iterator.tpp
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/Iterator.tpp
+
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/Iterator.tpp
+Iterator.h
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/Iterator.h
+
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/main.cpp
+iostream
+-
+DynamicArray.h
+/Users/apple/CLionProjects/CSCI2720_Projects/Project4/DynamicArray.h
+
