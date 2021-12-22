@@ -5,8 +5,7 @@
 
 using namespace std;
 
-class BookingNum
-{
+class BookingNum {
 public:
 	BookingNum();
 	

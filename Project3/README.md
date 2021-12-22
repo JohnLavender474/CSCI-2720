@@ -4,14 +4,12 @@ John Lavender # UGA ID 811045788
 
 https://github.com/JohnLavender474/CSCI2720_Projects
 
-To launch the program, enter 'make clean', then 'make', and then './P3Executable'.
-The following prompt will appear:
+To launch the program, enter 'make clean', then 'make', and then './P3Executable'. The following prompt will appear:
 
      avl / hashmap: 
 
-This is the "main hub" of the program. You may enter either "avl" or "hashmap".
-All input in this program is NOT case or space sensitive, so all of the following
-inputs are valid for this prompt (and describe acceptable formats for all other
+This is the "main hub" of the program. You may enter either "avl" or "hashmap". All input in this program is NOT case or
+space sensitive, so all of the following inputs are valid for this prompt (and describe acceptable formats for all other
 prompts going forward in the program):
 
      avl
@@ -31,9 +29,9 @@ The file path must be relative to the directory of the running program. An examp
 
      Enter file path: ./test/input1.txt
 
-When you enter the file path, the integer-string pairs of the file will be displayed
-followed by a list of the valid commands available. The list of commands is different
-depending on whether you chose "avl" or "hashmap" at the first prompt. You may enter
+When you enter the file path, the integer-string pairs of the file will be displayed followed by a list of the valid
+commands available. The list of commands is different depending on whether you chose "avl" or "hashmap" at the first
+prompt. You may enter
 "return" to go back to the main hub or "exit" to exit the program entirely.
 
 The following is an example of what you might see at this point.
@@ -77,10 +75,9 @@ The following is an example of what you might see at this point.
      AVL_TREE ------------------------------------------------------------------
      Command: 
 
-Inserting two new integer-string pairs, performing levelorder print,
-removing integer-string pair with key = 39, checking if avl tree contains
-integer-string pair with key = 45, fetching value from integer-string
-pair with key = 83, clearing the avl tree and then returning to main hub.
+Inserting two new integer-string pairs, performing levelorder print, removing integer-string pair with key = 39,
+checking if avl tree contains integer-string pair with key = 45, fetching value from integer-string pair with key = 83,
+clearing the avl tree and then returning to main hub.
 
      AVL_TREE ------------------------------------------------------------------
      Command: insert
@@ -142,15 +139,12 @@ pair with key = 83, clearing the avl tree and then returning to main hub.
      Returning to main hub...
      avl / hashmap:
 
-Working with "hashmap" is nearly identical to working with "avl". Differences
-are minor, such as "insert" in "avl" being replaced with "put" in hashmap.
-In "avl", attempting to insert an integer-value pair where the integer key
-already exists in the tree will result in the value of that particular node
-being overwritten by the new value. (This is the expected behavior since of
-course there cannot be duplicate keys in an avl tree.) This same behavior
-occurs when working with "hashmap" "put".
+Working with "hashmap" is nearly identical to working with "avl". Differences are minor, such as "insert" in "avl" being
+replaced with "put" in hashmap. In "avl", attempting to insert an integer-value pair where the integer key already
+exists in the tree will result in the value of that particular node being overwritten by the new value. (This is the
+expected behavior since of course there cannot be duplicate keys in an avl tree.) This same behavior occurs when working
+with "hashmap" "put".
 
 KNOWN ERROR:
-When the program prompts for a file to be entered, entering a nonexistent file
-or a bad directory does not result in an error message. Instead, the screen is
-cleared and the program returns to the "avl / hashmap: " prompt.
+When the program prompts for a file to be entered, entering a nonexistent file or a bad directory does not result in an
+error message. Instead, the screen is cleared and the program returns to the "avl / hashmap: " prompt.

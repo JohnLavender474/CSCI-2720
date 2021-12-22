@@ -7,8 +7,7 @@
 
 using namespace std;
 
-class Flight
-{
+class Flight {
 public:
 	Flight();
 	

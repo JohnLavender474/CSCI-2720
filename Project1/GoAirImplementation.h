@@ -7,27 +7,17 @@
 
 using namespace std;
 
-class BookingNumSortedList
-		: public SortedList<Passenger>
-{
+class BookingNumSortedList : public SortedList<Passenger> {
 public:
-	void insertForFirstPassengers(Passenger passenger)
-	{
-		if (this->length == 0)
-		{
+	void insertForFirstPassengers(Passenger passenger) {
+		if (this->length == 0) {
 			this->head
 					->data = passenger;
 			this->length++;
-		}
-		else
-		{
-			for (int i = 0;
-			     i < getLength();
-			     i++)
-			{
+		} else {
+			for (int i = 0; i < getLength(); i++) {
 				if (passenger.getBookingNo() < this->get(i)
-						.getBookingNo())
-				{
+						.getBookingNo()) {
 					this->indexedInsert(i, passenger);
 					return;
 				} // if
@@ -35,23 +25,15 @@ public:
 			this->indexedInsert(this->getLength(), passenger);
 		} // if
 	} // insertForFirstPassengers
-	void insertForNewPassengers(Passenger passenger)
-	{
-		if (this->length == 0)
-		{
+	void insertForNewPassengers(Passenger passenger) {
+		if (this->length == 0) {
 			this->head
 					->data = passenger;
 			this->length++;
-		}
-		else
-		{
-			for (int i = 0;
-			     i < getLength();
-			     i++)
-			{
+		} else {
+			for (int i = 0; i < getLength(); i++) {
 				if (passenger.getBookingNo() > this->get(i)
-						.getBookingNo())
-				{
+						.getBookingNo()) {
 					this->indexedInsert(i, passenger);
 					return;
 				} // if
@@ -61,8 +43,7 @@ public:
 	} // insertForNewPassengers
 }; // BookingNumSortedList
 
-class GoAirImplementation
-{
+class GoAirImplementation {
 public:
 	GoAirImplementation();
 	

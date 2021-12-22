@@ -56,13 +56,10 @@ const string sfpErrorMsg = "Failed to show first passengers on flight no";
 
 GoAirImplementation *goAir = new GoAirImplementation();
 
-int main(int argc, char *argv[])
-{
-	if (argc > 1)
-	{
+int main(int argc, char *argv[]) {
+	if (argc > 1) {
 		string arg = argv[1];
-		if (arg.compare("test") == 0)
-		{
+		if (arg.compare("test") == 0) {
 			test();
 			return 0;
 		}
@@ -72,24 +69,20 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void goAirProgram()
-{
+void goAirProgram() {
 	string input;
 	vector<string> tokens;
-	while (1)
-	{
+	while (1) {
 		cout << endl;
 		input = "";
 		tokens.clear();
-		do
-		{
+		do {
 			cout << "Command: ";
 			getline(cin, input);
 		}
 		while (!(isAlphaNum(input)) || input.empty());
 		tokenize(input, tokens);
-		if (tokens.at(0) == exitProgram)
-		{
+		if (tokens.at(0) == exitProgram) {
 			cout << "\nThank you for using the Go Air Airlines module!\n" << endl;
 			break;
 		}
@@ -99,258 +92,166 @@ void goAirProgram()
 	}
 }
 
-void handleCommand(vector<string> &tokens, string &msg)
-{
+void handleCommand(vector<string> &tokens, string &msg) {
 	cout << endl;
 	int flightno;
 	string firstname;
 	string lastname;
 	int seatno;
 	if (tokens.at(0)
-			    .compare(commands) == 0)
-	{
+			    .compare(commands) == 0) {
 		printCommands();
-	}
-	else if (tokens.at(0)
-			         .compare(af) == 0)
-	{
-		if (isNum(tokens.at(1), flightno))
-		{
-			if (flightno != -1)
-			{
+	} else if (tokens.at(0)
+			           .compare(af) == 0) {
+		if (isNum(tokens.at(1), flightno)) {
+			if (flightno != -1) {
 				goAir->addFlight(flightno);
 				msg = afSuccess;
-			}
-			else
-			{
+			} else {
 				msg = afErrorMsg;
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(rf) == 0)
-	{
-		if (isNum(tokens.at(1), flightno))
-		{
-			if (flightno != -1)
-			{
+	} else if (tokens.at(0)
+			           .compare(rf) == 0) {
+		if (isNum(tokens.at(1), flightno)) {
+			if (flightno != -1) {
 				goAir->removeFlight(flightno);
 				msg = rfSuccess;
-			}
-			else
-			{
+			} else {
 				msg = rfErrorMsg;
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(ap) == 0)
-	{
-		if (tokens.size() != 5)
-		{
+	} else if (tokens.at(0)
+			           .compare(ap) == 0) {
+		if (tokens.size() != 5) {
 			cout << apErrorMsg << endl;
-		}
-		else if (isNum(tokens.at(1), flightno) && isAlpha(tokens.at(2)) &&
-		         isAlpha(tokens.at(3)) && isNum(tokens.at(4), seatno))
-		{
+		} else if (isNum(tokens.at(1), flightno) && isAlpha(tokens.at(2)) && isAlpha(tokens.at(3)) &&
+		           isNum(tokens.at(4), seatno)) {
 			lastname = tokens.at(2);
 			firstname = tokens.at(3);
-			if (flightno != -1 && seatno != -1)
-			{
+			if (flightno != -1 && seatno != -1) {
 				goAir->addPassenger(flightno, lastname, firstname, seatno);
 				msg = apSuccess;
-			}
-			else
-			{
+			} else {
 				msg = spErrorMsg;
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(rp) == 0)
-	{
-		if (tokens.size() != 5)
-		{
+	} else if (tokens.at(0)
+			           .compare(rp) == 0) {
+		if (tokens.size() != 5) {
 			cout << rpErrorMsg << endl;
-		}
-		else if (isNum(tokens.at(1), flightno) && isAlpha(tokens.at(2)) &&
-		         isAlpha(tokens.at(3)) && isNum(tokens.at(4), seatno))
-		{
+		} else if (isNum(tokens.at(1), flightno) && isAlpha(tokens.at(2)) && isAlpha(tokens.at(3)) &&
+		           isNum(tokens.at(4), seatno)) {
 			lastname = tokens.at(2);
 			firstname = tokens.at(3);
-			if (flightno != -1 && seatno != -1)
-			{
+			if (flightno != -1 && seatno != -1) {
 				goAir->removePassenger(flightno, lastname, firstname, seatno);
 				msg = rpSuccess;
-			}
-			else
-			{
+			} else {
 				msg = rpErrorMsg;
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(sp) == 0)
-	{
-		if (tokens.size() != 5)
-		{
+	} else if (tokens.at(0)
+			           .compare(sp) == 0) {
+		if (tokens.size() != 5) {
 			cout << spErrorMsg << endl;
-		}
-		else if (isNum(tokens.at(1), flightno) && isAlpha(tokens.at(2)) &&
-		         isAlpha(tokens.at(3)) && isNum(tokens.at(4), seatno))
-		{
+		} else if (isNum(tokens.at(1), flightno) && isAlpha(tokens.at(2)) && isAlpha(tokens.at(3)) &&
+		           isNum(tokens.at(4), seatno)) {
 			lastname = tokens.at(2);
 			firstname = tokens.at(3);
-			if (flightno != -1 && seatno != -1)
-			{
+			if (flightno != -1 && seatno != -1) {
 				goAir->showPassenger(flightno, lastname, firstname, seatno);
-			}
-			else
-			{
+			} else {
 				msg = spErrorMsg;
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(saf) == 0)
-	{
+	} else if (tokens.at(0)
+			           .compare(saf) == 0) {
 		goAir->showAllFlights();
-	}
-	else if (tokens.at(0)
-			         .compare(sap) == 0)
-	{
-		if (tokens.size() != 2)
-		{
+	} else if (tokens.at(0)
+			           .compare(sap) == 0) {
+		if (tokens.size() != 2) {
 			msg = sapErrorMsg;
-		}
-		else
-		{
-			if (isNum(tokens.at(1), flightno))
-			{
-				if (flightno != -1)
-				{
+		} else {
+			if (isNum(tokens.at(1), flightno)) {
+				if (flightno != -1) {
 					cout << endl;
 					goAir->showAllPassengers(flightno);
-				}
-				else
-				{
+				} else {
 					msg = sapErrorMsg;
 				}
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(snp) == 0)
-	{
-		if (tokens.size() != 3)
-		{
+	} else if (tokens.at(0)
+			           .compare(snp) == 0) {
+		if (tokens.size() != 3) {
 			msg = snpErrorMsg;
-		}
-		else
-		{
+		} else {
 			int k;
-			if (isNum(tokens.at(1), flightno) && isNum(tokens.at(2), k))
-			{
-				if (flightno != -1 && k != -1)
-				{
+			if (isNum(tokens.at(1), flightno) && isNum(tokens.at(2), k)) {
+				if (flightno != -1 && k != -1) {
 					goAir->showNewPassengers(flightno, k);
-				}
-				else
-				{
+				} else {
 					msg = snpErrorMsg;
 				}
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(sfp) == 0)
-	{
-		if (tokens.size() != 3)
-		{
+	} else if (tokens.at(0)
+			           .compare(sfp) == 0) {
+		if (tokens.size() != 3) {
 			msg = sfpErrorMsg;
-		}
-		else
-		{
+		} else {
 			int k;
-			if (isNum(tokens.at(1), flightno) && isNum(tokens.at(2), k))
-			{
-				if (flightno != -1 && k != -1)
-				{
+			if (isNum(tokens.at(1), flightno) && isNum(tokens.at(2), k)) {
+				if (flightno != -1 && k != -1) {
 					goAir->showFirstPassengers(flightno, k);
-				}
-				else
-				{
+				} else {
 					msg = sfpErrorMsg;
 				}
 			}
 		}
-	}
-	else if (tokens.at(0)
-			         .compare(safap) == 0)
-	{
+	} else if (tokens.at(0)
+			           .compare(safap) == 0) {
 		goAir->showAllFlightsAndPassengers();
 	}
 }
 
-void tokenize(string &str, vector<string> &tokens)
-{
+void tokenize(string &str, vector<string> &tokens) {
 	string temp = "";
-	for (int i = 0;
-	     i < str.length();
-	     i++)
-	{
-		if (str[i] == ' ')
-		{
-			if (!temp.empty())
-			{
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] == ' ') {
+			if (!temp.empty()) {
 				tokens.push_back(temp);
 			} // if
 			temp = "";
-		}
-		else
-		{
+		} else {
 			temp += str[i];
 		}
 	}
 	tokens.push_back(temp);
 } // tokenize
 
-bool isAlphaNum(string &str)
-{
-	for (int i = 0;
-	     i < str.size();
-	     i++)
-	{
-		if (!isalnum(str[i]) && str[i] != ' ')
-		{
+bool isAlphaNum(string &str) {
+	for (int i = 0; i < str.size(); i++) {
+		if (!isalnum(str[i]) && str[i] != ' ') {
 			return false;
 		}
 	}
 	return true;
 }
 
-bool isAlpha(string &str)
-{
-	for (int i = 0;
-	     i < str.size();
-	     i++)
-	{
-		if (!isalpha(str[i]) && str[i] != ' ')
-		{
+bool isAlpha(string &str) {
+	for (int i = 0; i < str.size(); i++) {
+		if (!isalpha(str[i]) && str[i] != ' ') {
 			return false;
 		}
 	}
 	return true;
 }
 
-bool isNum(string &str, int &num)
-{
-	for (int i = 0;
-	     i < str.size();
-	     i++)
-	{
-		if (!isnumber(str[i]) && str[i] != ' ')
-		{
+bool isNum(string &str, int &num) {
+	for (int i = 0; i < str.size(); i++) {
+		if (!isnumber(str[i]) && str[i] != ' ') {
 			num = -1;
 			return false;
 		}
@@ -359,8 +260,7 @@ bool isNum(string &str, int &num)
 	return true;
 }
 
-void printCommands()
-{
+void printCommands() {
 	cout << "\n\tAvailable commands:" << endl;
 	int x = 400;
 	this_thread::sleep_for(chrono::milliseconds(x));
@@ -390,8 +290,7 @@ void printCommands()
 	cout << endl;
 }
 
-void printWelcome()
-{
+void printWelcome() {
 	int x = 600;
 	this_thread::sleep_for(chrono::milliseconds(x));
 	cout << "\n   GO AIR AIRLINES\n" << endl;
@@ -402,8 +301,7 @@ void printWelcome()
 	printCommands();
 }
 
-void test()
-{
+void test() {
 	goAir->addFlight(11);
 	goAir->addPassenger(11, "Lavender", "John", 11);
 	goAir->addPassenger(11, "Doshi", "Prashant", 1);

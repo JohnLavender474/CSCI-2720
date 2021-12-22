@@ -5,8 +5,7 @@
 
 using namespace std;
 
-class Passenger
-{
+class Passenger {
 public:
 	Passenger();
 	

@@ -2,9 +2,7 @@
 
 #include "Node.h"
 
-template<class T>
-class SortedList
-{
+template<class T> class SortedList {
 public:
 	SortedList();
 	

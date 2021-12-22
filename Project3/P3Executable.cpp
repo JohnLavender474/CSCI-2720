@@ -499,7 +499,9 @@ void remove_whitespace(std::string &str)
 
 void to_upper(std::string &str)
 {
-	for(unsigned int l = 0; l < str.length(); l++)
+	for (unsigned int l = 0;
+	     l < str.length();
+	     l++)
 	{
 		str[l] = toupper(str[l]);
 	}
@@ -525,16 +527,16 @@ void avl_help()
 	std::cout << "\tprogram will ask for integer key" << std::endl;
 	std::cout << "print" << std::endl;
 	std::cout << "\tprogram will ask for print type:" << std::endl;
-	std::cout <<"\t\tpreorder" << std::endl;
-	std::cout <<"\t\tpostorder" << std::endl;
-	std::cout <<"\t\tlevelorder" << std::endl;
-	std::cout <<"\t\tinorder" << std::endl;
+	std::cout << "\t\tpreorder" << std::endl;
+	std::cout << "\t\tpostorder" << std::endl;
+	std::cout << "\t\tlevelorder" << std::endl;
+	std::cout << "\t\tinorder" << std::endl;
 	std::cout << "size" << std::endl;
 	std::cout << "height" << std::endl;
 	std::cout << "clear" << std::endl;
 	std::cout << "return (return to main hub)" << std::endl;
 	std::cout << "exit (exit program entirely)" << std::endl;
-	std::cout <<"help (will print these instructions)" << std::endl;
+	std::cout << "help (will print these instructions)" << std::endl;
 }
 
 void hashmap_help()

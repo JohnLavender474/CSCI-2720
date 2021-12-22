@@ -4,11 +4,11 @@ John Lavender # UGA ID: 811045788
 
 https://github.com/JohnLavender474/CSCI2720_Projects
 
-To start the program, enter 'make clean', 'make', and './US_Graph_Program'.
-A list of available command prompts will appear. Each command is associated with an int.
+To start the program, enter 'make clean', 'make', and './US_Graph_Program'. A list of available command prompts will
+appear. Each command is associated with an int.
 
 At the 'Command: ' prompt:
-    
+
     0. exit the program
     
     1. print the help text
@@ -78,10 +78,7 @@ Okay, so what's the shortest path from GA to WA?
         ID -->
         WA
 
-Commands 5 and 8 are, respectively, for finding the state with 
-the highest contiguity count and for printing the shortest path tree
-of a state.
-
-
+Commands 5 and 8 are, respectively, for finding the state with the highest contiguity count and for printing the
+shortest path tree of a state.
 
 No known issues with the program.
