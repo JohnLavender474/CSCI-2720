@@ -3,7 +3,7 @@ CFLAGS = -g
 
 all : GoAirProgram
 
-OBJECTS = GoAirProgram.o GoAirImplementation.o SortedList.o Passenger.o Flight.o GoAir.o BookingNum.o
+OBJECTS = GoAirProgram.o GoAirImplementation.o SortedList.o Passenger.o Flight.o BookingNum.o
 
 SortedList.o : SortedList.cpp
 	$(CC) -c $(CFLAGS) $< -o $@

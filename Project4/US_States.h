@@ -1,18 +1,10 @@
-#pragma
-once
+#pragma once
 
-#include
+#include <string>
+#include <set>
+#include <map>
 
-<string>
-
-#include
-<set>
-
-#include
-<map>
-
-const std::string
-AK = "AK";
+const std::string AK = "AK";
 const std::string AL = "AL";
 const std::string AR = "AR";
 const std::string AZ = "AZ";

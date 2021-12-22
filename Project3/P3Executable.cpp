@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <exception>
 #include <algorithm>
 #include <cctype>
+#include <sstream>
 
 #include "hdr/String.h"
 #include "hdr/Integer.h"
