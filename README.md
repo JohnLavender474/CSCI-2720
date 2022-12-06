@@ -1,4 +1,5 @@
-# CSCI-2720-Data-Structures
+# CSCI 2720 - Data Structures and Algorithms
+
 Implement in C++ various data structures and algorithms
 
 <hr/>
