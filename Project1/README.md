@@ -1,6 +1,6 @@
 # CSCI2720_Project1
 
-John Lavender UGA ID # 811045788
+John Lavender 
 
 To launch the program, simply run "make" and then "./GoAirProgram". The program begins by displaying all of the
 available commands followed by a command prompt. I will now demonstrate a test run.
