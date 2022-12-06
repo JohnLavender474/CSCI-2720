@@ -1,6 +1,6 @@
-# CSCI_Project4
+# CSCI Project 4
 
-John Lavender # UGA ID: 811045788
+John Lavender 
 
 https://github.com/JohnLavender474/CSCI2720_Projects
 
