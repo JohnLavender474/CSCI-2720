@@ -1,4 +1,4 @@
-# CSCI2720_Project2
+# CSCI2720 Project 2
 
 John Lavender
 
