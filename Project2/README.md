@@ -1,6 +1,6 @@
 # CSCI2720_Project2
 
-John Lavender # UGA ID 811045788
+John Lavender
 
 https://github.com/JohnLavender474/CSCI2720_Projects/tree/master/Project2
 
